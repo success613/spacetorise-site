@@ -10,7 +10,7 @@
 
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=8cc36445">
+<link rel="stylesheet" href="/assets/css/site.css?v=3db6d069">
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
@@ -22,10 +22,8 @@
 <body>
 <div class="loader" aria-hidden="true">
   <div class="loader__stage">
-    <svg class="loader__rings" viewBox="0 0 200 200"></svg>
-    <div class="loader__drop"></div>
-    <div class="loader__heart"><svg viewBox="0 0 24 24" width="100%" height="100%"><path d="M12 21s-7.5-4.6-9.5-9A5.3 5.3 0 0 1 12 6.5a5.3 5.3 0 0 1 9.5 5.5c-2 4.4-9.5 9-9.5 9z" fill="#EFBEB6"/></svg></div>
     <div class="loader__word"><img src="/assets/img/Logo_Blanco_Full.png" alt="Space to Rise" style="filter:invert(1) brightness(.42)"></div>
+    <div class="loader__line"></div>
   </div>
 </div>
 <div class="wipe" aria-hidden="true"></div>
@@ -54,7 +52,7 @@
     <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="#historia"><span>Conoce mi historia</span></a></div></div>
   <div class="feature__media"><div class="media"><img src="/assets/img/p/andrea.jpg" alt="Andrea Zafra, hipnoterapeuta clínica RTT"></div></div>
 </div></section>
-<section class="pad-s bg-aqua"><div class="wrap"><div class="sec-title"><span class="kicker">Formación y certificaciones</span></div><div class="tiles" style="grid-template-columns:repeat(5,1fr);gap:0 28px">
+<section class="pad-s bg-aqua"><div class="wrap"><div class="sec-title"><span class="kicker">Formación y certificaciones</span></div><div class="tiles stagger" style="grid-template-columns:repeat(5,1fr);gap:0 28px">
   <div class="fade"><b class="display-m" style="display:block">+10</b><span class="kicker" style="margin:6px 0 10px;display:block">Años de experiencia</span><p class="small" style="margin:0">Acompañando procesos de sanación y transformación personal.</p></div>
   <div class="fade d1"><b class="display-m" style="display:block">RTT</b><span class="kicker" style="margin:6px 0 10px;display:block">Hipnoterapeuta clínica</span><p class="small" style="margin:0">Especializada en Rapid Transformational Therapy, el método creado por Marisa Peer.</p></div>
   <div class="fade d2"><b class="display-m" style="display:block">NCS</b><span class="kicker" style="margin:6px 0 10px;display:block">Consultora certificada</span><p class="small" style="margin:0">NeuroChangeSolutions, formada por el Dr. Joe Dispenza en la neurociencia del cambio.</p></div>
@@ -68,18 +66,18 @@
 <section class="quote-band bg-taupe" data-dark><div class="wrap"><p class="fade">“No podemos ofrecer al mundo algo que no somos.”</p><cite class="fade d1">Andrea Zafra</cite></div></section>
 <section id="mision" class="pad"><div class="wrap">
   <div class="grid g2" style="align-items:start"><div><span class="kicker fade">Mi misión</span><h2 class="display-m lines" style="margin:14px 0 0">Despertar el potencial humano de millones de personas, de adentro hacia afuera.</h2></div><div><p class="lead fade">Acompaño a personas, familias y organizaciones a liberarse de las creencias limitantes y los programas desactualizados que las enferman, las bloquean y les impiden ser su mejor versión.</p><p class="fade d1">Para lograrlo uno dos caminos que se potencian: la hipnoterapia RTT, que llega a la raíz en el subconsciente, y la neurociencia del cambio del Dr. Joe Dispenza, que enseña cómo el cerebro y el cuerpo crean nuevos hábitos y los sostienen en el tiempo.</p></div></div>
-  <div class="tiles" style="margin-top:clamp(36px,5vw,64px)">
-    <div class="tile bg-blush fade" style="min-height:0"><span class="tag" style="margin:0 0 10px">Personas</span><p>Que cada persona sane su cuerpo y su mente, recupere su poder interior y alcance lo que sueña.</p></div>
-    <div class="tile bg-sand fade d1" style="min-height:0"><span class="tag" style="margin:0 0 10px">Familias</span><p>Que los padres críen nuevas generaciones libres de miedos, con autoestima alta y alas fuertes para volar alto.</p></div>
-    <div class="tile bg-aqua fade d2" style="min-height:0"><span class="tag" style="margin:0 0 10px">Empresas</span><p>Que líderes y equipos sean más conscientes, sanos y creativos, capaces de adaptarse al cambio y crecer juntos.</p></div>
+  <div class="tiles stagger" style="margin-top:clamp(36px,5vw,64px)">
+    <div class="tile bg-blush" style="min-height:0"><span class="tag" style="margin:0 0 10px">Personas</span><p>Que cada persona sane su cuerpo y su mente, recupere su poder interior y alcance lo que sueña.</p></div>
+    <div class="tile bg-sand" style="min-height:0"><span class="tag" style="margin:0 0 10px">Familias</span><p>Que los padres críen nuevas generaciones libres de miedos, con autoestima alta y alas fuertes para volar alto.</p></div>
+    <div class="tile bg-aqua" style="min-height:0"><span class="tag" style="margin:0 0 10px">Empresas</span><p>Que líderes y equipos sean más conscientes, sanos y creativos, capaces de adaptarse al cambio y crecer juntos.</p></div>
   </div>
   <p class="caps fade" style="margin:clamp(40px,5vw,64px) auto 8px;text-align:center">Porque cuando una persona se transforma, transforma su familia, su equipo y su entorno.</p>
   <p class="display-s fade d1" style="text-align:center;margin:0;font-style:italic">¡Al despertar tu mundo, iluminas el mundo!</p>
 </div></section>
-<section class="pad-s bg-stone"><div class="wrap"><div class="sec-title"><span class="kicker">Cómo puedo acompañarte</span></div><div class="tiles">
-  <a class="tile fade" href="/heal-rise-shine/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Personas</span><h3>Heal · Rise · Shine</h3><p>Sesiones de RTT para sanar tu cuerpo, liberar tu mente y alcanzar tus objetivos.</p><span class="tag">Conoce más →</span></a>
-  <a class="tile fade d1" href="/kids/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Familias</span><h3>Kids</h3><p>Herramientas para que tus hijos crezcan con una autoestima alta, libres de miedos y creencias limitantes.</p><span class="tag">Conoce más →</span></a>
-  <a class="tile fade d2" href="/empresas/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Empresas</span><h3>Bienestar corporativo</h3><p>Talleres, retiros y el programa NCS del Dr. Joe Dispenza para equipos y líderes.</p><span class="tag">Conoce más →</span></a>
+<section class="pad-s bg-stone"><div class="wrap"><div class="sec-title"><span class="kicker">Cómo puedo acompañarte</span></div><div class="tiles stagger">
+  <a class="tile" href="/heal-rise-shine/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Personas</span><h3>Heal · Rise · Shine</h3><p>Sesiones de RTT para sanar tu cuerpo, liberar tu mente y alcanzar tus objetivos.</p><span class="tag">Conoce más →</span></a>
+  <a class="tile" href="/kids/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Familias</span><h3>Kids</h3><p>Herramientas para que tus hijos crezcan con una autoestima alta, libres de miedos y creencias limitantes.</p><span class="tag">Conoce más →</span></a>
+  <a class="tile" href="/empresas/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Empresas</span><h3>Bienestar corporativo</h3><p>Talleres, retiros y el programa NCS del Dr. Joe Dispenza para equipos y líderes.</p><span class="tag">Conoce más →</span></a>
 </div></div></section>
 </main>
 <section class="cta" data-dark>
@@ -118,8 +116,8 @@
   <div class="drawer__foot"><div class="drawer__total"><span>Total</span><b></b></div><a class="pill solid" href="/checkout/"><span>Finalizar compra</span></a><p class="small muted" style="margin:12px 0 0;text-align:center">Recibirás tus audios en un espacio privado con enlace mágico.</p></div>
 </aside>
 <div class="modal" role="dialog" aria-modal="true"><div class="modal__box"><button class="modal__close" aria-label="Cerrar"></button><div class="modal__img"></div><div class="modal__body"></div></div></div>
-<script src="/assets/js/site.js?v=8cc36445" defer></script>
-<script src="/assets/js/shop.js?v=8cc36445" defer></script>
-<script src="/assets/js/portal.js?v=8cc36445" defer></script>
+<script src="/assets/js/site.js?v=3db6d069" defer></script>
+<script src="/assets/js/shop.js?v=3db6d069" defer></script>
+<script src="/assets/js/portal.js?v=3db6d069" defer></script>
 </body>
 </html>

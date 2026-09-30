@@ -23,23 +23,12 @@
   /* ---------- Loader: gota → anillos → logo ---------- */
   const loader = $('.loader');
   const seen = sessionStorage.getItem('str-seen');
-  function buildRings() {
-    const svg = $('.loader__rings'); if (!svg) return [];
-    const cols = ['#D9A38F', '#EFBEB6', '#EAD7C0', '#B9D7D0', '#AFCCD1', '#92ADA4', '#7A6E5D'];
-    const rings = [];
-    for (let i = 0; i < 7; i++) {
-      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      c.setAttribute('cx', 100); c.setAttribute('cy', 100); c.setAttribute('r', 14 + i * 12);
-      c.setAttribute('stroke', cols[i]); svg.appendChild(c); rings.push(c);
-    }
-    return rings;
-  }
   function endLoader(fast) {
     document.body.classList.remove('no-scroll');
     if (!loader) return;
     if (fast || reduce || !hasGsap) { loader.style.display = 'none'; heroIn(); return; }
-    gsap.to(loader, { clipPath: 'circle(0% at 50% 50%)', duration: 1.2, ease: 'expo.inOut', onComplete: () => { loader.style.display = 'none'; } });
-    setTimeout(heroIn, 350);
+    gsap.to(loader, { opacity: 0, duration: .9, ease: 'power2.inOut', onComplete: () => { loader.style.display = 'none'; } });
+    setTimeout(heroIn, 250);
   }
   function heroIn() {
     $$('.hero .lines').forEach(l => l.classList.add('in'));
@@ -49,19 +38,12 @@
   }
   if (loader) {
     document.body.classList.add('no-scroll');
-    loader.style.clipPath = 'circle(150% at 50% 50%)';
     if (seen || reduce || !hasGsap) { setTimeout(() => endLoader(true), 60); }
     else {
-      const rings = buildRings();
-      gsap.set(rings, { transformOrigin: '50% 50%', scale: .05, opacity: 0 });
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-      tl.to('.loader__drop', { opacity: 1, duration: .2 }, 0)
-        .fromTo('.loader__drop', { y: -40 }, { y: 'min(35vmin,210px)', duration: .9, ease: 'power2.in' }, 0)
-        .to('.loader__drop', { scaleY: .3, scaleX: 1.6, opacity: 0, duration: .25 }, .9)
-        .to(rings, { opacity: 1, scale: 1, transformOrigin: '50% 50%', duration: 1.6, ease: 'expo.out', stagger: .07 }, .95)
-        .to('.loader__heart', { opacity: 1, scale: 1, duration: .8, ease: 'back.out(2)' }, 1.5)
-        .to('.loader__word', { opacity: 1, y: -8, duration: .9 }, 1.7)
-        .add(() => { sessionStorage.setItem('str-seen', '1'); endLoader(false); }, 3.2);
+      tl.fromTo('.loader__word', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out' }, .1)
+        .fromTo('.loader__line', { scaleX: 0 }, { scaleX: 1, duration: 1.3, ease: 'expo.inOut' }, .35)
+        .add(() => { sessionStorage.setItem('str-seen', '1'); endLoader(false); }, 1.9);
     }
   } else heroIn();
 
@@ -150,15 +132,16 @@
   }
 
   /* ---------- Revelado en cascada de tarjetas y listas ---------- */
-  const groups = $$('.tiles, .icards, .discs, .stats, .tcards, .plist, .steps, .creds, .chips, [data-cats], .acc');
-  groups.forEach(g => { const ks = [...g.children]; if (!ks.length) return; g.classList.add('stagger'); ks.forEach(k => { k.classList.remove('fade', 'd1', 'd2', 'd3', 'd4', 'd0'); }); });
+  const groups = $$('.stagger');
   if (hasGsap && !reduce) {
     groups.forEach(g => {
       const kids = [...g.children]; if (!kids.length) return;
-      ScrollTrigger.create({ trigger: g, start: 'top 88%', once: true, onEnter: () => gsap.to(kids, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out', stagger: { each: .09, from: 'start' }, overwrite: true, clearProps: 'transform' }) });
+      const show = () => { if (g.dataset.shown) return; g.dataset.shown = '1'; g.classList.add('shown'); gsap.fromTo(kids, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: { each: .08, from: 'start' }, overwrite: true, clearProps: 'all' }); };
+      ScrollTrigger.create({ trigger: g, start: 'top 92%', once: true, onEnter: show });
+      setTimeout(() => { if (g.getBoundingClientRect().top < innerHeight) show(); }, 400); setTimeout(show, 6000);
     });
-    $$('[data-shop]').forEach(grid => new MutationObserver(() => { $$('.discs', grid).forEach(d => { if (d.dataset.st) return; d.dataset.st = '1'; d.classList.add('stagger'); ScrollTrigger.create({ trigger: d, start: 'top 88%', once: true, onEnter: () => gsap.to([...d.children], { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out', stagger: .07, clearProps: 'transform' }) }); }); ScrollTrigger.refresh(); }).observe(grid, { childList: true }));
-  } else groups.forEach(g => [...g.children].forEach(k => { k.style.opacity = 1; k.style.transform = 'none'; }));
+    $$('[data-shop]').forEach(grid => new MutationObserver(() => { $$('.stagger', grid).forEach(d => { if (d.dataset.st) return; d.dataset.st = '1'; const show = () => { if (d.dataset.shown) return; d.dataset.shown = '1'; d.classList.add('shown'); gsap.fromTo([...d.children], { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: .06, clearProps: 'all' }); }; ScrollTrigger.create({ trigger: d, start: 'top 92%', once: true, onEnter: show }); setTimeout(() => { if (d.getBoundingClientRect().top < innerHeight) show(); }, 300); setTimeout(show, 6000); }); ScrollTrigger.refresh(); }).observe(grid, { childList: true }));
+  } else document.documentElement.classList.add('no-stagger');
   const ioT = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ioT.unobserve(e.target); } }), { threshold: .6 });
   $$('.sec-title').forEach(t => ioT.observe(t));
 
@@ -168,7 +151,17 @@
     v.muted = true; v.loop = true; v.playsInline = true;
     const io2 = new IntersectionObserver((es) => es.forEach(e => { if (m.classList.contains('playing')) return; if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }), { threshold: .35 });
     io2.observe(m);
-    b && b.addEventListener('click', () => { m.classList.add('playing'); v.muted = false; v.loop = false; v.controls = true; v.currentTime = 0; v.play(); });
+    b && b.addEventListener('click', () => {
+      v.pause();
+      const box = document.createElement('div'); box.className = 'vlight';
+      box.innerHTML = `<button class="vlight__close" aria-label="Cerrar"></button><div class="vlight__frame"><video src="${v.getAttribute('src')}" poster="${v.getAttribute('poster') || ''}" controls autoplay playsinline></video></div>`;
+      document.body.appendChild(box); document.body.classList.add('no-scroll');
+      const bv = $('video', box); bv.muted = false; bv.play().catch(() => {});
+      const close = () => { bv.pause(); box.remove(); document.body.classList.remove('no-scroll'); v.play().catch(() => {}); };
+      $('.vlight__close', box).addEventListener('click', close); box.addEventListener('click', (e) => { if (e.target === box) close(); });
+      addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); removeEventListener('keydown', k); } });
+      requestAnimationFrame(() => box.classList.add('on'));
+    });
   });
 
   /* ---------- Baraja de testimonios ---------- */

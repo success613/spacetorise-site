@@ -10,7 +10,7 @@
 
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=8cc36445">
+<link rel="stylesheet" href="/assets/css/site.css?v=3db6d069">
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
@@ -22,10 +22,8 @@
 <body>
 <div class="loader" aria-hidden="true">
   <div class="loader__stage">
-    <svg class="loader__rings" viewBox="0 0 200 200"></svg>
-    <div class="loader__drop"></div>
-    <div class="loader__heart"><svg viewBox="0 0 24 24" width="100%" height="100%"><path d="M12 21s-7.5-4.6-9.5-9A5.3 5.3 0 0 1 12 6.5a5.3 5.3 0 0 1 9.5 5.5c-2 4.4-9.5 9-9.5 9z" fill="#EFBEB6"/></svg></div>
     <div class="loader__word"><img src="/assets/img/Logo_Blanco_Full.png" alt="Space to Rise" style="filter:invert(1) brightness(.42)"></div>
+    <div class="loader__line"></div>
   </div>
 </div>
 <div class="wipe" aria-hidden="true"></div>
@@ -59,14 +57,14 @@
 <section class="pad-s bg-aqua"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">Con RTT trabajamos tu mente subconsciente, entendiendo el porqué de tus comportamientos y la raíz de tus problemas. Con el coaching individual te ayudo a implementar los cambios necesarios para que nunca más vuelvas a autosabotear tu transformación.</p></div></section>
 <section class="pad"><div class="wrap feature">
   <div><span class="kicker fade">Coaching individual</span>
-    <div class="tiles c2 fade d1" style="margin:22px 0"><div class="pricecard bg-blush"><b>1h</b><span class="k">Por sesión</span><p>Un espacio enfocado solo en ti.</p></div><div class="pricecard bg-sand"><b>2</b><span class="k">Modalidades</span><p>Presencial o por Zoom.</p></div></div>
+    <div class="tiles c2 fade d1 stagger" style="margin:22px 0"><div class="pricecard bg-blush"><b>1h</b><span class="k">Por sesión</span><p>Un espacio enfocado solo en ti.</p></div><div class="pricecard bg-sand"><b>2</b><span class="k">Modalidades</span><p>Presencial o por Zoom.</p></div></div>
     <p class="lead fade d2" style="margin:0 0 8px">Valor por sesión: <b style="font-weight:500">$150.000</b></p>
     <p class="fade d2">Ideal después de tu sesión de RTT, o para acompañar cualquier proceso de cambio: nuevos hábitos, decisiones importantes, metas personales o profesionales.</p>
     <a class="pill solid fade d3" href="/agenda/"><span>Agenda tu sesión</span></a></div>
   <div class="feature__media"><div class="media"><img src="/assets/img/p/coaching-laberinto.jpg" alt="Coaching individual" loading="lazy"></div></div>
 </div></section>
-<section class="pad-s bg-stone"><div class="wrap"><div class="sec-title"><span class="kicker">Cómo trabajamos</span></div><div class="tiles " style="gap:0 36px"><div class="fade d0" style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">01</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">Definimos tu objetivo</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">Aclaramos qué quieres lograr y qué te ha detenido hasta ahora.</p></div><div class="fade d1" style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">02</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">Diseñamos tu plan</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">Pasos concretos y prácticos para integrar el cambio en tu día a día.</p></div><div class="fade d2" style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">03</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">Te acompaño</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">Sesiones de seguimiento para sostener tu transformación en el tiempo.</p></div></div></div></section>
-<section class="pad-s bg-sand"><div class="wrap"><div class="sec-title"><span class="kicker">Lo que dicen quienes lo han vivido</span></div><div class="tcards"><figure class="tcard fade d0" style="margin:0"><p>“Fue un proceso totalmente transformador.”</p><cite>Natalia Lozano</cite></figure><figure class="tcard fade d1" style="margin:0"><p>“Me siento tan feliz. Liberaste a mi niña interior, volví a reír, a quererme y a entender que yo tengo el control de mi vida.”</p><cite>Mónica · cliente RTT</cite></figure><figure class="tcard fade d2" style="margin:0"><p>“Gracias por ayudarme a entender que mi problema no era lo que comía, sino todo lo que me comía a mí. Tres meses después he logrado bajar 7 kilos.”</p><cite>Alejandra · cliente RTT</cite></figure></div></div></section>
+<section class="pad-s bg-stone"><div class="wrap"><div class="sec-title"><span class="kicker">Cómo trabajamos</span></div><div class="tiles  stagger" style="gap:0 36px"><div style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">01</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">Definimos tu objetivo</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">Aclaramos qué quieres lograr y qué te ha detenido hasta ahora.</p></div><div style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">02</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">Diseñamos tu plan</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">Pasos concretos y prácticos para integrar el cambio en tu día a día.</p></div><div style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">03</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">Te acompaño</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">Sesiones de seguimiento para sostener tu transformación en el tiempo.</p></div></div></div></section>
+<section class="pad-s bg-sand"><div class="wrap"><div class="sec-title"><span class="kicker">Lo que dicen quienes lo han vivido</span></div><div class="tcards stagger"><figure class="tcard" style="margin:0"><p>“Fue un proceso totalmente transformador.”</p><cite>Natalia Lozano</cite></figure><figure class="tcard" style="margin:0"><p>“Me siento tan feliz. Liberaste a mi niña interior, volví a reír, a quererme y a entender que yo tengo el control de mi vida.”</p><cite>Mónica · cliente RTT</cite></figure><figure class="tcard" style="margin:0"><p>“Gracias por ayudarme a entender que mi problema no era lo que comía, sino todo lo que me comía a mí. Tres meses después he logrado bajar 7 kilos.”</p><cite>Alejandra · cliente RTT</cite></figure></div></div></section>
 </main>
 <section class="cta" data-dark>
   <video src="/assets/video/portrait.mp4" poster="/assets/video/portrait-poster.jpg" muted loop playsinline data-lazy></video>
@@ -104,8 +102,8 @@
   <div class="drawer__foot"><div class="drawer__total"><span>Total</span><b></b></div><a class="pill solid" href="/checkout/"><span>Finalizar compra</span></a><p class="small muted" style="margin:12px 0 0;text-align:center">Recibirás tus audios en un espacio privado con enlace mágico.</p></div>
 </aside>
 <div class="modal" role="dialog" aria-modal="true"><div class="modal__box"><button class="modal__close" aria-label="Cerrar"></button><div class="modal__img"></div><div class="modal__body"></div></div></div>
-<script src="/assets/js/site.js?v=8cc36445" defer></script>
-<script src="/assets/js/shop.js?v=8cc36445" defer></script>
-<script src="/assets/js/portal.js?v=8cc36445" defer></script>
+<script src="/assets/js/site.js?v=3db6d069" defer></script>
+<script src="/assets/js/shop.js?v=3db6d069" defer></script>
+<script src="/assets/js/portal.js?v=3db6d069" defer></script>
 </body>
 </html>

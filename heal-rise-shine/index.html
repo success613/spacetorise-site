@@ -10,7 +10,7 @@
 
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=8cc36445">
+<link rel="stylesheet" href="/assets/css/site.css?v=3db6d069">
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
@@ -22,10 +22,8 @@
 <body>
 <div class="loader" aria-hidden="true">
   <div class="loader__stage">
-    <svg class="loader__rings" viewBox="0 0 200 200"></svg>
-    <div class="loader__drop"></div>
-    <div class="loader__heart"><svg viewBox="0 0 24 24" width="100%" height="100%"><path d="M12 21s-7.5-4.6-9.5-9A5.3 5.3 0 0 1 12 6.5a5.3 5.3 0 0 1 9.5 5.5c-2 4.4-9.5 9-9.5 9z" fill="#EFBEB6"/></svg></div>
     <div class="loader__word"><img src="/assets/img/Logo_Blanco_Full.png" alt="Space to Rise" style="filter:invert(1) brightness(.42)"></div>
+    <div class="loader__line"></div>
   </div>
 </div>
 <div class="wipe" aria-hidden="true"></div>
@@ -50,7 +48,7 @@
 <main>
 <section class="portal pad-s"><div class="wrap">
   <div class="narrow center" style="margin:0 auto clamp(36px,5vw,60px)"><span class="kicker fade">RTT para personas</span><h1 class="display-l lines" style="margin:14px 0 16px">Heal · Rise · Shine</h1><p class="lead fade d1">Tres caminos con hipnoterapia RTT para sanar tu cuerpo, liberar tu mente de la ansiedad, los miedos y las fobias, y alcanzar todo lo que quieres.</p></div>
-  <div class="icards"><a class="icard fade d0" href="#heal"><img src="/assets/img/p/heal-card.jpg" alt="Heal" loading="lazy"><div class="body"><h3>Heal</h3><span class="tag">Sana tu cuerpo →</span></div></a><a class="icard fade d1" href="#rise"><img src="/assets/img/p/rise-card.jpg" alt="Rise" loading="lazy"><div class="body"><h3>Rise</h3><span class="tag">Sana tu mente →</span></div></a><a class="icard fade d2" href="#shine"><img src="/assets/img/p/shine-card.jpg" alt="Shine" loading="lazy"><div class="body"><h3>Shine</h3><span class="tag">Alcanza tus objetivos →</span></div></a></div>
+  <div class="icards stagger"><a class="icard" href="#heal"><img src="/assets/img/p/heal-card.jpg" alt="Heal" loading="lazy"><div class="body"><h3>Heal</h3><span class="tag">Sana tu cuerpo →</span></div></a><a class="icard" href="#rise"><img src="/assets/img/p/rise-card.jpg" alt="Rise" loading="lazy"><div class="body"><h3>Rise</h3><span class="tag">Sana tu mente →</span></div></a><a class="icard" href="#shine"><img src="/assets/img/p/shine-card.jpg" alt="Shine" loading="lazy"><div class="body"><h3>Shine</h3><span class="tag">Alcanza tus objetivos →</span></div></a></div>
 </div></section>
 
 <section id="heal" class="pad"><div class="wrap">
@@ -61,7 +59,7 @@
     <div><p class="fade">RTT es muy efectiva para encontrar la causa raíz de estos bloqueos y emociones. A través de la hipnosis accedes a tu subconsciente, donde se guardan tus memorias y emociones, y logras reinterpretar lo que pasó para sanar.</p><p class="fade d1">Durante la sesión puedes recordar experiencias, eventos o patrones de pensamiento relacionados con tu problema de salud. Al entenderlos, puedes darles otra interpretación y cambiar las creencias que contribuyeron a tu enfermedad.</p><p class="lead fade d2">Tu mente puede crear una enfermedad, pero así como la crea, puede ayudarte a sanarla.</p><p class="small muted fade d3">RTT es un acompañamiento complementario y no reemplaza el diagnóstico ni el tratamiento médico.</p></div>
     <div class="feature__media"><div class="media"><img src="/assets/img/p/heal.jpg" alt="Heal · sana tu cuerpo" loading="lazy"></div></div>
   </div>
-  <div style="margin-top:clamp(40px,5vw,64px)"><div class="sec-title"><span class="kicker">Temas con los que hemos trabajado</span></div><ul class="plist fade"><li>Cáncer (como acompañamiento)</li><li>Dolores crónicos</li><li>Enfermedades genéticas</li><li>Enfermedades autoinmunes</li><li>Problemas de audición</li><li>Problemas de visión</li><li>Asma</li><li>Problemas de piel y pelo</li><li>Alergias</li></ul></div>
+  <div style="margin-top:clamp(40px,5vw,64px)"><div class="sec-title"><span class="kicker">Temas con los que hemos trabajado</span></div><ul class="plist stagger"><li>Cáncer (como acompañamiento)</li><li>Dolores crónicos</li><li>Enfermedades genéticas</li><li>Enfermedades autoinmunes</li><li>Problemas de audición</li><li>Problemas de visión</li><li>Asma</li><li>Problemas de piel y pelo</li><li>Alergias</li></ul></div>
 </div></section>
 
 <section id="rise" class="pad bg-stone"><div class="wrap">
@@ -72,7 +70,7 @@
     <div><p class="fade">Para un cambio permanente hay que encontrar la raíz del dolor. De nada sirve tratar solo los síntomas o confiar en la fuerza de voluntad: el subconsciente y la emoción siempre le ganan a la lógica.</p><p class="fade d1">RTT te permite encontrar esas memorias y reinterpretarlas desde tu mente adulta y no desde la de un niño, entendiendo y sanando para evolucionar.</p></div>
     <div class="feature__media"><div class="media"><img src="/assets/img/p/rise.jpg" alt="Rise · sana tu mente" loading="lazy"></div></div>
   </div>
-  <div style="margin-top:clamp(40px,5vw,64px)"><div class="sec-title"><span class="kicker">Temas con los que hemos trabajado</span></div><ul class="plist fade"><li>Ansiedad y ataques de pánico (terapia para la ansiedad)</li><li>Baja autoestima</li><li>Estrés</li><li>Autosabotaje</li><li>Adicciones: cigarrillo, vapeador, alcohol, juego</li><li>Insomnio y trastornos de sueño</li><li>Depresión</li><li>Fobias: miedo a volar en aviones, agujas, claustrofobia</li><li>Fertilidad</li><li>Concentración y procrastinación</li><li>Miedo a hablar en público</li><li>Duelos y celos</li><li>Traumas del pasado</li></ul></div>
+  <div style="margin-top:clamp(40px,5vw,64px)"><div class="sec-title"><span class="kicker">Temas con los que hemos trabajado</span></div><ul class="plist stagger"><li>Ansiedad y ataques de pánico (terapia para la ansiedad)</li><li>Baja autoestima</li><li>Estrés</li><li>Autosabotaje</li><li>Adicciones: cigarrillo, vapeador, alcohol, juego</li><li>Insomnio y trastornos de sueño</li><li>Depresión</li><li>Fobias: miedo a volar en aviones, agujas, claustrofobia</li><li>Fertilidad</li><li>Concentración y procrastinación</li><li>Miedo a hablar en público</li><li>Duelos y celos</li><li>Traumas del pasado</li></ul></div>
 </div></section>
 
 <section id="shine" class="pad"><div class="wrap">
@@ -81,11 +79,11 @@
   <p class="caps fade" style="margin:0 auto 48px;text-align:center">Conviértete en tu mejor versión y alcanza tus sueños. Libérate de lo que te impide ser y reprograma tu mente para lograr todo lo que quieres.</p>
   <div class="feature">
     <div><p class="fade">RTT te permite encontrar la causa raíz de lo que te detiene, y el audio de transformación personal, hecho especialmente para ti, reprograma tu mente para alcanzar tus objetivos.</p>
-      <div class="tiles c2" style="margin-top:26px"><div class="tile bg-aqua fade d1" style="min-height:0"><span class="tag" style="margin:0 0 10px">Deporte</span><h3>Conviértete en el mejor deportista</h3><p>Supera bloqueos mentales, maneja la presión y lleva tu rendimiento al siguiente nivel.</p></div><div class="tile bg-sand fade d2" style="min-height:0"><span class="tag" style="margin:0 0 10px">Liderazgo</span><h3>Conviértete en el mejor líder</h3><p>Gana seguridad, claridad y confianza para liderar a tu equipo y a ti misma.</p></div></div></div>
+      <div class="tiles c2 stagger" style="margin-top:26px"><div class="tile bg-aqua" style="min-height:0"><span class="tag" style="margin:0 0 10px">Deporte</span><h3>Conviértete en el mejor deportista</h3><p>Supera bloqueos mentales, maneja la presión y lleva tu rendimiento al siguiente nivel.</p></div><div class="tile bg-sand" style="min-height:0"><span class="tag" style="margin:0 0 10px">Liderazgo</span><h3>Conviértete en el mejor líder</h3><p>Gana seguridad, claridad y confianza para liderar a tu equipo y a ti misma.</p></div></div></div>
     <div class="feature__media"><div class="media"><img src="/assets/img/p/shine.jpg" alt="Shine · alcanza tus objetivos" loading="lazy"></div></div>
   </div>
 </div></section>
-<section class="pad-s bg-sand"><div class="wrap"><div class="sec-title"><span class="kicker">Lo que dicen quienes lo han vivido</span></div><div class="tcards"><figure class="tcard fade d0" style="margin:0"><p>“Fue un proceso totalmente transformador.”</p><cite>Natalia Lozano</cite></figure><figure class="tcard fade d1" style="margin:0"><p>“Me siento tan feliz. Liberaste a mi niña interior, volví a reír, a quererme y a entender que yo tengo el control de mi vida.”</p><cite>Mónica · cliente RTT</cite></figure><figure class="tcard fade d2" style="margin:0"><p>“Gracias por ayudarme a entender que mi problema no era lo que comía, sino todo lo que me comía a mí. Tres meses después he logrado bajar 7 kilos.”</p><cite>Alejandra · cliente RTT</cite></figure></div></div></section>
+<section class="pad-s bg-sand"><div class="wrap"><div class="sec-title"><span class="kicker">Lo que dicen quienes lo han vivido</span></div><div class="tcards stagger"><figure class="tcard" style="margin:0"><p>“Fue un proceso totalmente transformador.”</p><cite>Natalia Lozano</cite></figure><figure class="tcard" style="margin:0"><p>“Me siento tan feliz. Liberaste a mi niña interior, volví a reír, a quererme y a entender que yo tengo el control de mi vida.”</p><cite>Mónica · cliente RTT</cite></figure><figure class="tcard" style="margin:0"><p>“Gracias por ayudarme a entender que mi problema no era lo que comía, sino todo lo que me comía a mí. Tres meses después he logrado bajar 7 kilos.”</p><cite>Alejandra · cliente RTT</cite></figure></div></div></section>
 </main>
 <section class="cta" data-dark>
   <video src="/assets/video/portrait.mp4" poster="/assets/video/portrait-poster.jpg" muted loop playsinline data-lazy></video>
@@ -123,8 +121,8 @@
   <div class="drawer__foot"><div class="drawer__total"><span>Total</span><b></b></div><a class="pill solid" href="/checkout/"><span>Finalizar compra</span></a><p class="small muted" style="margin:12px 0 0;text-align:center">Recibirás tus audios en un espacio privado con enlace mágico.</p></div>
 </aside>
 <div class="modal" role="dialog" aria-modal="true"><div class="modal__box"><button class="modal__close" aria-label="Cerrar"></button><div class="modal__img"></div><div class="modal__body"></div></div></div>
-<script src="/assets/js/site.js?v=8cc36445" defer></script>
-<script src="/assets/js/shop.js?v=8cc36445" defer></script>
-<script src="/assets/js/portal.js?v=8cc36445" defer></script>
+<script src="/assets/js/site.js?v=3db6d069" defer></script>
+<script src="/assets/js/shop.js?v=3db6d069" defer></script>
+<script src="/assets/js/portal.js?v=3db6d069" defer></script>
 </body>
 </html>

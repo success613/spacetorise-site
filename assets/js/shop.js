@@ -35,7 +35,7 @@
     const order = ['cuerpo-mente', 'liberate', 'miedos', 'profesional', 'proyectos', 'kids'];
     grid.innerHTML = order.map(c => {
       const items = products.filter(p => p.category === c);
-      const body = items.length ? `<div class="discs">${items.map(card).join('')}</div>`
+      const body = items.length ? `<div class="discs stagger">${items.map(card).join('')}</div>`
         : `<div class="notice"><strong style="font-weight:500">Muy pronto.</strong> Audios de autohipnosis para niños: autoestima, sueño tranquilo, exámenes y ansiedad. Mientras tanto, conoce las <a href="/kids/" style="text-decoration:underline">sesiones RTT Kids</a>.</div>`;
       return `<div class="fade catgroup" id="${c}" data-catgroup="${c}"><div class="cat-title"><h3>${CATS[c]}</h3><span>${items.length ? items.length + ' audios' : 'próximamente'}</span></div>${body}</div>`;
     }).join('');

@@ -10,7 +10,7 @@
 
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=8cc36445">
+<link rel="stylesheet" href="/assets/css/site.css?v=3db6d069">
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
@@ -22,10 +22,8 @@
 <body>
 <div class="loader" aria-hidden="true">
   <div class="loader__stage">
-    <svg class="loader__rings" viewBox="0 0 200 200"></svg>
-    <div class="loader__drop"></div>
-    <div class="loader__heart"><svg viewBox="0 0 24 24" width="100%" height="100%"><path d="M12 21s-7.5-4.6-9.5-9A5.3 5.3 0 0 1 12 6.5a5.3 5.3 0 0 1 9.5 5.5c-2 4.4-9.5 9-9.5 9z" fill="#EFBEB6"/></svg></div>
     <div class="loader__word"><img src="/assets/img/Logo_Blanco_Full.png" alt="Space to Rise" style="filter:invert(1) brightness(.42)"></div>
+    <div class="loader__line"></div>
   </div>
 </div>
 <div class="wipe" aria-hidden="true"></div>
@@ -53,13 +51,13 @@
     <div class="steps fade d2" style="margin-top:26px"><div class="step" style="grid-template-columns:48px 1fr;padding:20px 0"><div class="n">01</div><div><h4>Envía tu solicitud</h4><p>Completa el formulario o escríbeme por WhatsApp.</p></div></div><div class="step" style="grid-template-columns:48px 1fr;padding:20px 0"><div class="n">02</div><div><h4>Llamada inicial</h4><p>20 minutos para conocernos y aclarar tus preguntas.</p></div></div><div class="step" style="grid-template-columns:48px 1fr;padding:20px 0"><div class="n">03</div><div><h4>Tu sesión</h4><p>Presencial o por Zoom, en el horario que mejor te funcione.</p></div></div></div></div>
   <div class="form-card fade d1"><form data-lead="agenda"><p class="small muted" style="margin:0 0 18px">Solicita tu llamada inicial</p><div class="row"><div class="field"><label for="agenda-name">Nombre</label><input id="agenda-name" name="name" type="text" required autocomplete="name"></div><div class="field"><label for="agenda-email">Correo</label><input id="agenda-email" name="email" type="email" required autocomplete="email"></div><div class="field"><label for="agenda-phone">WhatsApp</label><input id="agenda-phone" name="phone" type="tel"  autocomplete="tel"></div><div class="field"><label for="agenda-city">País y ciudad</label><input id="agenda-city" name="city" type="text"  autocomplete="off"></div><div class="field"><label for="agenda-service">Servicio</label><select id="agenda-service" name="service"><option>Sesión de RTT</option><option>RTT Kids</option><option>Coaching individual</option><option>Baño de gong</option><option>Aún no lo sé</option></select></div><div class="field" style="grid-column:1/-1"><label for="agenda-message">¿Qué te gustaría transformar?</label><textarea id="agenda-message" name="message" rows="4"></textarea></div></div><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none"><button class="pill solid" type="submit"><span>Enviar solicitud</span></button><a class="pill" href="https://wa.me/573107503359?text=Hola!%20Quiero%20reservar%20mi%20cita%20%F0%9F%98%8A" target="_blank" rel="noopener" style="margin-left:10px"><span>O escríbeme por WhatsApp</span></a><div data-lead-out style="margin-top:16px"></div></form></div>
 </div></section>
-<section class="pad-s bg-stone"><div class="wrap"><div class="sec-title"><span class="kicker">Servicios y valores</span></div><div class="tiles c4">
-  <div class="pricecard bg-blush fade"><span class="k">Personas</span><h4>Sesión de RTT</h4><p>Sesión de 90 min a 2 h con tu audio personal de 21 días.</p><b>$450.000</b></div>
-  <div class="pricecard bg-rose fade d1"><span class="k">Niños</span><h4>RTT Kids</h4><p>Sesión adaptada a la edad de tu hijo, con su audio personal.</p><b>$350.000</b></div>
-  <div class="pricecard bg-aqua fade d2"><span class="k">Integración</span><h4>Coaching individual</h4><p>Sesión de 1 hora, presencial o por Zoom.</p><b>$150.000</b></div>
-  <div class="pricecard bg-sky fade d3"><span class="k">Sonido</span><h4>Baño de gong</h4><p>Individual o grupal, para ti, tu familia o tu equipo.</p><b>$150.000 <small style="font-size:.5em">· $100.000 p/p grupal</small></b></div>
+<section class="pad-s bg-stone"><div class="wrap"><div class="sec-title"><span class="kicker">Servicios y valores</span></div><div class="tiles c4 stagger">
+  <div class="pricecard bg-blush"><span class="k">Personas</span><h4>Sesión de RTT</h4><p>Sesión de 90 min a 2 h con tu audio personal de 21 días.</p><b>$450.000</b></div>
+  <div class="pricecard bg-rose"><span class="k">Niños</span><h4>RTT Kids</h4><p>Sesión adaptada a la edad de tu hijo, con su audio personal.</p><b>$350.000</b></div>
+  <div class="pricecard bg-aqua"><span class="k">Integración</span><h4>Coaching individual</h4><p>Sesión de 1 hora, presencial o por Zoom.</p><b>$150.000</b></div>
+  <div class="pricecard bg-sky"><span class="k">Sonido</span><h4>Baño de gong</h4><p>Individual o grupal, para ti, tu familia o tu equipo.</p><b>$150.000 <small style="font-size:.5em">· $100.000 p/p grupal</small></b></div>
 </div><p class="fade" style="margin:28px 0 0">¿Buscas algo para tu empresa? <a href="/empresas/" style="text-decoration:underline">Conoce los programas para empresas →</a></p></div></section>
-<section class="pad-s "><div class="wrap"><div class="sec-title"><span class="kicker">Lo que dicen quienes lo han vivido</span></div><div class="tcards"><figure class="tcard fade d0" style="margin:0"><p>“Fue un proceso totalmente transformador.”</p><cite>Natalia Lozano</cite></figure><figure class="tcard fade d1" style="margin:0"><p>“Me siento tan feliz. Liberaste a mi niña interior, volví a reír, a quererme y a entender que yo tengo el control de mi vida.”</p><cite>Mónica · cliente RTT</cite></figure><figure class="tcard fade d2" style="margin:0"><p>“Gracias por ayudarme a entender que mi problema no era lo que comía, sino todo lo que me comía a mí. Tres meses después he logrado bajar 7 kilos.”</p><cite>Alejandra · cliente RTT</cite></figure></div></div></section>
+<section class="pad-s "><div class="wrap"><div class="sec-title"><span class="kicker">Lo que dicen quienes lo han vivido</span></div><div class="tcards stagger"><figure class="tcard" style="margin:0"><p>“Fue un proceso totalmente transformador.”</p><cite>Natalia Lozano</cite></figure><figure class="tcard" style="margin:0"><p>“Me siento tan feliz. Liberaste a mi niña interior, volví a reír, a quererme y a entender que yo tengo el control de mi vida.”</p><cite>Mónica · cliente RTT</cite></figure><figure class="tcard" style="margin:0"><p>“Gracias por ayudarme a entender que mi problema no era lo que comía, sino todo lo que me comía a mí. Tres meses después he logrado bajar 7 kilos.”</p><cite>Alejandra · cliente RTT</cite></figure></div></div></section>
 </main>
 
 <footer class="footer" data-dark>
@@ -89,8 +87,8 @@
   <div class="drawer__foot"><div class="drawer__total"><span>Total</span><b></b></div><a class="pill solid" href="/checkout/"><span>Finalizar compra</span></a><p class="small muted" style="margin:12px 0 0;text-align:center">Recibirás tus audios en un espacio privado con enlace mágico.</p></div>
 </aside>
 <div class="modal" role="dialog" aria-modal="true"><div class="modal__box"><button class="modal__close" aria-label="Cerrar"></button><div class="modal__img"></div><div class="modal__body"></div></div></div>
-<script src="/assets/js/site.js?v=8cc36445" defer></script>
-<script src="/assets/js/shop.js?v=8cc36445" defer></script>
-<script src="/assets/js/portal.js?v=8cc36445" defer></script>
+<script src="/assets/js/site.js?v=3db6d069" defer></script>
+<script src="/assets/js/shop.js?v=3db6d069" defer></script>
+<script src="/assets/js/portal.js?v=3db6d069" defer></script>
 </body>
 </html>

@@ -5,6 +5,8 @@ import os, json, html, re
 OUT = os.path.dirname(os.path.abspath(__file__))
 WA = "https://wa.me/573107503359?text=Hola!%20Quiero%20reservar%20mi%20cita%20%F0%9F%98%8A"
 IMG = "/assets/img/"
+import hashlib, time
+VER = hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/css/site.css'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/site.js'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/shop.js'),'rb').read()).hexdigest()[:8]
 SPIRAL = open(os.path.join(OUT, 'assets/img/spiral-path.txt')).read().strip()
 SUPA_URL = "https://epsokxvjqevmityasvrx.supabase.co"
 SUPA_KEY = "sb_publishable_m4rurqAuHs8cHJfBq3bshQ_-4decACD"
@@ -45,7 +47,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
 {'<meta name="robots" content="noindex">' if portal else ''}
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css?v={VER}">
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
@@ -60,7 +62,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
     <svg class="loader__rings" viewBox="0 0 200 200"></svg>
     <div class="loader__drop"></div>
     <div class="loader__heart">{HEART}</div>
-    <div class="loader__word"><img src="/assets/img/LOGO-Color_New.png" alt="Space to Rise"></div>
+    <div class="loader__word"><img src="/assets/img/Logo_Blanco_Full.png" alt="Space to Rise" style="filter:invert(1) brightness(.42)"></div>
   </div>
 </div>
 <div class="wipe" aria-hidden="true"></div>
@@ -125,9 +127,9 @@ def foot(cta=True, cta_title="Tu transformación empieza con una conversación",
   <div class="drawer__foot"><div class="drawer__total"><span>Total</span><b></b></div><a class="pill solid" href="/checkout/"><span>Finalizar compra</span></a><p class="small muted" style="margin:12px 0 0;text-align:center">Recibirás tus audios en un espacio privado con enlace mágico.</p></div>
 </aside>
 <div class="modal" role="dialog" aria-modal="true"><div class="modal__box"><button class="modal__close" aria-label="Cerrar"></button><div class="modal__img"></div><div class="modal__body"></div></div></div>
-<script src="/assets/js/site.js" defer></script>
-<script src="/assets/js/shop.js" defer></script>
-<script src="/assets/js/portal.js" defer></script>
+<script src="/assets/js/site.js?v={VER}" defer></script>
+<script src="/assets/js/shop.js?v={VER}" defer></script>
+<script src="/assets/js/portal.js?v={VER}" defer></script>
 </body>
 </html>
 """
@@ -151,13 +153,13 @@ def hero(img, h1, sub=None, kicker=None, light=False, compact=True, video=None, 
 </section>"""
 
 
-def feature(img, kicker, title, paras, link=None, flip=False, price=None, bg='', lst=None, cta=None, ratio='', video=None, alt=None):
+def feature(img, kicker, title, paras, link=None, flip=False, price=None, bg='', lst=None, cta=None, ratio='', video=None, alt=None, fit=False):
     ps = ''.join(f'<p class="fade d{min(i + 1, 4)}">{p}</p>' for i, p in enumerate(paras))
     lst_html = f'<ul class="list fade d3" style="margin:22px 0">{"".join(f"<li>{x}</li>" for x in lst)}</ul>' if lst else ''
     price_html = f'<div class="price-tag fade d3">{price}<small>COP · sesión</small></div>' if price else ''
     link_html = f'<a class="pill fade d4" href="{link[1]}"><span>{link[0]}</span></a>' if link else ''
     cta_html = f'<a class="pill solid fade d4" href="{AG}"><span>{cta}</span></a>' if cta else ''
-    return f"""<section class="pad {bg}"><div class="wrap feature{' flip' if flip else ''}">
+    return f"""<section class="pad {bg}{' fit' if fit else ''}"><div class="wrap feature{' flip' if flip else ''}">
   <div class="feature__media">{f'<div class="media video"><video src="{video}" poster="{IMG}{img}" muted loop playsinline preload="metadata"></video><button class="unmute" type="button" aria-label="Ver con sonido">Ver</button></div>' if video else f'<div class="media {ratio}"><img src="{IMG}{img}" alt="{alt or re.sub("<[^>]+>", " ", title)}" loading="lazy"></div>'}</div>
   <div>{f'<span class="kicker fade">{kicker}</span>' if kicker else ''}<h2 class="display-m lines" style="margin:14px 0 22px">{title}</h2>{ps}{lst_html}{price_html}<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">{cta_html}{link_html}</div></div>
 </div></section>"""
@@ -255,7 +257,7 @@ pages["/"] = dict(title="Hipnoterapia RTT en Bogotá y online | Space to Rise",
 
 {feature("../video/rtt-poster.jpg", "Rapid Transformational Therapy", "¿Qué es RTT?", [
  "Una terapia creada por Marisa Peer que combina hipnosis, PNL y neurociencia. Accede a tu subconsciente para encontrar la raíz de lo que te bloquea o te enferma, y reprogramarla.",
- "Muchas personas logran resultados en 1 a 3 sesiones."], link=("Conoce más", "/rtt/"), cta="Agenda tu cita", video="/assets/video/rtt.mp4")}
+ "Muchas personas logran resultados en 1 a 3 sesiones."], link=("Conoce más", "/rtt/"), cta="Agenda tu cita", video="/assets/video/rtt.mp4", fit=True)}
 <section class="pad-s" style="padding-top:0"><div class="wrap">
   {steps3([("Conversación inicial", "Una llamada de 20 minutos para resolver tus dudas y entender lo que quieres sanar."), ("Tu sesión de RTT", "Entre 90 minutos y 2 horas de hipnosis para encontrar la raíz, entenderla y liberarla."), ("Tu audio personal", "Un audio hecho solo para ti, que escuchas 21 días para que tu mente cree nuevos hábitos.")])}
   <div style="height:clamp(40px,6vw,72px)"></div>
@@ -526,6 +528,7 @@ pages["/admin/"] = dict(title="Panel | Space to Rise", desc="Panel de administra
   <div data-admin-out style="margin:18px 0"></div>
   <div class="grid g2" style="align-items:start;margin-top:30px">
     <div><h3 class="display-s" style="margin-bottom:16px">Pedidos recientes</h3><div data-admin-orders><p class="muted">Cargando…</p></div></div>
+    <div><h3 class="display-s" style="margin-bottom:16px">Solicitudes (citas, empresas, newsletter)</h3><div data-admin-leads><p class="muted">Cargando…</p></div></div>
     <div><h3 class="display-s" style="margin-bottom:16px">Dar acceso manual</h3><form><div class="field"><label for="email">Correo del cliente</label><input id="email" name="email" type="email" required placeholder="cliente@correo.com"></div><div class="field"><label>Audios</label><div data-admin-products class="small"></div></div><button class="pill solid" type="submit"><span>Activar y enviar enlace</span></button></form></div>
   </div>
 </div></section>""", cta=False)

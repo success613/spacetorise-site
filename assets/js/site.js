@@ -65,24 +65,6 @@
     }
   } else heroIn();
 
-  /* ---------- Cursor anillo ---------- */
-  if (fine && !reduce) {
-    const cur = document.createElement('div'); cur.className = 'cursor'; document.body.appendChild(cur);
-    let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
-    addEventListener('mousemove', (e) => { x = e.clientX; y = e.clientY; cur.classList.add('on'); }, { passive: true });
-    addEventListener('mouseleave', () => cur.classList.remove('on'));
-    (function loop() { cx += (x - cx) * .18; cy += (y - cy) * .18; cur.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`; requestAnimationFrame(loop); })();
-    document.addEventListener('mouseover', (e) => { cur.classList.toggle('hover', !!e.target.closest('a,button,[data-open],.disc,.panel')); });
-    // pequeña onda al hacer clic
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('input,textarea')) return;
-      const r = document.createElement('span');
-      r.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:10px;height:10px;border:1px solid #575756;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:1499;opacity:.7`;
-      document.body.appendChild(r);
-      gsap.to(r, { width: 90, height: 90, opacity: 0, duration: .9, ease: 'expo.out', onComplete: () => r.remove() });
-    });
-  }
-
   /* ---------- Header: se oculta al bajar, vuelve al subir ---------- */
   const header = $('.header');
   let lastY = 0;
@@ -166,6 +148,19 @@
     const play = $('.reel__play', reel);
     play && play.addEventListener('click', () => { reel.dataset.user = '1'; vid.muted = false; vid.controls = true; vid.currentTime = 0; vid.play(); reel.classList.add('playing'); });
   }
+
+  /* ---------- Revelado en cascada de tarjetas y listas ---------- */
+  const groups = $$('.tiles, .icards, .discs, .stats, .tcards, .plist, .steps, .creds, .chips, [data-cats], .acc');
+  groups.forEach(g => { const ks = [...g.children]; if (!ks.length) return; g.classList.add('stagger'); ks.forEach(k => { k.classList.remove('fade', 'd1', 'd2', 'd3', 'd4', 'd0'); }); });
+  if (hasGsap && !reduce) {
+    groups.forEach(g => {
+      const kids = [...g.children]; if (!kids.length) return;
+      ScrollTrigger.create({ trigger: g, start: 'top 88%', once: true, onEnter: () => gsap.to(kids, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out', stagger: { each: .09, from: 'start' }, overwrite: true, clearProps: 'transform' }) });
+    });
+    $$('[data-shop]').forEach(grid => new MutationObserver(() => { $$('.discs', grid).forEach(d => { if (d.dataset.st) return; d.dataset.st = '1'; d.classList.add('stagger'); ScrollTrigger.create({ trigger: d, start: 'top 88%', once: true, onEnter: () => gsap.to([...d.children], { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out', stagger: .07, clearProps: 'transform' }) }); }); ScrollTrigger.refresh(); }).observe(grid, { childList: true }));
+  } else groups.forEach(g => [...g.children].forEach(k => { k.style.opacity = 1; k.style.transform = 'none'; }));
+  const ioT = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ioT.unobserve(e.target); } }), { threshold: .6 });
+  $$('.sec-title').forEach(t => ioT.observe(t));
 
   /* ---------- Video en bloque (RTT): silencio en loop, click = con sonido ---------- */
   $$('.media.video').forEach(m => {

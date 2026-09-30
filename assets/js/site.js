@@ -34,7 +34,7 @@
     $$('.hero .lines').forEach(l => l.classList.add('in'));
     $$('.hero .fade').forEach(f => f.classList.add('in'));
     const m = $('.hero__media video, .hero__media img');
-    if (m && hasGsap) gsap.fromTo(m, { scale: 1.12 }, { scale: 1.04, duration: 3.2, ease: 'expo.out' });
+    if (m && hasGsap) gsap.to(m, { scale: 1, duration: 3.4, ease: 'expo.out', overwrite: true });
   }
   if (loader) {
     document.body.classList.add('no-scroll');

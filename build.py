@@ -237,7 +237,16 @@ fmt = lambda n: 'Gratis' if n == 0 else '$' + f'{n:,}'.replace(',', '.')
 # ------------------------------------------------------------------ HOME
 pages["/"] = dict(title="Hipnoterapia RTT en Bogotá y online | Space to Rise",
  desc="Hipnoterapia RTT en Bogotá y online con Andrea Zafra: sana la ansiedad, los miedos, el insomnio y las enfermedades desde la raíz. Agenda tu llamada inicial.", og="/assets/img/p/home-hero.jpg",
- body=hero(IMG + "p/home-hero.jpg", "Sana, transfórmate<br class=\"d\">y evoluciona en quien<br class=\"d\">estás destinada a ser", "Acompaño a personas y empresas a encontrar la raíz de lo que las bloquea y a reprogramar la mente para un cambio real y permanente.", kicker="Hipnoterapia RTT en Bogotá y online · Neurociencia del cambio", pos="center 30%", compact=False, cta2=("Soy una empresa", "/empresas/")) + f"""
+ body=f"""<section class="hero light right" style="min-height:100svh">
+  <div class="hero__media"><img src="{IMG}p/home-hero.jpg" alt="Mujer sonriendo frente al mar, con el pelo al viento" style="object-position:left center" fetchpriority="high"></div>
+  <div class="hero__body"><div class="wrap">
+    <span class="kicker fade">Hipnoterapia RTT · Neurociencia del cambio</span>
+    <h1 class="display-xl lines" style="margin-top:18px;max-width:14ch;font-size:clamp(2.2rem,4.3vw,4.1rem);line-height:1.08">Sana, transfórmate y evoluciona en quien estás destinada a ser</h1>
+    <p class="lead fade d2" style="max-width:46ch;margin:22px 0 28px">Acompaño a personas y empresas, en Bogotá y online, a encontrar la raíz de lo que las bloquea y a reprogramar la mente para un cambio real y permanente.</p>
+    <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="/empresas/"><span>Soy una empresa</span></a></div>
+  </div></div>
+</section>
+
 <div class="creds stagger"><span>Hipnoterapeuta clínica · RTT</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
 
 <section class="pad"><div class="wrap grid g2" style="align-items:start">
@@ -391,13 +400,13 @@ pages["/kids/"] = dict(title="Hipnoterapia para niños · RTT Kids | Space to Ri
 
 # ------------------------------------------------------------------ COACHING
 pages["/coaching/"] = dict(title="Coaching de vida en Bogotá y online | Space to Rise",
- desc="Coaching de vida individual con Andrea Zafra: integra los cambios de tu sesión de RTT y alcanza tus metas. Sesiones de 1 hora en Bogotá o por Zoom.", og="/assets/img/p/coaching-hero.jpg",
+ desc="Coaching de vida individual con Andrea Zafra: integra los cambios de tu sesión de RTT y alcanza tus metas. Sesiones de 1 hora en Bogotá o por Zoom. $180.000.", og="/assets/img/p/coaching-hero.jpg",
  body=hero(IMG + "p/coaching-hero.jpg", "Combina lo mejor<br class=\"d\">de ambos mundos", "Con RTT sanas la raíz. Con el coaching integras el cambio en tu vida para no volver a los patrones del pasado.", kicker="Coaching de vida individual", pos="center 40%", btn="Agenda tu sesión") + f"""
 <section class="pad-s bg-aqua"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">Con RTT trabajamos tu mente subconsciente, entendiendo el porqué de tus comportamientos y la raíz de tus problemas. Con el coaching individual te ayudo a implementar los cambios necesarios para que nunca más vuelvas a autosabotear tu transformación.</p></div></section>
 <section class="pad"><div class="wrap feature">
   <div><span class="kicker fade">Coaching individual</span>
     <div class="tiles c2 fade d1 stagger" style="margin:22px 0"><div class="pricecard bg-blush"><b>1h</b><span class="k">Por sesión</span><p>Un espacio enfocado solo en ti.</p></div><div class="pricecard bg-sand"><b>2</b><span class="k">Modalidades</span><p>Presencial o por Zoom.</p></div></div>
-    <p class="lead fade d2" style="margin:0 0 8px">Valor por sesión: <b style="font-weight:500">$150.000</b></p>
+    <p class="lead fade d2" style="margin:0 0 8px">Valor por sesión: <b style="font-weight:500">$180.000</b></p>
     <p class="fade d2">Ideal después de tu sesión de RTT, o para acompañar cualquier proceso de cambio: nuevos hábitos, decisiones importantes, metas personales o profesionales.</p>
     <a class="pill solid fade d3" href="/agenda/"><span>Agenda tu sesión</span></a></div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/coaching-laberinto.jpg" alt="Coaching individual" loading="lazy"></div></div>
@@ -421,8 +430,8 @@ pages["/gong/"] = dict(title="Baño de gong en Bogotá · Baño de sonido | Spac
   <div class="tile" style="background:var(--white);min-height:0"><span class="n">04</span><h3 style="margin-top:34px">Claridad</h3><p>Te ayuda a ver con más claridad lo que quieres sanar.</p></div>
 </div></div></section>
 <section class="pad"><div class="wrap">{sec_title("Sesiones")}<div class="tiles c2 stagger">
-  <div class="pricecard bg-blush"><span class="k">Individual</span><b>$150.000</b><p>Una experiencia sonora pensada solo para ti.</p><a class="pill" href="/agenda/" style="margin-top:18px"><span>Reservar</span></a></div>
-  <div class="pricecard bg-aqua"><span class="k">Grupal</span><b>$100.000 <small style="font-size:.5em">por persona</small></b><p>Vive el baño de gong con tu familia, amigos o equipo de trabajo.</p><a class="pill" href="/agenda/" style="margin-top:18px"><span>Reservar</span></a></div>
+  <div class="pricecard bg-blush"><span class="k">Individual</span><b>$180.000</b><p>Una experiencia sonora pensada solo para ti.</p><a class="pill" href="/agenda/" style="margin-top:18px"><span>Reservar</span></a></div>
+  <div class="pricecard bg-aqua"><span class="k">Grupal</span><b>$120.000 <small style="font-size:.5em">por persona</small></b><p>Vive el baño de gong con tu familia, amigos o equipo de trabajo.</p><a class="pill" href="/agenda/" style="margin-top:18px"><span>Reservar</span></a></div>
 </div><p class="lead fade d2" style="text-align:center;max-width:56ch;margin:clamp(36px,5vw,60px) auto 0;font-style:italic">Regálate esta experiencia única y déjame acompañarte en este viaje sonoro hacia tu bienestar.</p></div></section>
 """, cta_title="Reserva tu baño de gong", cta_sub="Sesiones individuales, grupales y para empresas.", cta_btn="Reserva tu sesión")
 
@@ -619,10 +628,10 @@ pages["/agenda/"] = dict(title="Agenda tu cita de hipnoterapia RTT en Bogotá u 
   {lead_form("agenda", [("name", "Nombre", "text", None), ("email", "Correo", "email", None), ("phone", "WhatsApp", "tel", None), ("city", "País y ciudad", "text", None), ("service", "Servicio", "select", ["Sesión de RTT", "RTT Kids", "Coaching individual", "Baño de gong", "Aún no lo sé"]), ("message", "¿Qué te gustaría transformar?", "textarea", None)], "Enviar solicitud", intro="Solicita tu llamada inicial", extra=f'<a class="pill" href="{WA}" target="_blank" rel="noopener" style="margin-left:10px"><span>O escríbeme por WhatsApp</span></a>')}
 </div></section>
 <section class="pad-s bg-stone"><div class="wrap">{sec_title("Servicios y valores")}<div class="tiles c4 stagger">
-  <div class="pricecard bg-blush"><span class="k">Personas</span><h4>Sesión de RTT</h4><p>Sesión de 90 min a 2 h con tu audio personal de 21 días.</p><b>$450.000</b></div>
+  <div class="pricecard bg-blush"><span class="k">Personas</span><h4>Sesión de RTT</h4><p>Sesión de 90 min a 2 h con tu audio personal de 21 días.</p><b>$480.000</b></div>
   <div class="pricecard bg-rose"><span class="k">Niños</span><h4>RTT Kids</h4><p>Sesión adaptada a la edad de tu hijo, con su audio personal.</p><b>$350.000</b></div>
-  <div class="pricecard bg-aqua"><span class="k">Integración</span><h4>Coaching individual</h4><p>Sesión de 1 hora, presencial o por Zoom.</p><b>$150.000</b></div>
-  <div class="pricecard bg-sky"><span class="k">Sonido</span><h4>Baño de gong</h4><p>Individual o grupal, para ti, tu familia o tu equipo.</p><b>$150.000 <small style="font-size:.5em">· $100.000 p/p grupal</small></b></div>
+  <div class="pricecard bg-aqua"><span class="k">Integración</span><h4>Coaching individual</h4><p>Sesión de 1 hora, presencial o por Zoom.</p><b>$180.000</b></div>
+  <div class="pricecard bg-sky"><span class="k">Sonido</span><h4>Baño de gong</h4><p>Individual o grupal, para ti, tu familia o tu equipo.</p><b>$180.000 <small style="font-size:.5em">· $120.000 p/p grupal</small></b></div>
 </div><p class="fade" style="margin:28px 0 0">¿Buscas algo para tu empresa? <a href="/empresas/" style="text-decoration:underline">Conoce los programas para empresas →</a></p></div></section>
 {testi(bg="")}
 """, cta=False)

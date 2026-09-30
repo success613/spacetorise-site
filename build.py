@@ -219,8 +219,11 @@ def courses_html():
     return '<div class="tiles stagger">' + ''.join(f'<article class="course"><div class="media"><img src="{IMG}{img}" alt="" loading="lazy"></div><div class="body"><span class="kicker" style="font-size:.62rem">Curso online</span><h3>{t}</h3><p class="small muted" style="margin:0">Muy pronto. Déjanos tu correo en el newsletter y te avisamos cuando abra.</p><div class="foot"><span>Próximamente</span><a href="/agenda/">Quiero saber más →</a></div></div></article>' for i, (t, img) in enumerate(COURSES)) + '</div>'
 
 
+CAT_IMG = {"cuerpo-mente": "audios/consigue-tu-peso-ideal-y-mantenlo-para-siempre.jpg", "liberate": "audios/dile-adios-al-insomnio.jpg", "miedos": "audios/vence-el-miedo-de-hablar-en-publico.jpg", "profesional": "audios/deja-de-procrastinar-y-cumple-tus-objetivos.jpg", "proyectos": "audios/atrae-tu-pareja-ideal.jpg"}
+
+
 def cats_html():
-    return '<div class="tiles stagger" style="grid-template-columns:repeat(5,1fr)" data-cats>' + ''.join(f'<a class="tile {bg}" href="/shop/#{c}" style="min-height:170px;text-align:center;align-items:center;justify-content:center;border-radius:50%;aspect-ratio:1;padding:22px"><h3 style="font-size:clamp(1rem,1.3vw,1.25rem);margin:0 0 6px">{n}</h3><span class="tag" style="margin:0">Ver audios</span></a>' for i, (c, n, bg) in enumerate(AUDIO_CATS[:5])) + '</div>'
+    return '<div class="circles stagger" data-cats>' + ''.join(f'<a class="circle" href="/shop/#{c}"><img src="{IMG}{CAT_IMG[c]}" alt="{n}" loading="lazy"><div class="body"><h3>{n}</h3><span class="tag">Ver audios</span></div></a>' for c, n, bg in AUDIO_CATS[:5]) + '</div>'
 
 
 def icard(img, title, sub, href, tag, wide=False, i=0):

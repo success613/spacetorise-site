@@ -259,8 +259,6 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 </section>
 
 <div class="creds stagger"><span>Hipnoterapeuta clínica · RTT</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
-<section class="statement" id="que-es"><div class="wrap statement__grid"><span class="kicker fade">Qué es Space to Rise</span><h2 class="statement__text" data-words>{ENTITY.replace("human evolution studio", "<em>human evolution studio</em>").replace("hipnoterapeuta clínica Andrea Zafra", "hipnoterapeuta clínica <em>Andrea Zafra</em>").replace("presencial en Bogotá y online", "<em>presencial en Bogotá y online</em>")}</h2></div></section>
-
 <section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px">Sabes lo que quieres cambiar,<br>pero algo más profundo<br>te sigue frenando.</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos con la hipnoterapia RTT, en Bogotá o por Zoom desde cualquier lugar de Colombia: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
   <ul class="plist c2 stagger" style="grid-template-columns:1fr"><li>Ansiedad, estrés o ataques de pánico</li><li>Miedos y fobias que te limitan</li><li>Baja autoestima o sensación de no ser suficiente</li><li>Insomnio, adicciones o hábitos que no logras dejar</li><li>Síntomas físicos que no mejoran</li><li>Metas que se te escapan una y otra vez</li></ul>
@@ -299,6 +297,8 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 
 {feature("p/andrea.jpg", "Hola, soy Andrea Zafra", "Hipnoterapeuta clínica especializada en RTT y consultora certificada de Joe Dispenza.", [
  "Después de años en grandes multinacionales, un MBA en el IE y mis estudios en Babson College, mis hijos me llevaron a transformar mi propia vida. Hoy uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones."], link=("Conoce mi historia", "/sobre-mi/"), alt="Andrea Zafra, hipnoterapeuta RTT")}
+
+<section class="statement bg-stone" id="que-es"><div class="wrap statement__grid"><span class="kicker fade">Qué es Space to Rise</span><h2 class="statement__text" data-words>{ENTITY.replace("human evolution studio", "<em>human evolution studio</em>").replace("hipnoterapeuta clínica Andrea Zafra", "hipnoterapeuta clínica <em>Andrea Zafra</em>").replace("presencial en Bogotá y online", "<em>presencial en Bogotá y online</em>")}</h2></div></section>
 
 <section class="pad-s"><div class="wrap">{sec_title("Más formas de acompañarte")}{MORE_CARDS}</div></section>
 
@@ -561,6 +561,7 @@ pages["/sobre-mi/"] = dict(title="Andrea Zafra · Hipnoterapeuta clínica RTT en
     <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="#historia"><span>Conoce mi historia</span></a></div></div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/andrea.jpg" alt="Andrea Zafra, hipnoterapeuta clínica RTT"></div></div>
 </div></section>
+<section class="statement" id="que-es-space-to-rise"><div class="wrap statement__grid"><span class="kicker fade">Qué es Space to Rise</span><h2 class="statement__text" data-words>{ENTITY.replace("human evolution studio", "<em>human evolution studio</em>").replace("hipnoterapeuta clínica Andrea Zafra", "hipnoterapeuta clínica <em>Andrea Zafra</em>").replace("presencial en Bogotá y online", "<em>presencial en Bogotá y online</em>")}</h2></div></section>
 <section class="pad-s bg-aqua"><div class="wrap">{sec_title("Formación y certificaciones")}<div class="tiles stagger" style="grid-template-columns:repeat(5,1fr);gap:0 28px">
   <div class="fade"><b class="display-m" style="display:block">+10</b><span class="kicker" style="margin:6px 0 10px;display:block">Años de experiencia</span><p class="small" style="margin:0">Acompañando procesos de sanación y transformación personal.</p></div>
   <div class="fade d1"><b class="display-m" style="display:block">RTT</b><span class="kicker" style="margin:6px 0 10px;display:block">Hipnoterapeuta clínica</span><p class="small" style="margin:0">Especializada en Rapid Transformational Therapy, el método creado por Marisa Peer.</p></div>

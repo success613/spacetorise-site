@@ -586,3 +586,5 @@ section.fit .media.video{max-height:78vh;width:auto;aspect-ratio:4/5;margin:0 au
 .statement__text em{font-style:italic;color:var(--terracotta)}
 .statement__text .w{display:inline;opacity:.18;transition:opacity .5s}
 .statement__text.in .w{opacity:1}
+
+.footer-in .progress{opacity:0!important;pointer-events:none}

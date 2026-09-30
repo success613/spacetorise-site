@@ -115,8 +115,6 @@ def foot(cta=True, cta_title="Tu transformación empieza con una conversación",
       <div>
         <h5>Human evolution studio</h5>
         <p style="max-width:40ch;margin:0">Journey inward &amp; rise from your heart. Human evolution studio en Bogotá, Colombia: hipnoterapia RTT, coaching, baños de gong, audios de autohipnosis y bienestar para empresas, presencial y online.</p>
-        <p style="max-width:36ch;margin:14px 0 0">Nutre tu alma con nuestro newsletter y recibe un regalo de bienvenida.</p>
-        <form class="newsletter" data-newsletter><input type="email" name="email" required placeholder="Tu correo electrónico" autocomplete="email" aria-label="Tu correo electrónico"><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none"><button type="submit">Suscríbete</button></form>
         <div class="social"><a href="https://www.instagram.com/spacetorise/" target="_blank" rel="noopener" aria-label="Instagram">{SVG_IG}</a><a href="https://www.youtube.com/@spacetorise" target="_blank" rel="noopener" aria-label="YouTube">{SVG_YT}</a><a href="https://www.facebook.com/profile.php?id=61574483459317" target="_blank" rel="noopener" aria-label="Facebook">{SVG_FB}</a><a href="https://www.linkedin.com/in/andrea-zafra-5b5bb09" target="_blank" rel="noopener" aria-label="LinkedIn">{SVG_IN}</a></div>
       </div>
       <div><h5>Explora</h5><ul><li><a href="/rtt/">RTT</a></li><li><a href="/heal-rise-shine/">Heal · Rise · Shine</a></li><li><a href="/kids/">Kids</a></li><li><a href="/coaching/">Coaching</a></li><li><a href="/gong/">Gong</a></li><li><a href="/empresas/">Empresas</a></li><li><a href="/shop/">Shop</a></li></ul></div>

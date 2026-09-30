@@ -145,6 +145,9 @@
   const ioT = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ioT.unobserve(e.target); } }), { threshold: .6 });
   $$('.sec-title').forEach(t => ioT.observe(t));
 
+  /* ---------- Ocultar espiral de progreso al llegar al footer ---------- */
+  const foot = $('.footer'); if (foot) new IntersectionObserver((es) => es.forEach(e => document.documentElement.classList.toggle('footer-in', e.isIntersecting)), { threshold: .05 }).observe(foot);
+
   /* ---------- Statement: lectura progresiva palabra a palabra ---------- */
   $$('[data-words]').forEach(el => {
     el.innerHTML = el.innerHTML.replace(/(<em>|<\/em>)/g, '\u0001$1\u0001').split(/\s+/).map(w => w.includes('\u0001') ? w.replace(/\u0001/g, '') : `<span class="w">${w}</span>`).join(' ');

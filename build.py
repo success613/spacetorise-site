@@ -14,6 +14,7 @@ SUPA_KEY = "sb_publishable_m4rurqAuHs8cHJfBq3bshQ_-4decACD"
 NAV = [("RTT", "/rtt/"), ("Heal · Rise · Shine", "/heal-rise-shine/"), ("Kids", "/kids/"), ("Coaching", "/coaching/"), ("Gong", "/gong/"), ("Empresas", "/empresas/"), ("Shop", "/shop/"), ("Sobre mí", "/sobre-mi/")]
 MENU = NAV + [("Preguntas frecuentes", "/preguntas-frecuentes/"), ("Agenda tu cita", "/agenda/"), ("Mi cuenta", "/mi-cuenta/")]
 AG = "/agenda/"
+ENTITY = "Space to Rise es un human evolution studio con sede en Bogotá, Colombia, fundado por la hipnoterapeuta clínica Andrea Zafra. Ofrece hipnoterapia RTT (Rapid Transformational Therapy, el método de Marisa Peer), coaching individual, baños de gong, audios de autohipnosis y programas de bienestar para empresas basados en la neurociencia del cambio del Dr. Joe Dispenza, de forma presencial en Bogotá y online."
 
 SVG_WA = '<svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.1 6.9c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>'
 SVG_CART = '<svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20 8H6.5"/><circle cx="9.5" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>'
@@ -35,8 +36,16 @@ def spiral_svg(cls="", style=""):
 
 
 def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
+    parts = [p for p in path.strip('/').split('/') if p]
+    names = {"rtt": "RTT", "heal-rise-shine": "Heal · Rise · Shine", "kids": "Kids", "coaching": "Coaching", "gong": "Gong", "empresas": "Empresas", "shop": "Shop", "sobre-mi": "Sobre mí", "preguntas-frecuentes": "Preguntas frecuentes", "agenda": "Agenda tu cita", "gif-for-you": "Gift for you"}
+    items = [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://spacetorise.com/"}]
+    acc = ''
+    for i, p in enumerate(parts):
+        acc += '/' + p
+        items.append({"@type": "ListItem", "position": i + 2, "name": names.get(p, title.split(' | ')[0].split(' · ')[0]), "item": f"https://spacetorise.com{acc}/"})
+    crumbs = (',' + json.dumps({"@type": "BreadcrumbList", "itemListElement": items}, ensure_ascii=False)) if parts and not portal else ''
     return f"""<!doctype html>
-<html lang="es">
+<html lang="es-CO">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +62,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 {'<script src="/assets/js/vendor/supabase.js" defer></script>' if portal else ''}
 <script>window.STR_SUPABASE_URL="{SUPA_URL}";window.STR_SUPABASE_KEY="{SUPA_KEY}";</script>
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"HealthAndBeautyBusiness","name":"Space to Rise","url":"https://spacetorise.com","telephone":"+57 310 750 3359","image":"https://spacetorise.com/assets/img/Home-Principal-New.jpg","description":"{html.escape(desc)}","founder":{{"@type":"Person","name":"Andrea Zafra"}},"address":{{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"}},"areaServed":["Bogotá","Colombia","Online"],"priceRange":"$$","sameAs":["https://www.instagram.com/spacetorise/","https://www.youtube.com/@spacetorise"]}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@graph":[{{"@type":["Organization","HealthAndBeautyBusiness"],"@id":"https://spacetorise.com/#org","name":"Space to Rise","alternateName":["Space to Rise · Human Evolution Studio","Space to Rise Bogotá"],"url":"https://spacetorise.com","logo":"https://spacetorise.com/assets/img/Logo2x.png","image":"https://spacetorise.com/assets/img/p/home-hero-2.jpg","description":{json.dumps(ENTITY, ensure_ascii=False)},"slogan":"Journey inward & rise from your heart","telephone":"+57 310 750 3359","email":"info@spacetorise.com","address":{{"@type":"PostalAddress","addressLocality":"Bogotá","addressRegion":"Cundinamarca","addressCountry":"CO"}},"areaServed":[{{"@type":"City","name":"Bogotá"}},{{"@type":"Country","name":"Colombia"}},"Online"],"priceRange":"$$","founder":{{"@id":"https://spacetorise.com/#andrea"}},"knowsAbout":["Hipnoterapia","Rapid Transformational Therapy","Hipnosis clínica","Neurociencia del cambio","Coaching","Baño de gong","Bienestar laboral"],"sameAs":["https://www.instagram.com/spacetorise/","https://www.youtube.com/@spacetorise","https://www.facebook.com/profile.php?id=61574483459317","https://www.linkedin.com/in/andrea-zafra-5b5bb09"],"makesOffer":[{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Sesión de hipnoterapia RTT","url":"https://spacetorise.com/rtt/"}},"price":"480000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"RTT Kids · hipnoterapia para niños","url":"https://spacetorise.com/kids/"}},"price":"350000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Coaching individual","url":"https://spacetorise.com/coaching/"}},"price":"180000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Baño de gong individual","url":"https://spacetorise.com/gong/"}},"price":"180000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Programas de bienestar laboral para empresas","url":"https://spacetorise.com/empresas/"}}}}]}},{{"@type":"Person","@id":"https://spacetorise.com/#andrea","name":"Andrea Zafra","url":"https://spacetorise.com/sobre-mi/","image":"https://spacetorise.com/assets/img/p/andrea.jpg","jobTitle":"Hipnoterapeuta clínica RTT y consultora certificada NeuroChangeSolutions","worksFor":{{"@id":"https://spacetorise.com/#org"}},"alumniOf":[{{"@type":"CollegeOrUniversity","name":"IE Business School"}},{{"@type":"CollegeOrUniversity","name":"Babson College"}}],"hasCredential":[{{"@type":"EducationalOccupationalCredential","name":"Rapid Transformational Therapy (RTT) · Marisa Peer"}},{{"@type":"EducationalOccupationalCredential","name":"Consultora certificada NeuroChangeSolutions · Dr. Joe Dispenza"}}],"sameAs":["https://www.linkedin.com/in/andrea-zafra-5b5bb09","https://www.instagram.com/spacetorise/"]}},{{"@type":"WebSite","@id":"https://spacetorise.com/#web","url":"https://spacetorise.com","name":"Space to Rise","inLanguage":"es-CO","publisher":{{"@id":"https://spacetorise.com/#org"}}}},{{"@type":"WebPage","url":"https://spacetorise.com{path}","name":{json.dumps(title, ensure_ascii=False)},"description":{json.dumps(desc, ensure_ascii=False)},"inLanguage":"es-CO","isPartOf":{{"@id":"https://spacetorise.com/#web"}},"about":{{"@id":"https://spacetorise.com/#org"}}}}{crumbs}]}}</script>
 {ld or ""}
 </head>
 <body>
@@ -105,7 +114,7 @@ def foot(cta=True, cta_title="Tu transformación empieza con una conversación",
     <div class="cols">
       <div>
         <h5>Human evolution studio</h5>
-        <p style="max-width:36ch;margin:0">Journey inward &amp; rise from your heart.</p>
+        <p style="max-width:40ch;margin:0">Journey inward &amp; rise from your heart. Human evolution studio en Bogotá, Colombia: hipnoterapia RTT, coaching, baños de gong, audios de autohipnosis y bienestar para empresas, presencial y online.</p>
         <p style="max-width:36ch;margin:14px 0 0">Nutre tu alma con nuestro newsletter y recibe un regalo de bienvenida.</p>
         <form class="newsletter" data-newsletter><input type="email" name="email" required placeholder="Tu correo electrónico" autocomplete="email" aria-label="Tu correo electrónico"><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none"><button type="submit">Suscríbete</button></form>
         <div class="social"><a href="https://www.instagram.com/spacetorise/" target="_blank" rel="noopener" aria-label="Instagram">{SVG_IG}</a><a href="https://www.youtube.com/@spacetorise" target="_blank" rel="noopener" aria-label="YouTube">{SVG_YT}</a><a href="https://www.facebook.com/profile.php?id=61574483459317" target="_blank" rel="noopener" aria-label="Facebook">{SVG_FB}</a><a href="https://www.linkedin.com/in/andrea-zafra-5b5bb09" target="_blank" rel="noopener" aria-label="LinkedIn">{SVG_IN}</a></div>
@@ -238,7 +247,7 @@ PRODUCTS = json.load(open(os.path.join(OUT, 'assets/data/products.json'), encodi
 fmt = lambda n: 'Gratis' if n == 0 else '$' + f'{n:,}'.replace(',', '.')
 
 # ------------------------------------------------------------------ HOME
-pages["/"] = dict(title="Hipnoterapia RTT en Bogotá y online | Space to Rise",
+pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Space to Rise",
  desc="Hipnoterapia RTT en Bogotá y online con Andrea Zafra: sana la ansiedad, los miedos, el insomnio y las enfermedades desde la raíz. Agenda tu llamada inicial.", og="/assets/img/p/home-hero-2.jpg",
  body=f"""<section class="hero light right" style="min-height:100svh">
   <div class="hero__media"><img src="{IMG}p/home-hero-2.jpg" alt="Mujer sonriendo frente al mar, con el pelo al viento" style="object-position:left center" fetchpriority="high"></div>
@@ -251,6 +260,7 @@ pages["/"] = dict(title="Hipnoterapia RTT en Bogotá y online | Space to Rise",
 </section>
 
 <div class="creds stagger"><span>Hipnoterapeuta clínica · RTT</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
+<section class="pad-s" id="que-es"><div class="wrap grid g2" style="align-items:start"><div><span class="kicker fade">Qué es Space to Rise</span><h2 class="display-s lines" style="margin:12px 0 0">Un human evolution studio en Bogotá.</h2></div><p class="fade d1" style="margin:0">{ENTITY}</p></div></section>
 
 <section class="pad"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px">Sabes lo que quieres cambiar,<br>pero algo más profundo<br>te sigue frenando.</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos con la hipnoterapia RTT, en Bogotá o por Zoom desde cualquier lugar de Colombia: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
@@ -548,7 +558,7 @@ pages["/sobre-mi/"] = dict(title="Andrea Zafra · Hipnoterapeuta clínica RTT en
  desc="Hipnoterapeuta clínica especializada en RTT y consultora certificada de Joe Dispenza (NeuroChangeSolutions). Mi historia, mi formación y mi misión.",
  body=f"""<section class="portal pad"><div class="wrap feature">
   <div><span class="kicker fade">Sobre mí</span><h1 class="display-xl lines" style="margin:14px 0 18px">Andrea<br>Zafra</h1><p class="kicker fade d1" style="display:block;margin-bottom:20px;line-height:2">Hipnoterapeuta clínica especializada en RTT<br>Consultora certificada de Joe Dispenza (NeuroChangeSolutions)</p>
-    <p class="lead fade d2">Te ayudo a encontrar la raíz de lo que te bloquea y a reprogramar tu mente para que tu cambio sea real y permanente. Uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones.</p>
+    <p class="lead fade d2">Fundadora de Space to Rise, human evolution studio en Bogotá. Te ayudo a encontrar la raíz de lo que te bloquea y a reprogramar tu mente para que tu cambio sea real y permanente. Uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones.</p>
     <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="#historia"><span>Conoce mi historia</span></a></div></div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/andrea.jpg" alt="Andrea Zafra, hipnoterapeuta clínica RTT"></div></div>
 </div></section>
@@ -592,6 +602,10 @@ pages["/gif-for-you/"] = dict(title="Gift for you — Recursos gratuitos | Space
 
 # ------------------------------------------------------------------ FAQ
 FAQ = [
+ ("Sobre Space to Rise", [
+  ("¿Qué es Space to Rise?", ENTITY),
+  ("¿Quién es Andrea Zafra?", "Andrea Zafra es hipnoterapeuta clínica especializada en Rapid Transformational Therapy (RTT), consultora certificada de NeuroChangeSolutions (el programa del Dr. Joe Dispenza), MBA del IE Business School y administradora de empresas de Babson College. Fundó Space to Rise en Bogotá y acompaña a personas, familias y organizaciones de forma presencial y online."),
+  ("¿Dónde atiende Space to Rise?", "En Bogotá, Colombia, de forma presencial, y online por Zoom para cualquier ciudad o país. Los audios de autohipnosis se compran en la tienda y se escuchan desde un espacio privado en cualquier dispositivo.")]),
  ("Sobre RTT", [
   ("¿Qué es RTT?", "Rapid Transformational Therapy es una terapia desarrollada por Marisa Peer que combina lo más eficaz de la hipnosis, la PNL y la neurociencia para lograr resultados rápidos, permanentes y transformadores. Generalmente se logra sanar en 1 o máximo 3 sesiones, según la complejidad del tema."),
   ("¿Por qué hipnosis?", "La hipnosis permite acceder al subconsciente, donde están tu programación, tus memorias y tus creencias. Así entendemos por qué reaccionas como reaccionas, encontramos la raíz del problema, la sanamos y creamos nuevas conexiones neuronales."),
@@ -639,6 +653,13 @@ pages["/agenda/"] = dict(title="Agenda tu cita de hipnoterapia RTT en Bogotá u 
 {testi(bg="")}
 """, cta=False)
 
+SVC = {'/rtt/': ('Sesión de hipnoterapia RTT', '480000', 'Hipnoterapia RTT (Rapid Transformational Therapy): hipnosis clínica, PNL y neurociencia para encontrar la raíz de lo que te bloquea y reprogramarla. Sesión de 90 min a 2 h más audio personal de 21 días.'), '/kids/': ('RTT Kids · hipnoterapia para niños', '350000', 'Hipnoterapia para niños adaptada a su edad, con audio personal para reforzar el cambio en casa.'), '/coaching/': ('Coaching individual', '180000', 'Sesiones de coaching de vida de 1 hora, presenciales en Bogotá o por Zoom.'), '/gong/': ('Baño de gong', '180000', 'Baño de sonido con gong para relajación profunda, liberación emocional y equilibrio energético. Individual $180.000, grupal $120.000 por persona.'), '/empresas/': ('Programas de bienestar laboral para empresas', None, 'Talleres de manejo del estrés y burnout, retiros corporativos, coaching para equipos y el programa NCS del Dr. Joe Dispenza. Presencial en Bogotá o virtual.'), '/heal-rise-shine/': ('Hipnoterapia RTT · Heal, Rise, Shine', '480000', 'RTT para sanar el cuerpo (Heal), liberar la mente de ansiedad, miedos y fobias (Rise) y alcanzar objetivos (Shine).')}
+for _p, (_n, _price, _d) in SVC.items():
+    if _p in pages:
+        _o = {"@context": "https://schema.org", "@type": "Service", "name": _n, "serviceType": _n, "description": _d, "url": "https://spacetorise.com" + _p, "provider": {"@id": "https://spacetorise.com/#org"}, "areaServed": ["Bogotá", "Colombia", "Online"], "availableChannel": [{"@type": "ServiceChannel", "name": "Presencial en Bogotá"}, {"@type": "ServiceChannel", "name": "Online por Zoom"}]}
+        if _price: _o["offers"] = {"@type": "Offer", "price": _price, "priceCurrency": "COP", "availability": "https://schema.org/InStock", "url": "https://spacetorise.com/agenda/"}
+        pages[_p]['ld'] = (pages[_p].get('ld') or '') + '<script type="application/ld+json">' + json.dumps(_o, ensure_ascii=False) + '</script>'
+
 # ------------------------------------------------------------------ BUILD
 for path, p in pages.items():
     d = os.path.join(OUT, path.strip('/')) if path != '/' else OUT
@@ -648,4 +669,24 @@ for path, p in pages.items():
     print('wrote', path)
 pub = [p for p, v in pages.items() if not v.get('portal')]
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>https://spacetorise.com{p}</loc></url>' for p in pub) + '</urlset>')
-open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /mis-audios/\nSitemap: https://spacetorise.com/sitemap.xml\n')
+open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /mis-audios/\nDisallow: /checkout/\n\nUser-agent: GPTBot\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://spacetorise.com/sitemap.xml\n')
+open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(f"""# Space to Rise
+
+> {ENTITY}
+
+Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer), consultora certificada NeuroChangeSolutions (Dr. Joe Dispenza), MBA IE Business School, BSBA Babson College. Sede: Bogotá, Colombia. Atención presencial y online (Zoom). Contacto: info@spacetorise.com · WhatsApp +57 310 750 3359.
+
+## Servicios y precios (COP)
+- Sesión de hipnoterapia RTT (90 min–2 h + audio personal de 21 días): $480.000 — https://spacetorise.com/rtt/
+- Heal · Rise · Shine (RTT para sanar el cuerpo, la mente y alcanzar objetivos): https://spacetorise.com/heal-rise-shine/
+- RTT Kids (hipnoterapia para niños): $350.000 — https://spacetorise.com/kids/
+- Coaching individual (1 h, presencial o Zoom): $180.000 — https://spacetorise.com/coaching/
+- Baño de gong: individual $180.000 · grupal $120.000 por persona — https://spacetorise.com/gong/
+- Empresas: talleres de bienestar y manejo del estrés, retiros corporativos, programa NCS de Joe Dispenza — https://spacetorise.com/empresas/
+- Audios de autohipnosis ($50.000–$120.000): https://spacetorise.com/shop/
+
+## Páginas
+- Sobre Andrea Zafra: https://spacetorise.com/sobre-mi/
+- Preguntas frecuentes sobre hipnosis y RTT: https://spacetorise.com/preguntas-frecuentes/
+- Agenda una llamada inicial de 20 minutos: https://spacetorise.com/agenda/
+""")

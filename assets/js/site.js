@@ -149,6 +149,8 @@
   $$('.media.video').forEach(m => {
     const v = $('video', m), b = $('.unmute', m);
     v.muted = true; v.loop = true; v.playsInline = true;
+    const start = parseFloat(v.dataset.start) || 0;
+    if (start) { const seek = () => { if (v.currentTime < start - .2) v.currentTime = start; }; v.addEventListener('loadedmetadata', seek); v.addEventListener('play', seek); v.addEventListener('timeupdate', () => { if (v.currentTime < start - .5 || (v.duration && v.currentTime > v.duration - .3)) v.currentTime = start; }); }
     const io2 = new IntersectionObserver((es) => es.forEach(e => { if (m.classList.contains('playing')) return; if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }), { threshold: .35 });
     io2.observe(m);
     b && b.addEventListener('click', () => {

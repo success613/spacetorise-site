@@ -43,7 +43,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="https://spacetorise.com{path}">
-<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:image" content="https://spacetorise.com{og or "/assets/img/p/home-hero.jpg"}"><meta property="og:url" content="https://spacetorise.com{path}"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:locale" content="es_CO">
+<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:image" content="https://spacetorise.com{og or "/assets/img/p/home-hero-2.jpg"}"><meta property="og:url" content="https://spacetorise.com{path}"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:locale" content="es_CO">
 {'<meta name="robots" content="noindex">' if portal else ''}
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
@@ -158,7 +158,7 @@ def feature(img, kicker, title, paras, link=None, flip=False, price=None, bg='',
     link_html = f'<a class="pill fade d4" href="{link[1]}"><span>{link[0]}</span></a>' if link else ''
     cta_html = f'<a class="pill solid fade d4" href="{AG}"><span>{cta}</span></a>' if cta else ''
     return f"""<section class="pad {bg}{' fit' if fit else ''}"><div class="wrap feature{' flip' if flip else ''}">
-  <div class="feature__media">{f'<div class="media video"><video src="{video}" poster="{IMG}{img}" muted loop playsinline preload="metadata"></video><button class="unmute" type="button" aria-label="Ver con sonido">Ver</button></div>' if video else f'<div class="media {ratio}"><img src="{IMG}{img}" alt="{alt or re.sub("<[^>]+>", " ", title)}" loading="lazy"></div>'}</div>
+  <div class="feature__media">{f'<div class="media video"><video src="{video}" poster="{IMG}{img}" muted loop playsinline preload="metadata" data-start="11.5"></video><button class="unmute" type="button" aria-label="Ver con sonido">Ver</button></div>' if video else f'<div class="media {ratio}"><img src="{IMG}{img}" alt="{alt or re.sub("<[^>]+>", " ", title)}" loading="lazy"></div>'}</div>
   <div>{f'<span class="kicker fade">{kicker}</span>' if kicker else ''}<h2 class="display-m lines" style="margin:14px 0 22px">{title}</h2>{ps}{lst_html}{price_html}<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">{cta_html}{link_html}</div></div>
 </div></section>"""
 
@@ -236,9 +236,9 @@ fmt = lambda n: 'Gratis' if n == 0 else '$' + f'{n:,}'.replace(',', '.')
 
 # ------------------------------------------------------------------ HOME
 pages["/"] = dict(title="Hipnoterapia RTT en Bogotá y online | Space to Rise",
- desc="Hipnoterapia RTT en Bogotá y online con Andrea Zafra: sana la ansiedad, los miedos, el insomnio y las enfermedades desde la raíz. Agenda tu llamada inicial.", og="/assets/img/p/home-hero.jpg",
+ desc="Hipnoterapia RTT en Bogotá y online con Andrea Zafra: sana la ansiedad, los miedos, el insomnio y las enfermedades desde la raíz. Agenda tu llamada inicial.", og="/assets/img/p/home-hero-2.jpg",
  body=f"""<section class="hero light right" style="min-height:100svh">
-  <div class="hero__media"><img src="{IMG}p/home-hero.jpg" alt="Mujer sonriendo frente al mar, con el pelo al viento" style="object-position:left center" fetchpriority="high"></div>
+  <div class="hero__media"><img src="{IMG}p/home-hero-2.jpg" alt="Mujer sonriendo frente al mar, con el pelo al viento" style="object-position:left center" fetchpriority="high"></div>
   <div class="hero__body"><div class="wrap">
     <span class="kicker fade">Hipnoterapia RTT · Neurociencia del cambio</span>
     <h1 class="display-xl lines" style="margin-top:18px;max-width:14ch;font-size:clamp(2.2rem,4.3vw,4.1rem);line-height:1.08">Sana, transfórmate y evoluciona en quien estás destinada a ser</h1>
@@ -262,7 +262,7 @@ pages["/"] = dict(title="Hipnoterapia RTT en Bogotá y online | Space to Rise",
   </div>
 </div></section>
 
-{feature("../video/rtt-poster.jpg", "Rapid Transformational Therapy", "¿Qué es RTT?", [
+{feature("../video/rtt-poster-2.jpg", "Rapid Transformational Therapy", "¿Qué es RTT?", [
  "Una terapia creada por Marisa Peer que combina hipnosis, PNL y neurociencia. Accede a tu subconsciente para encontrar la raíz de lo que te bloquea o te enferma, y reprogramarla.",
  "Muchas personas logran resultados en 1 a 3 sesiones."], link=("Conoce más", "/rtt/"), cta="Agenda tu cita", video="/assets/video/rtt.mp4", fit=True)}
 <section class="pad-s" style="padding-top:0"><div class="wrap">
@@ -308,7 +308,7 @@ pages["/rtt/"] = dict(title="¿Qué es RTT? Hipnoterapia de Transformación Ráp
  body=hero(IMG + "RTT-Image-2.jpg", "Terapia de<br>Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Hipnoterapia RTT · Rapid Transformational Therapy", pos="center 30%", cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
 <section class="pad-s bg-blush"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">RTT (Rapid Transformational Therapy) es la hipnoterapia desarrollada por Marisa Peer que combina los principios más eficaces de la hipnosis clínica, la PNL y la neurociencia. Muchas personas logran sanar en 1 a 3 sesiones, según la complejidad del tema.</p></div></section>
 
-{feature("../video/rtt-poster.jpg", "Cómo funciona", "La hipnosis te da acceso a tu subconsciente.", [
+{feature("../video/rtt-poster-2.jpg", "Cómo funciona", "La hipnosis te da acceso a tu subconsciente.", [
  "Ahí está toda tu programación: tus memorias y tus creencias. Entrar en él permite entender por qué reaccionas como reaccionas, encontrar la raíz del problema, sanarla y crear nuevas conexiones neuronales.",
  "<em>Entender es poder. Cuando entiendes el porqué de tus problemas, sanar es fácil.</em>"], flip=True, video="/assets/video/rtt.mp4")}
 

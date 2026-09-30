@@ -53,11 +53,12 @@
     if (seen || reduce || !hasGsap) { setTimeout(() => endLoader(true), 60); }
     else {
       const rings = buildRings();
+      gsap.set(rings, { transformOrigin: '50% 50%', scale: .05, opacity: 0 });
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
       tl.to('.loader__drop', { opacity: 1, duration: .2 }, 0)
         .fromTo('.loader__drop', { y: -40 }, { y: 'min(35vmin,210px)', duration: .9, ease: 'power2.in' }, 0)
         .to('.loader__drop', { scaleY: .3, scaleX: 1.6, opacity: 0, duration: .25 }, .9)
-        .to(rings, { opacity: 1, scale: 1, duration: 1.6, ease: 'expo.out', stagger: .07 }, .95)
+        .to(rings, { opacity: 1, scale: 1, transformOrigin: '50% 50%', duration: 1.6, ease: 'expo.out', stagger: .07 }, .95)
         .to('.loader__heart', { opacity: 1, scale: 1, duration: .8, ease: 'back.out(2)' }, 1.5)
         .to('.loader__word', { opacity: 1, y: -8, duration: .9 }, 1.7)
         .add(() => { sessionStorage.setItem('str-seen', '1'); endLoader(false); }, 3.2);

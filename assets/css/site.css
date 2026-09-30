@@ -94,7 +94,7 @@ section{position:relative}
 .loader.gone{pointer-events:none}
 .loader__stage{position:relative;width:min(70vmin,420px);aspect-ratio:1}
 .loader__rings{position:absolute;inset:0;width:100%;height:100%}
-.loader__rings circle{fill:none;stroke-width:1.2;opacity:0;transform-origin:center;transform:scale(.05)}
+.loader__rings circle{fill:none;stroke-width:1.2;opacity:0;transform-box:fill-box;transform-origin:center}
 .loader__drop{position:absolute;left:50%;top:0;width:10px;height:14px;margin-left:-5px;background:var(--charcoal);border-radius:50% 50% 50% 50%/40% 40% 60% 60%;opacity:0}
 .loader__heart{position:absolute;left:50%;top:50%;width:14px;height:14px;transform:translate(-50%,-50%) scale(0);opacity:0}
 .loader__word{position:absolute;left:0;right:0;top:calc(50% + min(38vmin,230px));text-align:center;font-family:var(--display);font-size:clamp(1.1rem,2.2vw,1.5rem);letter-spacing:.32em;text-transform:uppercase;color:var(--charcoal);opacity:0}

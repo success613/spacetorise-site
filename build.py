@@ -122,7 +122,7 @@ def foot(cta=True, cta_title="Tu transformación empieza con una conversación",
       <div><h5>Space to Rise</h5><ul><li><a href="/sobre-mi/">Sobre mí</a></li><li><a href="/sobre-mi/#mision">Misión</a></li><li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li><li><a href="/gif-for-you/">Gift for you</a></li><li><a href="/agenda/">Agenda tu cita</a></li><li><a href="/mi-cuenta/">Mi cuenta</a></li></ul></div>
       <div><h5>Contacto</h5><ul><li><a href="mailto:info@spacetorise.com">info@spacetorise.com</a></li><li><a href="https://www.instagram.com/spacetorise/" target="_blank" rel="noopener">@spacetorise</a></li><li><a href="{WA}" target="_blank" rel="noopener">WhatsApp +57 310 750 3359</a></li><li>Bogotá · Colombia · Online</li></ul></div>
     </div>
-    <div class="bottom"><span>© 2026 Space to Rise · Andrea Zafra</span><span>Al despertar tu mundo, iluminas el mundo.</span></div>
+    <div class="bottom"><span>© 2026 Space to Rise · Andrea Zafra</span><span>Al despertar tu mundo, iluminas el mundo.</span><span><a class="credit" href="https://clicalto.com" target="_blank" rel="noopener">Site by Clicalto</a></span></div>
   </div>
 </footer>
 <a class="wa" href="{WA}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">{SVG_WA}<span class="tip">Escríbeme</span></a>

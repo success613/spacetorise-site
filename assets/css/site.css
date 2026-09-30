@@ -572,3 +572,15 @@ section.fit .media.video{max-height:78vh;width:auto;aspect-ratio:4/5;margin:0 au
 @media(max-width:600px){.circles{grid-template-columns:1fr 1fr;gap:14px}
   /* impar: el último centrado */
   .circles>:last-child:nth-child(odd),.discs>:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 7px);justify-self:center}}
+
+/* ---------- círculos pastel (home) ---------- */
+.circle.pastel{color:var(--ink)}.circle.pastel::after{display:none}
+.circle.pastel h3{text-shadow:none;color:var(--ink)}.circle.pastel .tag{color:rgba(58,58,57,.7)}
+.circle.pastel{transition:transform .9s var(--ease-out)}
+@media(hover:hover){.circle.pastel:hover{transform:translateY(-4px)}}
+/* ---------- statement de marca ---------- */
+.statement{padding:clamp(48px,7vw,96px) 0 clamp(24px,4vw,56px)}
+.statement__text{font-family:var(--display);font-weight:300;font-size:clamp(1.4rem,2.7vw,2.5rem);line-height:1.32;margin:16px 0 0;max-width:40ch;color:var(--ink)}
+.statement__text em{font-style:italic;color:var(--terracotta)}
+.statement__text .w{display:inline;opacity:.18;transition:opacity .5s}
+.statement__text.in .w{opacity:1}

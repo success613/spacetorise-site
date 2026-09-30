@@ -145,6 +145,17 @@
   const ioT = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ioT.unobserve(e.target); } }), { threshold: .6 });
   $$('.sec-title').forEach(t => ioT.observe(t));
 
+  /* ---------- Statement: lectura progresiva palabra a palabra ---------- */
+  $$('[data-words]').forEach(el => {
+    el.innerHTML = el.innerHTML.replace(/(<em>|<\/em>)/g, '\u0001$1\u0001').split(/\s+/).map(w => w.includes('\u0001') ? w.replace(/\u0001/g, '') : `<span class="w">${w}</span>`).join(' ');
+    // envuelve también las palabras dentro de <em>
+    $$('em', el).forEach(em => { em.innerHTML = em.textContent.split(/\s+/).map(w => `<span class="w">${w}</span>`).join(' '); });
+    const ws = $$('.w', el);
+    if (hasGsap && !reduce) {
+      gsap.to(ws, { opacity: 1, ease: 'none', stagger: { each: .04 }, scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 45%', scrub: .6 } });
+    } else el.classList.add('in');
+  });
+
   /* ---------- Video en bloque (RTT): silencio en loop, click = con sonido ---------- */
   $$('.media.video').forEach(m => {
     const v = $('video', m), b = $('.unmute', m);

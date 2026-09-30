@@ -232,7 +232,7 @@ CAT_IMG = {"cuerpo-mente": "audios/consigue-tu-peso-ideal-y-mantenlo-para-siempr
 
 
 def cats_html():
-    return '<div class="circles stagger" data-cats>' + ''.join(f'<a class="circle" href="/shop/#{c}"><img src="{IMG}{CAT_IMG[c]}" alt="{n}" loading="lazy"><div class="body"><h3>{n}</h3><span class="tag">Ver audios</span></div></a>' for c, n, bg in AUDIO_CATS[:5]) + '</div>'
+    return '<div class="circles stagger" data-cats>' + ''.join(f'<a class="circle pastel {bg}" href="/shop/#{c}"><div class="body"><h3>{n}</h3><span class="tag">Ver audios</span></div></a>' for c, n, bg in AUDIO_CATS[:5]) + '</div>'
 
 
 def icard(img, title, sub, href, tag, wide=False, i=0):
@@ -260,9 +260,9 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 </section>
 
 <div class="creds stagger"><span>Hipnoterapeuta clínica · RTT</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
-<section class="pad-s" id="que-es"><div class="wrap grid g2" style="align-items:start"><div><span class="kicker fade">Qué es Space to Rise</span><h2 class="display-s lines" style="margin:12px 0 0">Un human evolution studio en Bogotá.</h2></div><p class="fade d1" style="margin:0">{ENTITY}</p></div></section>
+<section class="statement" id="que-es"><div class="wrap"><span class="kicker fade">Qué es Space to Rise</span><h2 class="statement__text" data-words>{ENTITY.replace("human evolution studio", "<em>human evolution studio</em>").replace("hipnoterapeuta clínica Andrea Zafra", "hipnoterapeuta clínica <em>Andrea Zafra</em>").replace("presencial en Bogotá y online", "<em>presencial en Bogotá y online</em>")}</h2></div></section>
 
-<section class="pad"><div class="wrap grid g2" style="align-items:start">
+<section class="pad" style="padding-top:clamp(56px,7vw,100px)"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px">Sabes lo que quieres cambiar,<br>pero algo más profundo<br>te sigue frenando.</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos con la hipnoterapia RTT, en Bogotá o por Zoom desde cualquier lugar de Colombia: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
   <ul class="plist c2 stagger" style="grid-template-columns:1fr"><li>Ansiedad, estrés o ataques de pánico</li><li>Miedos y fobias que te limitan</li><li>Baja autoestima o sensación de no ser suficiente</li><li>Insomnio, adicciones o hábitos que no logras dejar</li><li>Síntomas físicos que no mejoran</li><li>Metas que se te escapan una y otra vez</li></ul>
 </div></section>

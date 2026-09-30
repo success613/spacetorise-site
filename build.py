@@ -8,6 +8,7 @@ IMG = "/assets/img/"
 import hashlib, time
 VER = hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/css/site.css'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/site.js'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/shop.js'),'rb').read()).hexdigest()[:8]
 SPIRAL = open(os.path.join(OUT, 'assets/img/spiral-path.txt')).read().strip()
+OG_BASE = os.environ.get("SITE_BASE", "https://spacetorise-site.vercel.app")  # cambiar a https://spacetorise.com al conectar el dominio
 SUPA_URL = "https://epsokxvjqevmityasvrx.supabase.co"
 SUPA_KEY = "sb_publishable_m4rurqAuHs8cHJfBq3bshQ_-4decACD"
 
@@ -52,7 +53,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="https://spacetorise.com{path}">
-<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:image" content="https://spacetorise.com{og or "/assets/img/p/home-hero-2.jpg"}"><meta property="og:url" content="https://spacetorise.com{path}"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:locale" content="es_CO">
+<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:image" content="{OG_BASE}{og or "/assets/img/og-home.jpg"}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Space to Rise · Hipnoterapia RTT en Bogotá y online"><meta property="og:site_name" content="Space to Rise"><meta property="og:url" content="{OG_BASE}{path}"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:locale" content="es_CO">
 {'<meta name="robots" content="noindex">' if portal else ''}
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
@@ -246,7 +247,7 @@ fmt = lambda n: 'Gratis' if n == 0 else '$' + f'{n:,}'.replace(',', '.')
 
 # ------------------------------------------------------------------ HOME
 pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Space to Rise",
- desc="Hipnoterapia RTT en Bogotá y online con Andrea Zafra: sana la ansiedad, los miedos, el insomnio y las enfermedades desde la raíz. Agenda tu llamada inicial.", og="/assets/img/p/home-hero-2.jpg",
+ desc="Hipnoterapia RTT en Bogotá y online con Andrea Zafra: sana la ansiedad, los miedos, el insomnio y las enfermedades desde la raíz. Agenda tu llamada inicial.", og="/assets/img/og-home.jpg",
  body=f"""<section class="hero light right" style="min-height:100svh">
   <div class="hero__media"><img src="{IMG}p/home-hero-2.jpg" alt="Mujer sonriendo frente al mar, con el pelo al viento" style="object-position:left center" fetchpriority="high"></div>
   <div class="hero__body"><div class="wrap">

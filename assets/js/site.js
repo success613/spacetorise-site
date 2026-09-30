@@ -167,6 +167,15 @@
     play && play.addEventListener('click', () => { reel.dataset.user = '1'; vid.muted = false; vid.controls = true; vid.currentTime = 0; vid.play(); reel.classList.add('playing'); });
   }
 
+  /* ---------- Video en bloque (RTT): silencio en loop, click = con sonido ---------- */
+  $$('.media.video').forEach(m => {
+    const v = $('video', m), b = $('.unmute', m);
+    v.muted = true; v.loop = true; v.playsInline = true;
+    const io2 = new IntersectionObserver((es) => es.forEach(e => { if (m.classList.contains('playing')) return; if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }), { threshold: .35 });
+    io2.observe(m);
+    b && b.addEventListener('click', () => { m.classList.add('playing'); v.muted = false; v.loop = false; v.controls = true; v.currentTime = 0; v.play(); });
+  });
+
   /* ---------- Baraja de testimonios ---------- */
   const deck = $('.deck');
   if (deck && hasGsap) {

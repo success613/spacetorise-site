@@ -32,7 +32,7 @@ def spiral_svg(cls="", style=""):
     return f'<svg class="{cls}" viewBox="60 60 90 96" style="{style}" aria-hidden="true"><path d="{SPIRAL}"/></svg>'
 
 
-def head(title, desc, path, dark=False, portal=False):
+def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
     return f"""<!doctype html>
 <html lang="es">
 <head>
@@ -41,7 +41,7 @@ def head(title, desc, path, dark=False, portal=False):
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="https://spacetorise.com{path}">
-<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:image" content="https://spacetorise.com/assets/img/Home-Principal-New.jpg"><meta property="og:type" content="website"><meta property="og:locale" content="es_CO">
+<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:image" content="https://spacetorise.com{og or "/assets/img/p/home-hero.jpg"}"><meta property="og:url" content="https://spacetorise.com{path}"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:locale" content="es_CO">
 {'<meta name="robots" content="noindex">' if portal else ''}
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"><link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 <link rel="preload" href="/assets/fonts/gabriela-light.woff2" as="font" type="font/woff2" crossorigin>
@@ -51,7 +51,8 @@ def head(title, desc, path, dark=False, portal=False):
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 {'<script src="/assets/js/vendor/supabase.js" defer></script>' if portal else ''}
 <script>window.STR_SUPABASE_URL="{SUPA_URL}";window.STR_SUPABASE_KEY="{SUPA_KEY}";</script>
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"HealthAndBeautyBusiness","name":"Space to Rise","url":"https://spacetorise.com","telephone":"+57 310 750 3359","image":"https://spacetorise.com/assets/img/Home-Principal-New.jpg","description":"{html.escape(desc)}","founder":{{"@type":"Person","name":"Andrea Zafra"}},"areaServed":"Colombia","sameAs":["https://www.instagram.com/spacetorise/","https://www.youtube.com/@spacetorise"]}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"HealthAndBeautyBusiness","name":"Space to Rise","url":"https://spacetorise.com","telephone":"+57 310 750 3359","image":"https://spacetorise.com/assets/img/Home-Principal-New.jpg","description":"{html.escape(desc)}","founder":{{"@type":"Person","name":"Andrea Zafra"}},"address":{{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"}},"areaServed":["Bogotá","Colombia","Online"],"priceRange":"$$","sameAs":["https://www.instagram.com/spacetorise/","https://www.youtube.com/@spacetorise"]}}</script>
+{ld or ""}
 </head>
 <body>
 <div class="loader" aria-hidden="true">
@@ -59,7 +60,7 @@ def head(title, desc, path, dark=False, portal=False):
     <svg class="loader__rings" viewBox="0 0 200 200"></svg>
     <div class="loader__drop"></div>
     <div class="loader__heart">{HEART}</div>
-    <div class="loader__word">Space <em>to</em> Rise</div>
+    <div class="loader__word"><img src="/assets/img/LOGO-Color_New.png" alt="Space to Rise"></div>
   </div>
 </div>
 <div class="wipe" aria-hidden="true"></div>
@@ -100,7 +101,7 @@ def foot(cta=True, cta_title="Tu transformación empieza con una conversación",
 <footer class="footer" data-dark>
   {spiral_svg('spiral')}
   <div class="wrap">
-    <div class="big">Space <em>to</em> Rise</div>
+    <div class="big"><img src="/assets/img/Logo_Blanco_Full.png" alt="Space to Rise" loading="lazy"></div>
     <div class="cols">
       <div>
         <h5>Human evolution studio</h5>
@@ -132,8 +133,9 @@ def foot(cta=True, cta_title="Tu transformación empieza con una conversación",
 """
 
 
-def hero(img, h1, sub=None, kicker=None, light=False, compact=True, video=None, pos="center", cta=True, cta2=None, btn="Agenda tu cita", href="/agenda/"):
-    media = f'<video src="{video}" poster="{img}" autoplay muted loop playsinline></video>' if video else f'<img src="{img}" alt="" style="object-position:{pos}" fetchpriority="high">'
+def hero(img, h1, sub=None, kicker=None, light=False, compact=True, video=None, pos="center", cta=True, cta2=None, btn="Agenda tu cita", href="/agenda/", alt=None):
+    alt = alt or re.sub("<[^>]+>", " ", h1).replace("  ", " ").strip()
+    media = f'<video src="{video}" poster="{img}" autoplay muted loop playsinline></video>' if video else f'<img src="{img}" alt="{alt}" style="object-position:{pos}" fetchpriority="high">'
     kick = f'<span class="kicker fade" style="color:{"var(--taupe)" if light else "var(--linen)"}">{kicker}</span>' if kicker else ''
     b1 = f'<a class="pill{"" if light else " light"}" href="{href}"><span>{btn}</span></a>'
     b2 = f'<a class="pill{" light" if not light else ""}" href="{cta2[1]}" style="opacity:.85"><span>{cta2[0]}</span></a>' if cta2 else ''
@@ -146,18 +148,17 @@ def hero(img, h1, sub=None, kicker=None, light=False, compact=True, video=None, 
     <h1 class="display-l lines" style="margin-top:16px;max-width:16ch">{h1}</h1>
     <div class="hero__row">{subh}{btns}</div>
   </div></div>
-  <div class="scroll-cue" aria-hidden="true"></div>
 </section>"""
 
 
-def feature(img, kicker, title, paras, link=None, flip=False, price=None, bg='', lst=None, cta=None, ratio=''):
+def feature(img, kicker, title, paras, link=None, flip=False, price=None, bg='', lst=None, cta=None, ratio='', video=None, alt=None):
     ps = ''.join(f'<p class="fade d{min(i + 1, 4)}">{p}</p>' for i, p in enumerate(paras))
     lst_html = f'<ul class="list fade d3" style="margin:22px 0">{"".join(f"<li>{x}</li>" for x in lst)}</ul>' if lst else ''
     price_html = f'<div class="price-tag fade d3">{price}<small>COP · sesión</small></div>' if price else ''
     link_html = f'<a class="pill fade d4" href="{link[1]}"><span>{link[0]}</span></a>' if link else ''
     cta_html = f'<a class="pill solid fade d4" href="{AG}"><span>{cta}</span></a>' if cta else ''
     return f"""<section class="pad {bg}"><div class="wrap feature{' flip' if flip else ''}">
-  <div class="feature__media"><div class="media {ratio}"><img src="{IMG}{img}" alt="" loading="lazy"><div class="mask"></div></div></div>
+  <div class="feature__media">{f'<div class="media video"><video src="{video}" poster="{IMG}{img}" muted loop playsinline preload="metadata"></video><button class="unmute" type="button" aria-label="Ver con sonido">Ver</button></div>' if video else f'<div class="media {ratio}"><img src="{IMG}{img}" alt="{alt or re.sub("<[^>]+>", " ", title)}" loading="lazy"></div>'}</div>
   <div>{f'<span class="kicker fade">{kicker}</span>' if kicker else ''}<h2 class="display-m lines" style="margin:14px 0 22px">{title}</h2>{ps}{lst_html}{price_html}<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">{cta_html}{link_html}</div></div>
 </div></section>"""
 
@@ -215,37 +216,32 @@ COURSES = [("Sana la relación con tu peso para siempre", "Manten-tu-peso-ideal-
 
 
 def courses_html():
-    return '<div class="tiles">' + ''.join(f'<article class="course fade d{i}"><div class="media"><img src="{IMG}{img}" alt="" loading="lazy"><div class="mask"></div></div><div class="body"><span class="kicker" style="font-size:.62rem">Curso online</span><h3>{t}</h3><p class="small muted" style="margin:0">Muy pronto. Déjanos tu correo en el newsletter y te avisamos cuando abra.</p><div class="foot"><span>Próximamente</span><a href="/agenda/">Quiero saber más →</a></div></div></article>' for i, (t, img) in enumerate(COURSES)) + '</div>'
+    return '<div class="tiles">' + ''.join(f'<article class="course fade d{i}"><div class="media"><img src="{IMG}{img}" alt="" loading="lazy"></div><div class="body"><span class="kicker" style="font-size:.62rem">Curso online</span><h3>{t}</h3><p class="small muted" style="margin:0">Muy pronto. Déjanos tu correo en el newsletter y te avisamos cuando abra.</p><div class="foot"><span>Próximamente</span><a href="/agenda/">Quiero saber más →</a></div></div></article>' for i, (t, img) in enumerate(COURSES)) + '</div>'
 
 
 def cats_html():
     return '<div class="tiles" style="grid-template-columns:repeat(5,1fr)" data-cats>' + ''.join(f'<a class="tile {bg} fade d{i}" href="/shop/#{c}" style="min-height:170px;text-align:center;align-items:center;justify-content:center;border-radius:50%;aspect-ratio:1;padding:22px"><h3 style="font-size:clamp(1rem,1.3vw,1.25rem);margin:0 0 6px">{n}</h3><span class="tag" style="margin:0">Ver audios</span></a>' for i, (c, n, bg) in enumerate(AUDIO_CATS[:5])) + '</div>'
 
 
+def icard(img, title, sub, href, tag, wide=False, i=0):
+    return f'<a class="icard{" wide" if wide else ""} fade d{i}" href="{href}"><img src="{IMG}{img}" alt="{title}" loading="lazy"><div class="body"><h3>{title}</h3>{f"<p>{sub}</p>" if sub else ""}<span class="tag">{tag} →</span></div></a>'
+
+
+HRS_CARDS = '<div class="icards">' + icard('p/heal-card.jpg', 'Heal', None, '/heal-rise-shine/#heal', 'Sana tu cuerpo') + icard('p/rise-card.jpg', 'Rise', None, '/heal-rise-shine/#rise', 'Sana tu mente', i=1) + icard('p/shine-card.jpg', 'Shine', None, '/heal-rise-shine/#shine', 'Alcanza tus objetivos', i=2) + '</div>'
+MORE_CARDS = '<div class="icards">' + icard('p/kids-ninos.jpg', 'Kids', 'Autoestima alta, menos ansiedad y mejor rendimiento para los más pequeños.', '/kids/', 'Conoce más', wide=True) + icard('p/coaching-laberinto.jpg', 'Coaching', 'Sesiones individuales para integrar tu transformación en el día a día.', '/coaching/', 'Conoce más', wide=True, i=1) + icard('p/gong-hero.jpg', 'Gong', 'Baños de sonido para una relajación profunda del cuerpo y la mente.', '/gong/', 'Conoce más', wide=True, i=2) + '</div>'
+
 pages = {}
 PRODUCTS = json.load(open(os.path.join(OUT, 'assets/data/products.json'), encoding='utf-8'))
 fmt = lambda n: 'Gratis' if n == 0 else '$' + f'{n:,}'.replace(',', '.')
 
 # ------------------------------------------------------------------ HOME
-pages["/"] = dict(title="Space to Rise · Hipnoterapia RTT y neurociencia del cambio | Andrea Zafra",
- desc="Sana, transfórmate y evoluciona en quien estás destinada a ser. Hipnoterapia RTT, coaching, baños de gong y programas de bienestar para empresas. Andrea Zafra, Bogotá y online.",
- body=f"""
-<section class="hero light" style="min-height:100svh">
-  <div class="hero__media" style="background:var(--ivory)"><video src="/assets/video/drop.mp4" poster="/assets/video/drop-poster.jpg" autoplay muted loop playsinline style="opacity:.95"></video></div>
-  <div class="hero__body"><div class="wrap">
-    <span class="kicker fade" style="color:var(--taupe)">Hipnoterapia RTT · Neurociencia del cambio</span>
-    <h1 class="display-xl lines" style="margin-top:18px;max-width:24ch;font-size:clamp(2.4rem,5.6vw,5.2rem)">Sana, transfórmate<br class="d">y evoluciona en quien<br class="d">estás destinada a ser.</h1>
-    <div class="hero__row">
-      <p class="lead fade d2">Acompaño a personas y empresas a encontrar la raíz de lo que las bloquea y a reprogramar la mente para un cambio real y permanente.</p>
-      <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="/empresas/"><span>Soy una empresa</span></a></div>
-    </div>
-  </div></div>
-  <div class="scroll-cue" aria-hidden="true"></div>
-</section>
+pages["/"] = dict(title="Hipnoterapia RTT en Bogotá y online | Space to Rise",
+ desc="Hipnoterapia RTT en Bogotá y online con Andrea Zafra: sana la ansiedad, los miedos, el insomnio y las enfermedades desde la raíz. Agenda tu llamada inicial.", og="/assets/img/p/home-hero.jpg",
+ body=hero(IMG + "p/home-hero.jpg", "Sana, transfórmate<br class=\"d\">y evoluciona en quien<br class=\"d\">estás destinada a ser", "Acompaño a personas y empresas a encontrar la raíz de lo que las bloquea y a reprogramar la mente para un cambio real y permanente.", kicker="Hipnoterapia RTT en Bogotá y online · Neurociencia del cambio", pos="center 30%", compact=False, cta2=("Soy una empresa", "/empresas/")) + f"""
 <div class="creds fade"><span>Hipnoterapeuta clínica · RTT</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
 
 <section class="pad"><div class="wrap grid g2" style="align-items:start">
-  <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px">Sabes lo que quieres cambiar,<br>pero algo más profundo<br>te sigue frenando.</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
+  <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px">Sabes lo que quieres cambiar,<br>pero algo más profundo<br>te sigue frenando.</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos con la hipnoterapia RTT, en Bogotá o por Zoom desde cualquier lugar de Colombia: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
   <ul class="plist c2 fade d1" style="grid-template-columns:1fr"><li>Ansiedad, estrés o ataques de pánico</li><li>Miedos y fobias que te limitan</li><li>Baja autoestima o sensación de no ser suficiente</li><li>Insomnio, adicciones o hábitos que no logras dejar</li><li>Síntomas físicos que no mejoran</li><li>Metas que se te escapan una y otra vez</li></ul>
 </div></section>
 
@@ -257,71 +253,35 @@ pages["/"] = dict(title="Space to Rise · Hipnoterapia RTT y neurociencia del ca
   </div>
 </div></section>
 
-<section class="manifesto" data-dark>
-  <div class="manifesto__sticky">
-    <div class="manifesto__bg"><video src="/assets/video/rtt.mp4" poster="/assets/video/rtt-poster.jpg" muted loop playsinline preload="metadata"></video></div>
-    <div class="manifesto__phrases">
-      <p class="manifesto__phrase">Sabes lo que quieres cambiar, <em>pero algo más profundo te sigue frenando.</em></p>
-      <p class="manifesto__phrase">El 95% de tus decisiones <em>nacen del subconsciente.</em></p>
-      <p class="manifesto__phrase">Por eso trabajamos en la raíz, <em>no en los síntomas.</em></p>
-      <p class="manifesto__phrase">Muchas personas logran resultados <em>en 1 a 3 sesiones.</em></p>
-      <p class="manifesto__phrase">Al despertar tu mundo, <em>iluminas el mundo.</em></p>
-    </div>
-    <div class="manifesto__idx">1 / 5</div>
-  </div>
-</section>
-
-{feature("3.-Home-heal-New.jpg", "Rapid Transformational Therapy", "¿Qué es RTT?", [
+{feature("../video/rtt-poster.jpg", "Rapid Transformational Therapy", "¿Qué es RTT?", [
  "Una terapia creada por Marisa Peer que combina hipnosis, PNL y neurociencia. Accede a tu subconsciente para encontrar la raíz de lo que te bloquea o te enferma, y reprogramarla.",
- "Muchas personas logran resultados en 1 a 3 sesiones."], link=("Conoce más", "/rtt/"), cta="Agenda tu cita")}
+ "Muchas personas logran resultados en 1 a 3 sesiones."], link=("Conoce más", "/rtt/"), cta="Agenda tu cita", video="/assets/video/rtt.mp4")}
 <section class="pad-s" style="padding-top:0"><div class="wrap">
   {steps3([("Conversación inicial", "Una llamada de 20 minutos para resolver tus dudas y entender lo que quieres sanar."), ("Tu sesión de RTT", "Entre 90 minutos y 2 horas de hipnosis para encontrar la raíz, entenderla y liberarla."), ("Tu audio personal", "Un audio hecho solo para ti, que escuchas 21 días para que tu mente cree nuevos hábitos.")])}
+  <div style="height:clamp(40px,6vw,72px)"></div>
+  {HRS_CARDS}
 </div></section>
 
-<section class="hscroll" data-dark>
-  <div class="hscroll__pin">
-    <div class="hscroll__track">
-      <div class="panel intro"><span class="kicker">Cómo puedo acompañarte</span><h2 class="display-l" style="margin:16px 0 18px">Un camino para cada momento.</h2><p style="color:rgba(249,245,237,.8);max-width:36ch">Sana tu cuerpo, sana tu mente, alcanza tus objetivos. Desliza para descubrir cada camino.</p></div>
-      <a class="panel" href="/heal-rise-shine/#heal"><span class="panel__n">01</span><img src="{IMG}HEAL.jpg" alt="" loading="lazy"><div class="panel__body"><h3>Heal</h3><p>Sana tu cuerpo. Enfermedades físicas y autoinmunes desde su raíz emocional.</p><span class="link"><i></i>Sana tu cuerpo</span></div></a>
-      <a class="panel" href="/heal-rise-shine/#rise"><span class="panel__n">02</span><img src="{IMG}Rise.jpg" alt="" loading="lazy"><div class="panel__body"><h3>Rise</h3><p>Sana tu mente. Ansiedad, autoestima, adicciones, miedos, insomnio.</p><span class="link"><i></i>Sana tu mente</span></div></a>
-      <a class="panel" href="/heal-rise-shine/#shine"><span class="panel__n">03</span><img src="{IMG}Shine.jpg" alt="" loading="lazy"><div class="panel__body"><h3>Shine</h3><p>Alcanza tus objetivos. Deportistas, líderes, profesionales y emprendedores.</p><span class="link"><i></i>Alcanza tus objetivos</span></div></a>
-      <a class="panel" href="/kids/"><span class="panel__n">04</span><img src="{IMG}KIDS1Filtros.jpg" alt="" loading="lazy"><div class="panel__body"><h3>Kids</h3><p>Autoestima alta, menos ansiedad y mejor rendimiento para los más pequeños.</p><span class="link"><i></i>Conoce más</span></div></a>
-      <a class="panel" href="/coaching/"><span class="panel__n">05</span><img src="{IMG}2.-Home-Coaching-New.jpg" alt="" loading="lazy"><div class="panel__body"><h3>Coaching</h3><p>Sesiones individuales para integrar tu transformación en el día a día.</p><span class="link"><i></i>Conoce más</span></div></a>
-      <a class="panel" href="/gong/"><span class="panel__n">06</span><img src="{IMG}Gong_Home.jpg" alt="" loading="lazy"><div class="panel__body"><h3>Gong</h3><p>Baños de sonido para una relajación profunda del cuerpo y la mente.</p><span class="link"><i></i>Conoce más</span></div></a>
-      <a class="panel" href="/empresas/"><span class="panel__n">07</span><img src="{IMG}babi-akpZ94lE0ZM-unsplash.jpg" alt="" loading="lazy"><div class="panel__body"><h3>Empresas</h3><p>Talleres, retiros y el programa NCS del Dr. Joe Dispenza para equipos y líderes.</p><span class="link"><i></i>Conoce más</span></div></a>
-    </div>
-  </div>
-  <div class="hscroll__hint">Desliza · 07 caminos</div>
-</section>
-
-<section class="pad"><div class="wrap">
+<section class="pad bg-stone"><div class="wrap">
   <div class="feature">
     <div><span class="kicker fade">Empresas</span><h2 class="display-m lines" style="margin:14px 0 22px">Bienestar y transformación<br>para tu equipo.</h2><p class="lead fade d1">Las organizaciones crecen cuando crecen las personas que las forman.</p><p class="fade d2">Llevo a las empresas el mismo trabajo que hago con cada persona: herramientas para manejar el estrés, cuidar la salud emocional y cambiar los patrones que frenan a líderes y equipos.</p><div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px"><a class="pill solid" href="/empresas/#contacto"><span>Solicita una propuesta</span></a><a class="pill" href="/empresas/"><span>Ver programas</span></a></div></div>
-    <div class="feature__media"><div class="media"><img src="{IMG}babi-akpZ94lE0ZM-unsplash.jpg" alt="" loading="lazy"><div class="mask"></div></div></div>
+    <div class="feature__media"><div class="media"><img src="{IMG}p/empresas.jpg" alt="Bienestar corporativo con Space to Rise" loading="lazy"></div></div>
   </div>
   <div class="tiles" style="margin-top:clamp(36px,5vw,64px)">
-    <a class="tile bg-blush fade" href="/empresas/"><span class="n">01</span><h3>Talleres de bienestar</h3><p>Manejo del estrés, salud emocional, autoestima y hábitos, con baños de gong grupales.</p></a>
-    <a class="tile bg-sand fade d1" href="/empresas/"><span class="n">02</span><h3>Retiros corporativos</h3><p>Experiencias para que tu equipo desconecte, se reconecte y vuelva con más claridad.</p></a>
-    <a class="tile bg-aqua fade d2" href="/empresas/#ncs"><span class="n">03</span><h3>Programa NCS del Dr. Joe Dispenza</h3><p>Change Your Mind… Create New Results: la neurociencia del cambio para líderes y equipos.</p></a>
+    <a class="tile bg-blush fade" href="/empresas/"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar</h3><p>Manejo del estrés, salud emocional, autoestima y hábitos, con baños de gong grupales.</p></a>
+    <a class="tile bg-sand fade d1" href="/empresas/"><span class="n">02</span><h3 style="margin-top:34px">Retiros corporativos</h3><p>Experiencias para que tu equipo desconecte, se reconecte y vuelva con más claridad.</p></a>
+    <a class="tile bg-aqua fade d2" href="/empresas/#ncs"><span class="n">03</span><h3 style="margin-top:34px">Programa NCS del Dr. Joe Dispenza</h3><p>Change Your Mind… Create New Results: la neurociencia del cambio para líderes y equipos.</p></a>
   </div>
 </div></section>
 
 <section class="quote-band bg-taupe" data-dark><div class="wrap"><p class="fade">“No podemos ofrecer al mundo algo que no somos.”</p><cite class="fade d1">Andrea Zafra</cite></div></section>
 
-{feature("AdreaZafra.jpg", "Hola, soy Andrea Zafra", "Hipnoterapeuta clínica especializada en RTT y consultora certificada de Joe Dispenza.", [
- "Después de años en grandes multinacionales, un MBA en el IE y mis estudios en Babson College, mis hijos me llevaron a transformar mi propia vida. Hoy uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones."], link=("Conoce mi historia", "/sobre-mi/"), flip=True, bg="bg-stone")}
+{feature("p/andrea.jpg", "Hola, soy Andrea Zafra", "Hipnoterapeuta clínica especializada en RTT y consultora certificada de Joe Dispenza.", [
+ "Después de años en grandes multinacionales, un MBA en el IE y mis estudios en Babson College, mis hijos me llevaron a transformar mi propia vida. Hoy uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones."], link=("Conoce mi historia", "/sobre-mi/"), alt="Andrea Zafra, hipnoterapeuta RTT")}
 
-<section class="reel" data-dark>
-  <div class="reel__sticky">
-    <div class="reel__frame">
-      <video src="/assets/video/rtt.mp4" poster="/assets/video/rtt-poster.jpg" playsinline preload="metadata" loop></video>
-      <button class="reel__play" aria-label="Reproducir con sonido"><span>Ver</span></button>
-    </div>
-    <p class="reel__caption">Así es una terapia con Andrea</p>
-  </div>
-</section>
+<section class="pad-s"><div class="wrap">{sec_title("Más formas de acompañarte")}{MORE_CARDS}</div></section>
 
-<section class="pad"><div class="wrap">
+<section class="pad bg-stone"><div class="wrap">
   <div class="narrow center fade" style="margin:0 auto clamp(40px,6vw,72px)"><span class="kicker">Conoce nuestra selección de audios y cursos</span><h2 class="display-m" style="margin-top:14px">Desbloquea tu potencial en la salud, el amor, la abundancia y mucho más, a tu ritmo y desde donde estés.</h2></div>
   {sec_title("Cursos", ("Ver todos", "/shop/#cursos"))}
   {courses_html()}
@@ -334,27 +294,18 @@ pages["/"] = dict(title="Space to Rise · Hipnoterapia RTT y neurociencia del ca
 """)
 
 # ------------------------------------------------------------------ RTT
-pages["/rtt/"] = dict(title="RTT · Terapia de Transformación Rápida | Space to Rise",
- desc="Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores. Muchas personas sanan en 1 a 3 sesiones.",
- body=hero(IMG + "RTT-Image-2.jpg", "Terapia de<br>Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Rapid Transformational Therapy", pos="center 30%", cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
-<section class="pad-s bg-blush"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">RTT es una terapia desarrollada por Marisa Peer que combina los principios más eficaces de la hipnosis, la PNL y la neurociencia. Muchas personas logran sanar en 1 a 3 sesiones, según la complejidad del tema.</p></div></section>
+pages["/rtt/"] = dict(title="¿Qué es RTT? Hipnoterapia de Transformación Rápida | Space to Rise",
+ desc="Qué es la hipnoterapia RTT de Marisa Peer, cómo funciona, sus beneficios y qué puedes sanar. Hipnosis, PNL y neurociencia para resultados en 1 a 3 sesiones.", og="/assets/img/p/rtt-hero.jpg",
+ body=hero(IMG + "RTT-Image-2.jpg", "Terapia de<br>Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Hipnoterapia RTT · Rapid Transformational Therapy", pos="center 30%", cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
+<section class="pad-s bg-blush"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">RTT (Rapid Transformational Therapy) es la hipnoterapia desarrollada por Marisa Peer que combina los principios más eficaces de la hipnosis clínica, la PNL y la neurociencia. Muchas personas logran sanar en 1 a 3 sesiones, según la complejidad del tema.</p></div></section>
 
-{feature("Heal1.jpg", "Cómo funciona", "La hipnosis te da acceso a tu subconsciente.", [
+{feature("../video/rtt-poster.jpg", "Cómo funciona", "La hipnosis te da acceso a tu subconsciente.", [
  "Ahí está toda tu programación: tus memorias y tus creencias. Entrar en él permite entender por qué reaccionas como reaccionas, encontrar la raíz del problema, sanarla y crear nuevas conexiones neuronales.",
- "<em>Entender es poder. Cuando entiendes el porqué de tus problemas, sanar es fácil.</em>"], flip=True)}
+ "<em>Entender es poder. Cuando entiendes el porqué de tus problemas, sanar es fácil.</em>"], flip=True, video="/assets/video/rtt.mp4")}
 
-<section class="manifesto" data-dark style="height:320svh">
-  <div class="manifesto__sticky">
-    <div class="manifesto__bg"><video src="/assets/video/rtt.mp4" poster="/assets/video/rtt-poster.jpg" muted loop playsinline preload="metadata"></video></div>
-    <div class="manifesto__phrases">
-      <p class="manifesto__phrase">El 95% de tus decisiones <em>nacen del subconsciente.</em></p>
-      <p class="manifesto__phrase">Por eso, aunque quieras cambiar con lógica y fuerza de voluntad, <em>ningún cambio será real y permanente hasta cambiar tu subconsciente.</em></p>
-      <p class="manifesto__phrase">RTT te libera de creencias limitantes y “programas” obsoletos <em>que pueden estar detrás de tus bloqueos o de tu enfermedad.</em></p>
-      <p class="manifesto__phrase">Y recablea tu mente con nuevas creencias <em>que transforman tu vida.</em></p>
-    </div>
-    <div class="manifesto__idx">1 / 4</div>
-  </div>
-</section>
+{feature("p/rtt-costa.jpg", "Por qué es tan efectiva", "El 95% de tus decisiones nacen del subconsciente.", [
+ "Por eso, aunque quieras cambiar con lógica y fuerza de voluntad, ningún cambio será real y permanente hasta cambiar tu subconsciente.",
+ "RTT te libera de creencias limitantes y “programas” obsoletos que pueden estar detrás de tus bloqueos o de tu enfermedad, y recablea tu mente con nuevas creencias que transforman tu vida."], bg="bg-stone", cta="Agenda tu cita", alt="Mujer frente al mar, en calma")}
 
 <section class="pad"><div class="wrap">
   {sec_title("Tu proceso en 3 pasos")}
@@ -379,13 +330,11 @@ pages["/rtt/"] = dict(title="RTT · Terapia de Transformación Rápida | Space t
 """, cta_title="¿Lista para ir a la raíz?", cta_sub="Agenda tu llamada inicial de 20 minutos y resolvemos todas tus dudas.")
 
 # ------------------------------------------------------------------ HEAL RISE SHINE
-pages["/heal-rise-shine/"] = dict(title="Heal · Rise · Shine — RTT para personas | Space to Rise",
- desc="Tres caminos para sanar tu cuerpo, liberar tu mente y alcanzar todo lo que quieres con RTT.",
- body=hero(IMG + "Ansiedad-scaled.jpg", "Heal · Rise · Shine", "Tres caminos para sanar tu cuerpo, liberar tu mente y alcanzar todo lo que quieres.", kicker="RTT para personas", pos="center 20%") + f"""
-<section class="pad-s"><div class="wrap tiles">
-  <a class="tile dark fade" href="#heal" style="min-height:300px;background:url({IMG}HEAL.jpg) center/cover"><h3>Heal</h3><span class="tag">Sana tu cuerpo →</span></a>
-  <a class="tile dark fade d1" href="#rise" style="min-height:300px;background:url({IMG}Rise.jpg) center/cover"><h3>Rise</h3><span class="tag">Sana tu mente →</span></a>
-  <a class="tile dark fade d2" href="#shine" style="min-height:300px;background:url({IMG}Shine.jpg) center/cover"><h3>Shine</h3><span class="tag">Alcanza tus objetivos →</span></a>
+pages["/heal-rise-shine/"] = dict(title="Hipnosis para ansiedad, miedos y fobias · Heal Rise Shine | Space to Rise",
+ desc="Hipnoterapia RTT para sanar el cuerpo, liberar la mente (ansiedad, miedo a volar, fobias, insomnio, traumas) y alcanzar tus objetivos. Bogotá y online.", og="/assets/img/p/heal-card.jpg",
+ body=f"""<section class="portal pad-s"><div class="wrap">
+  <div class="narrow center" style="margin:0 auto clamp(36px,5vw,60px)"><span class="kicker fade">RTT para personas</span><h1 class="display-l lines" style="margin:14px 0 16px">Heal · Rise · Shine</h1><p class="lead fade d1">Tres caminos con hipnoterapia RTT para sanar tu cuerpo, liberar tu mente de la ansiedad, los miedos y las fobias, y alcanzar todo lo que quieres.</p></div>
+  <div class="icards">{icard('p/heal-card.jpg', 'Heal', None, '#heal', 'Sana tu cuerpo')}{icard('p/rise-card.jpg', 'Rise', None, '#rise', 'Sana tu mente', i=1)}{icard('p/shine-card.jpg', 'Shine', None, '#shine', 'Alcanza tus objetivos', i=2)}</div>
 </div></section>
 
 <section id="heal" class="pad"><div class="wrap">
@@ -394,7 +343,7 @@ pages["/heal-rise-shine/"] = dict(title="Heal · Rise · Shine — RTT para pers
   <p class="caps fade" style="margin:0 auto 48px;text-align:center">Cualquier emoción reprimida puede ser la causa de enfermedades físicas. Mente y cuerpo están conectados: lo que no expresamos, el cuerpo lo expresa en forma de enfermedad.</p>
   <div class="feature">
     <div><p class="fade">RTT es muy efectiva para encontrar la causa raíz de estos bloqueos y emociones. A través de la hipnosis accedes a tu subconsciente, donde se guardan tus memorias y emociones, y logras reinterpretar lo que pasó para sanar.</p><p class="fade d1">Durante la sesión puedes recordar experiencias, eventos o patrones de pensamiento relacionados con tu problema de salud. Al entenderlos, puedes darles otra interpretación y cambiar las creencias que contribuyeron a tu enfermedad.</p><p class="lead fade d2">Tu mente puede crear una enfermedad, pero así como la crea, puede ayudarte a sanarla.</p><p class="small muted fade d3">RTT es un acompañamiento complementario y no reemplaza el diagnóstico ni el tratamiento médico.</p></div>
-    <div class="feature__media"><div class="media"><img src="{IMG}Heal2.jpg" alt="" loading="lazy"><div class="mask"></div></div></div>
+    <div class="feature__media"><div class="media"><img src="{IMG}p/heal.jpg" alt="Heal · sana tu cuerpo" loading="lazy"></div></div>
   </div>
   <div style="margin-top:clamp(40px,5vw,64px)">{sec_title("Temas con los que hemos trabajado")}<ul class="plist fade"><li>Cáncer (como acompañamiento)</li><li>Dolores crónicos</li><li>Enfermedades genéticas</li><li>Enfermedades autoinmunes</li><li>Problemas de audición</li><li>Problemas de visión</li><li>Asma</li><li>Problemas de piel y pelo</li><li>Alergias</li></ul></div>
 </div></section>
@@ -405,9 +354,9 @@ pages["/heal-rise-shine/"] = dict(title="Heal · Rise · Shine — RTT para pers
   <p class="caps fade" style="margin:0 auto 48px;text-align:center">El 95% de las decisiones de tu vida nacen de las memorias guardadas en tu subconsciente. Lo que ves hoy está determinado por las experiencias de tu pasado.</p>
   <div class="feature flip">
     <div><p class="fade">Para un cambio permanente hay que encontrar la raíz del dolor. De nada sirve tratar solo los síntomas o confiar en la fuerza de voluntad: el subconsciente y la emoción siempre le ganan a la lógica.</p><p class="fade d1">RTT te permite encontrar esas memorias y reinterpretarlas desde tu mente adulta y no desde la de un niño, entendiendo y sanando para evolucionar.</p></div>
-    <div class="feature__media"><div class="media"><img src="{IMG}4.Rise-en-vez-de-mano-scaled.jpg" alt="" loading="lazy"><div class="mask"></div></div></div>
+    <div class="feature__media"><div class="media"><img src="{IMG}p/rise.jpg" alt="Rise · sana tu mente" loading="lazy"></div></div>
   </div>
-  <div style="margin-top:clamp(40px,5vw,64px)">{sec_title("Temas con los que hemos trabajado")}<ul class="plist fade"><li>Ansiedad y ataques de pánico</li><li>Baja autoestima</li><li>Estrés</li><li>Autosabotaje</li><li>Adicciones: cigarrillo, vapeador, alcohol, juego</li><li>Insomnio y trastornos de sueño</li><li>Depresión</li><li>Fobias: volar, agujas, claustrofobia</li><li>Fertilidad</li><li>Concentración y procrastinación</li><li>Miedo a hablar en público</li><li>Duelos y celos</li></ul></div>
+  <div style="margin-top:clamp(40px,5vw,64px)">{sec_title("Temas con los que hemos trabajado")}<ul class="plist fade"><li>Ansiedad y ataques de pánico (terapia para la ansiedad)</li><li>Baja autoestima</li><li>Estrés</li><li>Autosabotaje</li><li>Adicciones: cigarrillo, vapeador, alcohol, juego</li><li>Insomnio y trastornos de sueño</li><li>Depresión</li><li>Fobias: miedo a volar en aviones, agujas, claustrofobia</li><li>Fertilidad</li><li>Concentración y procrastinación</li><li>Miedo a hablar en público</li><li>Duelos y celos</li><li>Traumas del pasado</li></ul></div>
 </div></section>
 
 <section id="shine" class="pad"><div class="wrap">
@@ -417,19 +366,19 @@ pages["/heal-rise-shine/"] = dict(title="Heal · Rise · Shine — RTT para pers
   <div class="feature">
     <div><p class="fade">RTT te permite encontrar la causa raíz de lo que te detiene, y el audio de transformación personal, hecho especialmente para ti, reprograma tu mente para alcanzar tus objetivos.</p>
       <div class="tiles c2" style="margin-top:26px"><div class="tile bg-aqua fade d1" style="min-height:0"><span class="tag" style="margin:0 0 10px">Deporte</span><h3>Conviértete en el mejor deportista</h3><p>Supera bloqueos mentales, maneja la presión y lleva tu rendimiento al siguiente nivel.</p></div><div class="tile bg-sand fade d2" style="min-height:0"><span class="tag" style="margin:0 0 10px">Liderazgo</span><h3>Conviértete en el mejor líder</h3><p>Gana seguridad, claridad y confianza para liderar a tu equipo y a ti misma.</p></div></div></div>
-    <div class="feature__media"><div class="media"><img src="{IMG}Shine-scaled.jpg" alt="" loading="lazy"><div class="mask"></div></div></div>
+    <div class="feature__media"><div class="media"><img src="{IMG}p/shine.jpg" alt="Shine · alcanza tus objetivos" loading="lazy"></div></div>
   </div>
 </div></section>
 {testi()}
 """, cta_title="Empieza hoy tu transformación", cta_sub="Agenda una llamada inicial de 20 minutos y elegimos juntas el camino.")
 
 # ------------------------------------------------------------------ KIDS
-pages["/kids/"] = dict(title="Kids · RTT para niños | Space to Rise",
- desc="RTT ayuda a los niños a superar cualquier desafío emocional: autoestima alta, menos ansiedad y mejor rendimiento académico.",
- body=hero(IMG + "Nueva-Foto-Kids-scaled.jpg", "“Lo más valioso que puedes enseñarles a tus hijos es que son suficientes.”", "Marisa Peer", kicker="Kids · Niños", pos="center 35%", btn="Agenda una cita") + f"""
+pages["/kids/"] = dict(title="Hipnoterapia para niños · RTT Kids | Space to Rise",
+ desc="Hipnosis para niños con RTT Kids: autoestima inquebrantable, menos ansiedad y estrés, mejor sueño y rendimiento académico. Bogotá y online.", og="/assets/img/p/kids-hero.jpg",
+ body=hero(IMG + "p/kids-hero.jpg", "“Lo más valioso que puedes enseñarles a tus hijos es que son suficientes.”", "Marisa Peer", kicker="Kids · Niños", pos="center 35%", btn="Agenda una cita") + f"""
 <section class="pad-s bg-blush"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">Como papás tenemos una responsabilidad gigante: ayudar a nuestros hijos a tener una autoestima inquebrantable para que sean niños felices que se conviertan en adultos realizados y equilibrados.</p></div></section>
-{feature("Kids2.jpg", None, "Su voz interior empieza en casa.", [
- "Las experiencias vividas en la infancia tienen un impacto enorme en la autoestima, las creencias, la mentalidad y la vida de una persona adulta.",
+{feature("p/kids-corazones.jpg", None, "Su voz interior empieza en casa.", [
+ "La hipnoterapia para niños funciona: las experiencias vividas en la infancia tienen un impacto enorme en la autoestima, las creencias, la mentalidad y la vida de una persona adulta.",
  "La manera en que les hablamos a nuestros hijos se convierte en su voz interior y moldea su imagen propia. Por eso es tan importante inculcar creencias positivas y construir una base sólida de autoestima, seguridad y confianza.",
  "RTT ayuda a los niños a superar cualquier desafío emocional para que no crezcan con creencias limitantes. Construimos una autoestima alta y les damos herramientas para manejar la ansiedad, el estrés y mejorar su rendimiento académico."], flip=True)}
 <section class="pad-s bg-stone"><div class="wrap">{sec_title("Temas en los que podemos ayudar")}<ul class="plist fade"><li>Autoestima alta y bullying</li><li>Ansiedad y estrés</li><li>Rendimiento académico</li><li>Pasar exámenes</li><li>Pesadillas y sueño</li><li>TDAH</li><li>Dislexia</li></ul></div></section>
@@ -441,9 +390,9 @@ pages["/kids/"] = dict(title="Kids · RTT para niños | Space to Rise",
 """, cta_title="Dale a tu hijo la mejor base para su vida", cta_sub="Agenda una llamada inicial y conversemos sobre lo que necesita.")
 
 # ------------------------------------------------------------------ COACHING
-pages["/coaching/"] = dict(title="Coaching individual — Combina lo mejor de ambos mundos | Space to Rise",
- desc="Con RTT sanas la raíz. Con el coaching integras el cambio en tu vida para no volver a los patrones del pasado. Sesiones de 1 hora, presenciales o por Zoom.",
- body=hero(IMG + "image.jpg", "Combina lo mejor<br>de ambos mundos", "Con RTT sanas la raíz. Con el coaching integras el cambio en tu vida para no volver a los patrones del pasado.", kicker="Coaching individual", pos="center 40%", btn="Agenda tu sesión") + f"""
+pages["/coaching/"] = dict(title="Coaching de vida en Bogotá y online | Space to Rise",
+ desc="Coaching de vida individual con Andrea Zafra: integra los cambios de tu sesión de RTT y alcanza tus metas. Sesiones de 1 hora en Bogotá o por Zoom.", og="/assets/img/p/coaching-hero.jpg",
+ body=hero(IMG + "p/coaching-hero.jpg", "Combina lo mejor<br class=\"d\">de ambos mundos", "Con RTT sanas la raíz. Con el coaching integras el cambio en tu vida para no volver a los patrones del pasado.", kicker="Coaching de vida individual", pos="center 40%", btn="Agenda tu sesión") + f"""
 <section class="pad-s bg-aqua"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">Con RTT trabajamos tu mente subconsciente, entendiendo el porqué de tus comportamientos y la raíz de tus problemas. Con el coaching individual te ayudo a implementar los cambios necesarios para que nunca más vuelvas a autosabotear tu transformación.</p></div></section>
 <section class="pad"><div class="wrap feature">
   <div><span class="kicker fade">Coaching individual</span>
@@ -451,17 +400,17 @@ pages["/coaching/"] = dict(title="Coaching individual — Combina lo mejor de am
     <p class="lead fade d2" style="margin:0 0 8px">Valor por sesión: <b style="font-weight:500">$150.000</b></p>
     <p class="fade d2">Ideal después de tu sesión de RTT, o para acompañar cualquier proceso de cambio: nuevos hábitos, decisiones importantes, metas personales o profesionales.</p>
     <a class="pill solid fade d3" href="/agenda/"><span>Agenda tu sesión</span></a></div>
-  <div class="feature__media"><div class="media"><img src="{IMG}Nueva-Foto-Coaching-scaled.jpg" alt="" loading="lazy"><div class="mask"></div></div></div>
+  <div class="feature__media"><div class="media"><img src="{IMG}p/coaching-laberinto.jpg" alt="Coaching individual" loading="lazy"></div></div>
 </div></section>
 <section class="pad-s bg-stone"><div class="wrap">{sec_title("Cómo trabajamos")}{steps3([("Definimos tu objetivo", "Aclaramos qué quieres lograr y qué te ha detenido hasta ahora."), ("Diseñamos tu plan", "Pasos concretos y prácticos para integrar el cambio en tu día a día."), ("Te acompaño", "Sesiones de seguimiento para sostener tu transformación en el tiempo.")])}</div></section>
 {testi()}
 """, cta_title="Da el siguiente paso con acompañamiento", cta_sub="Agenda tu sesión de coaching, presencial o por Zoom.", cta_btn="Agenda tu sesión")
 
 # ------------------------------------------------------------------ GONG
-pages["/gong/"] = dict(title="Baños de gong — Sana y transforma tu vida con la vibración del sonido | Space to Rise",
- desc="Una técnica de relajación profunda que se alcanza a través de las vibraciones de este instrumento ancestral. Sesiones individuales, grupales y para empresas.",
- body=hero(IMG + "Gong_Home.jpg", "Sana y transforma tu vida con la vibración del sonido", "Una técnica de relajación profunda que se alcanza a través de las vibraciones de este instrumento ancestral.", kicker="Baños de gong", pos="center 50%", btn="Reserva tu sesión", cta2=("Para empresas", "/empresas/")) + f"""
-{feature("EC5B0F01-906B-49CF-BFBC-83D8E23D25F6.jpg", "Qué es", "Más que un instrumento, un sistema vibracional.", [
+pages["/gong/"] = dict(title="Baño de gong en Bogotá · Baño de sonido | Space to Rise",
+ desc="Baño de gong en Bogotá: relajación profunda, liberación emocional y equilibrio energético. Sesiones individuales, grupales y para empresas.", og="/assets/img/p/gong-hero.jpg",
+ body=hero(IMG + "p/gong-hero.jpg", "Sana y transforma tu vida con la vibración del sonido", "Una técnica de relajación profunda que se alcanza a través de las vibraciones de este instrumento ancestral.", kicker="Baño de gong · Baño de sonido en Bogotá", pos="center 50%", btn="Reserva tu sesión", cta2=("Para empresas", "/empresas/")) + f"""
+{feature("p/gong.jpg", "Qué es", "Más que un instrumento, un sistema vibracional.", [
  "El gong recibe las energías de la persona, las armoniza y las devuelve potenciadas con una intención. Su sonido y vibración promueven el bienestar físico, mental y emocional, equilibran los centros de energía del cuerpo y ayudan a liberar emociones reprimidas.",
  "Puede ser una terapia complementaria en procesos de salud, porque su vibración llega a cada célula del cuerpo.",
  "<span class='small muted'>RTT es un acompañamiento complementario y no reemplaza el diagnóstico ni el tratamiento médico.</span>"])}
@@ -478,16 +427,16 @@ pages["/gong/"] = dict(title="Baños de gong — Sana y transforma tu vida con l
 """, cta_title="Reserva tu baño de gong", cta_sub="Sesiones individuales, grupales y para empresas.", cta_btn="Reserva tu sesión")
 
 # ------------------------------------------------------------------ EMPRESAS
-pages["/empresas/"] = dict(title="Empresas — Bienestar y transformación para tu equipo | Space to Rise",
- desc="Talleres de bienestar, retiros corporativos y el programa NCS del Dr. Joe Dispenza (Change Your Mind… Create New Results) para líderes y equipos.",
- body=hero(IMG + "babi-akpZ94lE0ZM-unsplash.jpg", "Bienestar y<br>transformación<br>para tu equipo", "Las organizaciones crecen cuando crecen las personas que las forman.", kicker="Empresas", pos="center 30%", btn="Solicita una propuesta", href="#contacto", cta2=("Ver programa NCS", "#ncs")) + f"""
+pages["/empresas/"] = dict(title="Bienestar laboral para empresas · Talleres y retiros | Space to Rise",
+ desc="Programa de bienestar laboral: talleres de manejo del estrés y burnout, retiros corporativos, coaching empresarial y el programa NCS del Dr. Joe Dispenza.", og="/assets/img/p/empresas.jpg",
+ body=hero(IMG + "p/empresas.jpg", "Bienestar y<br class=\"d\">transformación<br class=\"d\">para tu equipo", "Las organizaciones crecen cuando crecen las personas que las forman.", kicker="Empresas · Bienestar laboral", pos="center 30%", btn="Solicita una propuesta", href="#contacto", cta2=("Ver programa NCS", "#ncs")) + f"""
 <div class="creds fade"><span>Consultora certificada de NeuroChangeSolutions</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div>
 <section class="pad"><div class="wrap">
   <p class="lead fade narrow" style="margin:0 0 clamp(36px,5vw,64px)">Llevo a las empresas el mismo trabajo que hago con cada persona: herramientas para manejar el estrés, cuidar la salud emocional y cambiar los patrones que frenan a líderes y equipos. Cada propuesta se diseña según lo que tu organización necesita.</p>
   {sec_title("Programas para empresas")}
   <div class="tiles">
-    <div class="tile bg-blush fade"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar</h3><p>Sesiones para tu equipo sobre manejo del estrés, salud emocional, autoestima y hábitos. Incluyen baños de gong grupales.</p><span class="tag">Presencial o virtual</span></div>
-    <div class="tile bg-sand fade d1"><span class="n">02</span><h3 style="margin-top:34px">Retiros corporativos</h3><p>Experiencias de uno o varios días para que tu equipo desconecte, se reconecte y vuelva con más claridad y energía.</p><span class="tag">Diseñados a la medida</span></div>
+    <div class="tile bg-blush fade"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar y manejo del estrés</h3><p>Sesiones para tu equipo sobre manejo del estrés laboral y prevención del burnout, salud emocional, autoestima y hábitos. Incluyen baños de gong grupales.</p><span class="tag">Presencial o virtual</span></div>
+    <div class="tile bg-sand fade d1"><span class="n">02</span><h3 style="margin-top:34px">Retiros corporativos y coaching para equipos</h3><p>Experiencias de uno o varios días, charlas y coaching empresarial para que tu equipo desconecte, se reconecte y vuelva con más claridad y energía.</p><span class="tag">Diseñados a la medida</span></div>
     <div class="tile bg-aqua fade d2"><span class="n">03</span><h3 style="margin-top:34px">Programa NCS del Dr. Joe Dispenza</h3><p>Change Your Mind… Create New Results: la neurociencia del cambio aplicada a líderes y equipos.</p><span class="tag">Consultora certificada</span></div>
   </div>
 </div></section>
@@ -512,9 +461,9 @@ pages["/empresas/"] = dict(title="Empresas — Bienestar y transformación para 
 """, cta=False)
 
 # ------------------------------------------------------------------ SHOP
-pages["/shop/"] = dict(title="Shop · Audios de autohipnosis y cursos | Space to Rise",
- desc="Audios de autohipnosis y cursos para crear cambios permanentes en tu vida, desde donde estés. Reconfigura tu cerebro en menos de 20 minutos al día.",
- body=hero(IMG + "Shop-Principal.jpg", "Reconfigura tu cerebro en menos de 20 minutos al día", "Audios de autohipnosis y cursos para crear cambios permanentes en tu vida, desde donde estés.", kicker="Shop · Audios y cursos", light=True, pos="center 30%", btn="Ver audios", href="#audios", cta2=("Ver cursos", "#cursos")) + f"""
+pages["/shop/"] = dict(title="Audios de autohipnosis guiada · Tienda y cursos | Space to Rise",
+ desc="Audios de autohipnosis guiada para bajar de peso, dormir bien, superar la ansiedad y el miedo a volar. Reprograma tu mente en 15–20 minutos al día.", og="/assets/img/p/shop-hero.jpg",
+ body=hero(IMG + "p/shop-hero.jpg", "Reconfigura tu cerebro en menos de 20 minutos al día", "Audios de autohipnosis y cursos para crear cambios permanentes en tu vida, desde donde estés.", kicker="Shop · Audios de autohipnosis y cursos", pos="center 25%", btn="Ver audios", href="#audios", cta2=("Ver cursos", "#cursos")) + f"""
 <section class="pad-s"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">Cómo funcionan los audios</span><h2 class="display-m lines" style="margin:14px 0 20px">Ponte tus audífonos, recuéstate<br>y nosotros nos encargamos del resto.</h2><p class="fade d1">Es como una meditación guiada, pero en los primeros 3 minutos te guío a un estado de hipnosis. Así el audio llega a tu subconsciente, donde se guardan tus creencias y emociones, y reemplaza patrones negativos por creencias positivas y empoderadoras.</p></div>
   <div class="stats fade d1"><div class="stat bg-blush" style="border:0"><b>15–20</b><span>Minutos al día</span><p>Solo necesitas un espacio para relajarte.</p></div><div class="stat bg-sand" style="border:0"><b>21</b><span>Días mínimo</span><p>Lo que tarda tu mente en crear nuevos hábitos.</p></div><div class="stat bg-aqua" style="border:0"><b>100%</b><span>Seguro</span><p>Estás consciente y en control todo el tiempo.</p></div></div>
@@ -530,9 +479,11 @@ CATN = {c: n for c, n, _ in AUDIO_CATS}
 for p in PRODUCTS:
     others = [x for x in PRODUCTS if x['id'] != p['id']][:3]
     rel = ''.join(f'<a class="disc fade d{i}" href="/shop/{x["slug"]}/"><div class="disc__art"><img src="{x["cover"]}" alt="{x["name"]}" loading="lazy"><span class="disc__hole"></span></div><h4>{x["name"]}</h4><div class="price">{fmt(x["price"])}</div></a>' for i, x in enumerate(others))
-    pages[f"/shop/{p['slug']}/"] = dict(title=f"{p['name']} · Audio de autohipnosis | Space to Rise", desc=p['short'].strip()[:155],
+    seo_t = {'a10735': 'Hipnosis para bajar de peso · Audio', 'a10736': 'Hipnosis para dormir bien · Audio', 'a7143': 'Hipnosis para la ansiedad · Audio', 'a11260': 'Hipnosis para el miedo a volar · Audio', 'a11258': 'Hipnosis para dejar de vapear · Audio', 'a10737': 'Hipnosis para hablar en público · Audio', 'a10733': 'Hipnosis para la autoestima · Audio', 'a7151': 'Autohipnosis para atraer abundancia · Audio', 'a7154': 'Autohipnosis para el amor propio · Audio', 'a10742': 'Hipnosis para dejar de procrastinar · Audio', 'a11254': 'Hipnosis para pasar exámenes · Audio', 'a11256': 'Autohipnosis para atraer a tu pareja ideal · Audio', 'a10743': 'Hipnoparto · Audio de autohipnosis', 'a10741': 'Hipnosis para la fertilidad y FIV · Audio', 'a11257': 'Autohipnosis de energía sanadora · Audio'}
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": p['name'], "image": "https://spacetorise.com" + p['cover'], "description": p['short'].strip(), "brand": {"@type": "Brand", "name": "Space to Rise"}, "offers": {"@type": "Offer", "priceCurrency": "COP", "price": p['price'], "availability": "https://schema.org/InStock", "url": f"https://spacetorise.com/shop/{p['slug']}/"}}, ensure_ascii=False)
+    pages[f"/shop/{p['slug']}/"] = dict(title=f"{seo_t.get(p['id'], p['name'] + ' · Audio de autohipnosis')} | Space to Rise", desc=(p['short'].strip().replace('\n', ' ')[:150] + '…'), og=p['cover'], ld=f'<script type="application/ld+json">{ld}</script>',
      body=f"""<section class="portal pad-s"><div class="wrap feature">
-  <div class="feature__media"><div class="media square"><img src="{p['cover']}" alt="{p['name']}"><div class="mask"></div></div></div>
+  <div class="feature__media"><div class="media square"><img src="{p['cover']}" alt="{p['name']}"></div></div>
   <div><span class="kicker fade">Shop / {CATN.get(p['category'], '')}</span><h1 class="display-m lines" style="margin:14px 0 18px">{p['name']}</h1><p class="lead fade d1">{p['description']}</p>
     <div class="price-tag fade d2">{fmt(p['price'])}<small>COP</small></div>
     <ul class="list fade d2" style="margin:0 0 26px"><li>Audio de autohipnosis de 15 a 20 minutos</li><li>Acceso inmediato en tu espacio privado, para escuchar donde quieras</li><li>Pensado para escucharlo cada día durante 21 días</li></ul>
@@ -558,7 +509,7 @@ pages["/mi-cuenta/"] = dict(title="Mi cuenta | Space to Rise", desc="Entra a tu 
  body=f"""<section class="portal pad-s"><div class="wrap grid g2" data-login style="align-items:center">
   <div><span class="kicker fade">Tu espacio privado</span><h1 class="display-l lines" style="margin:14px 0 20px">Entra con un<br>enlace mágico.</h1><p class="lead fade d1">Sin contraseñas. Escribe tu correo, ábrelo y toca el enlace: entras directo a tus audios.</p>
     <form class="fade d2" style="max-width:420px"><div class="field"><label for="email">Tu correo</label><input id="email" name="email" type="email" required placeholder="nombre@correo.com" autocomplete="email"></div><button class="pill solid" type="submit"><span>Enviarme el enlace</span></button></form><div data-login-out style="margin-top:20px;max-width:480px"></div></div>
-  <div class="media square"><img src="{IMG}Recupera-tu-amor-propio-scaled.jpg" alt="" loading="lazy"><div class="mask"></div></div>
+  <div class="media square"><img src="{IMG}Recupera-tu-amor-propio-scaled.jpg" alt="" loading="lazy"></div>
 </div></section>""", cta=False)
 
 pages["/mis-audios/"] = dict(title="Mis audios | Space to Rise", desc="Tus audios de autohipnosis.", portal=True,
@@ -580,13 +531,13 @@ pages["/admin/"] = dict(title="Panel | Space to Rise", desc="Panel de administra
 </div></section>""", cta=False)
 
 # ------------------------------------------------------------------ SOBRE MÍ
-pages["/sobre-mi/"] = dict(title="Sobre mí — Andrea Zafra, hipnoterapeuta clínica RTT y consultora NCS | Space to Rise",
+pages["/sobre-mi/"] = dict(title="Andrea Zafra · Hipnoterapeuta clínica RTT en Bogotá | Space to Rise", og="/assets/img/p/andrea.jpg",
  desc="Hipnoterapeuta clínica especializada en RTT y consultora certificada de Joe Dispenza (NeuroChangeSolutions). Mi historia, mi formación y mi misión.",
  body=f"""<section class="portal pad"><div class="wrap feature">
   <div><span class="kicker fade">Sobre mí</span><h1 class="display-xl lines" style="margin:14px 0 18px">Andrea<br>Zafra</h1><p class="kicker fade d1" style="display:block;margin-bottom:20px;line-height:2">Hipnoterapeuta clínica especializada en RTT<br>Consultora certificada de Joe Dispenza (NeuroChangeSolutions)</p>
     <p class="lead fade d2">Te ayudo a encontrar la raíz de lo que te bloquea y a reprogramar tu mente para que tu cambio sea real y permanente. Uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones.</p>
     <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="#historia"><span>Conoce mi historia</span></a></div></div>
-  <div class="feature__media"><div class="media"><img src="{IMG}AdreaZafra.jpg" alt="Andrea Zafra"><div class="mask"></div></div></div>
+  <div class="feature__media"><div class="media"><img src="{IMG}p/andrea.jpg" alt="Andrea Zafra, hipnoterapeuta clínica RTT"></div></div>
 </div></section>
 <section class="pad-s bg-aqua"><div class="wrap">{sec_title("Formación y certificaciones")}<div class="tiles" style="grid-template-columns:repeat(5,1fr);gap:0 28px">
   <div class="fade"><b class="display-m" style="display:block">+10</b><span class="kicker" style="margin:6px 0 10px;display:block">Años de experiencia</span><p class="small" style="margin:0">Acompañando procesos de sanación y transformación personal.</p></div>
@@ -597,7 +548,7 @@ pages["/sobre-mi/"] = dict(title="Sobre mí — Andrea Zafra, hipnoterapeuta cl�
 </div><p class="kicker fade" style="margin-top:36px;display:block;text-align:center">Estudios complementarios · Crianza consciente · Nutrición · Energía · Mindfulness · Yoga</p></div></section>
 <section id="historia" class="pad"><div class="wrap">{sec_title("Mi historia")}<div class="grid g2" style="align-items:start">
   <div><h2 class="display-m lines" style="margin:0 0 22px">Dicen que los hijos son nuestros grandes maestros, y en mi caso es así.</h2><p class="fade">Jerónimo, Olivia y Alexa despertaron en mí una pregunta que cambió mi vida: ¿cómo me convierto en la mejor versión de mí misma para ser su ejemplo?</p><p class="fade d1">Durante años construí una carrera exitosa. Estudié Administración de Empresas en Babson College, hice mi MBA en el IE, trabajé en grandes multinacionales y fundé varios negocios. Pero con la llegada de Alexa mi mundo dio un giro que me reconectó con mi verdadera esencia.</p></div>
-  <div><p class="fade">Dejé el mundo corporativo para aprender todo lo que pudiera sobre crianza consciente, nutrición, energía, mindfulness y yoga. En el camino entendí algo que lo cambió todo: para darles a mis hijos lo que quería para ellos, primero tenía que transformarme yo. Superar mis miedos, cuestionar mis creencias y sanar mi cuerpo.</p><p class="fade d1">Esa búsqueda me llevó a la Terapia de Transformación Rápida (RTT) de Marisa Peer y a la neurociencia del cambio del Dr. Joe Dispenza. Hoy uso estas herramientas para acompañar a otros en su propio camino de sanación.</p><div class="media wide fade d2" style="margin-top:22px"><img src="{IMG}Andrea-Zafra-Coach-scaled.jpeg" alt="" loading="lazy" style="object-position:center 20%"><div class="mask"></div></div></div>
+  <div><p class="fade">Dejé el mundo corporativo para aprender todo lo que pudiera sobre crianza consciente, nutrición, energía, mindfulness y yoga. En el camino entendí algo que lo cambió todo: para darles a mis hijos lo que quería para ellos, primero tenía que transformarme yo. Superar mis miedos, cuestionar mis creencias y sanar mi cuerpo.</p><p class="fade d1">Esa búsqueda me llevó a la Terapia de Transformación Rápida (RTT) de Marisa Peer y a la neurociencia del cambio del Dr. Joe Dispenza. Hoy uso estas herramientas para acompañar a otros en su propio camino de sanación.</p><div class="media wide fade d2" style="margin-top:22px"><img src="{IMG}p/sobre-mi-nina.jpg" alt="" loading="lazy"></div></div>
 </div></div></section>
 <section class="quote-band bg-taupe" data-dark><div class="wrap"><p class="fade">“No podemos ofrecer al mundo algo que no somos.”</p><cite class="fade d1">Andrea Zafra</cite></div></section>
 <section id="mision" class="pad"><div class="wrap">
@@ -623,7 +574,7 @@ pages["/gif-for-you/"] = dict(title="Gift for you — Recursos gratuitos | Space
  body=hero(IMG + "Ansiedad-y-Depresion.jpg", "Gift for you", "Recursos exclusivos, solo para ti.", kicker="Gratis", pos="center 30%", cta=False) + f"""
 <section class="pad"><div class="wrap feature">
   <div><p class="lead fade">Descubre nuestra colección de audios y PDFs gratuitos, pensados para inspirarte, impulsarte y acompañarte en cada paso.</p><p class="fade d1">Porque en Space to Rise creemos que el conocimiento debe estar al alcance de todos. ¡Empieza hoy mismo!</p></div>
-  <div class="feature__media"><div class="media wide"><img src="{IMG}Ansiedad-y-Depresion.jpg" alt="" loading="lazy"><div class="mask"></div></div><h3 class="display-s" style="margin-top:22px">Tips para reducir la ansiedad y la depresión</h3><p class="small muted" style="margin:8px 0 18px">Guía en PDF con herramientas efectivas que puedes aplicar en tu día a día.</p><a class="pill solid" href="/assets/doc/Depresion-y-Ansiedad.pdf" download><span>Descarga aquí</span></a></div>
+  <div class="feature__media"><div class="media wide"><img src="{IMG}Ansiedad-y-Depresion.jpg" alt="" loading="lazy"></div><h3 class="display-s" style="margin-top:22px">Tips para reducir la ansiedad y la depresión</h3><p class="small muted" style="margin:8px 0 18px">Guía en PDF con herramientas efectivas que puedes aplicar en tu día a día.</p><a class="pill solid" href="/assets/doc/Depresion-y-Ansiedad.pdf" download><span>Descarga aquí</span></a></div>
 </div></section>""")
 
 # ------------------------------------------------------------------ FAQ
@@ -638,6 +589,8 @@ FAQ = [
   ("¿Cuánto tiempo dura la sesión?", "Entre 90 minutos y 2 horas. Te recomiendo reservar 2 horas en tu calendario para no estar apurada."),
   ("¿Qué pasa si necesito otra sesión?", "Algunos temas más profundos pueden requerir hasta tres sesiones. Muchos clientes continúan con sesiones para otras áreas de su vida o con coaching para integrar sus nuevas creencias y hábitos.")]),
  ("La hipnosis", [
+  ("¿La hipnosis es real y para qué sirve?", "Sí. La hipnosis es un estado natural de relajación profunda y atención enfocada, respaldado por la neurociencia, en el que tu mente subconsciente es más receptiva. En hipnoterapia sirve para encontrar y cambiar la raíz de la ansiedad, los miedos, el insomnio, los hábitos y muchos síntomas físicos."),
+  ("¿La hipnosis tiene peligros?", "No, cuando la guía una hipnoterapeuta clínica. No pierdes el control ni haces nada que no quieras: puedes hablar, moverte o abrir los ojos en cualquier momento. RTT es un acompañamiento complementario y no reemplaza el diagnóstico ni el tratamiento médico."),
   ("¿Cómo se siente estar hipnotizado?", "La mayoría de las personas se siente muy relajada. Estás 100% en control de tu cuerpo: puedes hablar, moverte o acomodarte cuando quieras, y solo aceptas las sugerencias que tú quieras."),
   ("¿Puedo quedarme atrapado en la hipnosis?", "No. Tienes control completo durante toda la sesión. Si haces tu sesión por Zoom y se corta la llamada, como mucho te quedarás dormido por la relajación y luego abrirás los ojos."),
   ("¿Cómo funciona?", "La hipnosis no es magia: se basa en principios científicos. Al relajarte, tu cerebro produce ondas alfa, parecidas a las del sueño, que permiten acceder al subconsciente. Es simple y posible para todo el mundo."),
@@ -649,15 +602,15 @@ FAQ = [
 ]
 faq_html = ''.join(f'<div class="grid g2 fade" style="grid-template-columns:.6fr 1.4fr;align-items:start;padding:34px 0;border-top:1px solid rgba(58,58,57,.16)"><span class="kicker">{g}</span><div class="acc">' + ''.join(f'<div class="acc__item"><button class="acc__q">{q}<i></i></button><div class="acc__a"><div><div class="inner"><p>{a}</p></div></div></div></div>' for q, a in qs) + '</div></div>' for g, qs in FAQ)
 faq_ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for g, qs in FAQ for q, a in qs]}, ensure_ascii=False)
-pages["/preguntas-frecuentes/"] = dict(title="Preguntas frecuentes — Todo lo que quieres saber sobre RTT | Space to Rise",
- desc="¿Cómo se siente estar hipnotizado? ¿Cuánto dura una sesión de RTT? ¿Cuándo veo resultados? Respuestas a las dudas más comunes.",
+pages["/preguntas-frecuentes/"] = dict(title="¿La hipnosis es real? Preguntas frecuentes sobre RTT | Space to Rise",
+ desc="¿La hipnosis es real? ¿Tiene peligros? ¿Para qué sirve la hipnoterapia y funciona? ¿Cómo se siente? Respuestas claras de una hipnoterapeuta clínica RTT.",
  body=f"""<section class="portal pad-s"><div class="wrap">
-  <div class="narrow center" style="margin:0 auto clamp(40px,6vw,72px)"><span class="kicker fade">Preguntas frecuentes</span><h1 class="display-l lines" style="margin:14px 0 18px">Todo lo que quieres saber sobre RTT</h1><p class="muted fade d1">Si no encuentras tu respuesta aquí, escríbeme a <a href="mailto:info@spacetorise.com" style="text-decoration:underline">info@spacetorise.com</a> o agenda tu llamada inicial.</p></div>
+  <div class="narrow center" style="margin:0 auto clamp(40px,6vw,72px)"><span class="kicker fade">Preguntas frecuentes</span><h1 class="display-l lines" style="margin:14px 0 18px">Todo lo que quieres saber sobre la hipnosis y RTT</h1><p class="muted fade d1">Si no encuentras tu respuesta aquí, escríbeme a <a href="mailto:info@spacetorise.com" style="text-decoration:underline">info@spacetorise.com</a> o agenda tu llamada inicial.</p></div>
   {faq_html}
 </div></section><script type="application/ld+json">{faq_ld}</script>""", cta_title="¿Te quedó alguna duda?", cta_sub="En la llamada inicial de 20 minutos resolvemos todas tus preguntas.")
 
 # ------------------------------------------------------------------ AGENDA
-pages["/agenda/"] = dict(title="Agenda tu cita — Solicita tu llamada inicial | Space to Rise",
+pages["/agenda/"] = dict(title="Agenda tu cita de hipnoterapia RTT en Bogotá u online | Space to Rise",
  desc="Cuéntame qué te gustaría transformar y te contacto para agendar una llamada inicial de 20 minutos, sin compromiso.",
  body=f"""<section class="portal pad-s"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">Agenda tu cita</span><h1 class="display-l lines" style="margin:14px 0 18px">Tu transformación empieza con una conversación.</h1><p class="fade d1">Cuéntame qué te gustaría transformar y te contacto para agendar una llamada inicial de 20 minutos, sin compromiso, para resolver tus dudas y elegir juntas el mejor camino.</p>
@@ -678,7 +631,7 @@ for path, p in pages.items():
     d = os.path.join(OUT, path.strip('/')) if path != '/' else OUT
     os.makedirs(d, exist_ok=True)
     fkw = {k: p[k] for k in ('cta', 'cta_title', 'cta_sub', 'cta_btn', 'cta_href') if k in p}
-    open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(head(p['title'], p['desc'], path, portal=p.get('portal', False)) + p['body'] + foot(**fkw))
+    open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(head(p['title'], p['desc'], path, portal=p.get('portal', False), og=p.get('og'), ld=p.get('ld')) + p['body'] + foot(**fkw))
     print('wrote', path)
 pub = [p for p, v in pages.items() if not v.get('portal')]
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>https://spacetorise.com{p}</loc></url>' for p in pub) + '</urlset>')

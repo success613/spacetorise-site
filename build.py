@@ -269,8 +269,8 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 <section class="pad-s bg-stone"><div class="wrap">
   {sec_title("Dos caminos, una misma transformación")}
   <div class="tiles c2 stagger">
-    <a class="tile bg-blush" href="/heal-rise-shine/"><span class="tag" style="position:absolute;top:26px;left:30px;margin:0">Para ti y tu familia</span><h3>Terapia individual</h3><p>Sesiones de RTT para sanar tu cuerpo, liberar tu mente y alcanzar tus objetivos. También para niños, con coaching y baños de gong.</p><span class="tag">Heal · Rise · Shine · Kids · Coaching · Gong →</span></a>
-    <a class="tile bg-aqua" href="/empresas/"><span class="tag" style="position:absolute;top:26px;left:30px;margin:0">Para tu empresa</span><h3>Bienestar corporativo</h3><p>Talleres, retiros y el programa de neurociencia del cambio del Dr. Joe Dispenza, para cuidar a tu equipo y ayudarlo a crecer.</p><span class="tag">Talleres · Retiros · NeuroChangeSolutions →</span></a>
+    <a class="tile bg-blush" href="/heal-rise-shine/"><span class="tag top">Para ti y tu familia</span><h3>Terapia individual</h3><p>Sesiones de RTT para sanar tu cuerpo, liberar tu mente y alcanzar tus objetivos. También para niños, con coaching y baños de gong.</p><span class="tag">Heal · Rise · Shine · Kids · Coaching · Gong →</span></a>
+    <a class="tile bg-aqua" href="/empresas/"><span class="tag top">Para tu empresa</span><h3>Bienestar corporativo</h3><p>Talleres, retiros y el programa de neurociencia del cambio del Dr. Joe Dispenza, para cuidar a tu equipo y ayudarlo a crecer.</p><span class="tag">Talleres · Retiros · NeuroChangeSolutions →</span></a>
   </div>
 </div></section>
 
@@ -405,7 +405,7 @@ pages["/kids/"] = dict(title="Hipnoterapia para niños · RTT Kids | Space to Ri
 <section class="pad-s bg-stone"><div class="wrap">{sec_title("Temas en los que podemos ayudar")}<ul class="plist stagger"><li>Autoestima alta y bullying</li><li>Ansiedad y estrés</li><li>Rendimiento académico</li><li>Pasar exámenes</li><li>Pesadillas y sueño</li><li>TDAH</li><li>Dislexia</li></ul></div></section>
 <section class="pad"><div class="wrap tiles c2">
   <div class="fade"><span class="kicker">Para papás y mamás</span><h2 class="display-m" style="margin:14px 0 18px">Criar sin miedos empieza por ti.</h2><p>También acompaño a padres para que puedan criar nuevas generaciones libres de miedos y creencias limitantes, con mucho amor propio y alas fuertes para volar alto.</p><a class="pill" href="/heal-rise-shine/"><span>Conoce RTT para adultos</span></a></div>
-  <div class="tile bg-blush"><span class="tag" style="position:absolute;top:26px;left:30px;margin:0">Sesiones Kids</span><h3>Una experiencia pensada para ellos</h3><p>Sesiones adaptadas a la edad de cada niño, con un audio personal para reforzar el cambio en casa.</p><p style="margin-top:14px"><span class="tag" style="margin:0">Valor</span><br><b style="font-family:var(--display);font-weight:300;font-size:1.8rem">$350.000</b></p><a class="pill solid" href="/agenda/" style="margin-top:18px;align-self:flex-start"><span>Agenda tu cita</span></a></div>
+  <div class="tile bg-blush"><span class="tag top">Sesiones Kids</span><h3>Una experiencia pensada para ellos</h3><p>Sesiones adaptadas a la edad de cada niño, con un audio personal para reforzar el cambio en casa.</p><p style="margin-top:14px"><span class="tag" style="margin:0">Valor</span><br><b style="font-family:var(--display);font-weight:300;font-size:1.8rem">$350.000</b></p><a class="pill solid" href="/agenda/" style="margin-top:18px;align-self:flex-start"><span>Agenda tu cita</span></a></div>
 </div></section>
 {testi()}
 """, cta_title="Dale a tu hijo la mejor base para su vida", cta_sub="Agenda una llamada inicial y conversemos sobre lo que necesita.")

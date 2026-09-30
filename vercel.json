@@ -1,0 +1,52 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/gift-for-you",
+      "destination": "/gif-for-you/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tienda",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/SHOP/:path*",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/acerca-de-mi",
+      "destination": "/sobre-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/mision",
+      "destination": "/sobre-mi/#mision",
+      "permanent": true
+    },
+    {
+      "source": "/audios",
+      "destination": "/shop/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

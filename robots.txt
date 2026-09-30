@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /mis-audios/
+Sitemap: https://spacetorise.com/sitemap.xml

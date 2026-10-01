@@ -220,7 +220,7 @@ def lead_form(kind, fields, btn, intro=None, extra=None):
 
 
 AUDIO_CATS = [("cuerpo-mente", "Sana tu cuerpo y mente", "bg-blush"), ("liberate", "Libérate de lo que no quieres", "bg-sand"), ("miedos", "Supera tus miedos", "bg-aqua"), ("profesional", "Desarrollo profesional", "bg-sky"), ("proyectos", "Proyectos de vida", "bg-rose"), ("kids", "Kids · Para niños", "bg-mist")]
-COURSES = [("Sana la relación con tu peso para siempre", "Manten-tu-peso-ideal-scaled.jpg"), ("Queda embarazada", "Fertilizacion-Invitro-scaled.jpg"), ("Reset your life", "Energia-Sanadora-scaled.jpg")]
+COURSES = [("Sana la relación con tu peso para siempre", "p/heal-card-2.jpg"), ("Queda embarazada", "p/rise-card-2.jpg"), ("Reset your life", "p/shine-card-2.jpg")]
 
 
 def courses_html():
@@ -238,8 +238,8 @@ def icard(img, title, sub, href, tag, wide=False, i=0):
     return f'<a class="icard{" wide" if wide else ""}" href="{href}"><img src="{IMG}{img}" alt="{title}" loading="lazy"><div class="body"><h3>{title}</h3>{f"<p>{sub}</p>" if sub else ""}<span class="tag">{tag} →</span></div></a>'
 
 
-HRS_CARDS = '<div class="icards stagger">' + icard('p/heal-card.jpg', 'Heal', None, '/heal-rise-shine/#heal', 'Sana tu cuerpo') + icard('p/rise-card.jpg', 'Rise', None, '/heal-rise-shine/#rise', 'Sana tu mente', i=1) + icard('p/shine-card.jpg', 'Shine', None, '/heal-rise-shine/#shine', 'Alcanza tus objetivos', i=2) + '</div>'
-MORE_CARDS = '<div class="icards stagger">' + icard('p/kids-ninos.jpg', 'Kids', 'Autoestima alta, menos ansiedad y mejor rendimiento para los más pequeños.', '/kids/', 'Conoce más', wide=True) + icard('p/coaching-laberinto.jpg', 'Coaching', 'Sesiones individuales para integrar tu transformación en el día a día.', '/coaching/', 'Conoce más', wide=True, i=1) + icard('p/gong-hero.jpg', 'Gong', 'Baños de sonido para una relajación profunda del cuerpo y la mente.', '/gong/', 'Conoce más', wide=True, i=2) + '</div>'
+HRS_CARDS = '<div class="icards stagger">' + icard('p/heal-card-2.jpg', 'Heal', None, '/heal-rise-shine/#heal', 'Sana tu cuerpo') + icard('p/rise-card-2.jpg', 'Rise', None, '/heal-rise-shine/#rise', 'Sana tu mente', i=1) + icard('p/shine-card-2.jpg', 'Shine', None, '/heal-rise-shine/#shine', 'Alcanza tus objetivos', i=2) + '</div>'
+MORE_CARDS = '<div class="icards stagger">' + icard('p/kids-ninos.jpg', 'Kids', 'Autoestima alta, menos ansiedad y mejor rendimiento para los más pequeños.', '/kids/', 'Conoce más', wide=True) + icard('p/kids-amigas.jpg', 'Coaching', 'Sesiones individuales para integrar tu transformación en el día a día.', '/coaching/', 'Conoce más', wide=True, i=1) + icard('p/gong-hero.jpg', 'Gong', 'Baños de sonido para una relajación profunda del cuerpo y la mente.', '/gong/', 'Conoce más', wide=True, i=2) + '</div>'
 
 pages = {}
 PRODUCTS = json.load(open(os.path.join(OUT, 'assets/data/products.json'), encoding='utf-8'))
@@ -316,8 +316,8 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 
 # ------------------------------------------------------------------ RTT
 pages["/rtt/"] = dict(title="¿Qué es RTT? Hipnoterapia de Transformación Rápida | Space to Rise",
- desc="Qué es la hipnoterapia RTT de Marisa Peer, cómo funciona, sus beneficios y qué puedes sanar. Hipnosis, PNL y neurociencia para resultados en 1 a 3 sesiones.", og="/assets/img/p/rtt-hero-2.jpg",
- body=hero(IMG + "p/rtt-hero-2.jpg", "Terapia de<br class=\"d\">Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Hipnoterapia RTT · Rapid Transformational Therapy", pos="center 30%", cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
+ desc="Qué es la hipnoterapia RTT de Marisa Peer, cómo funciona, sus beneficios y qué puedes sanar. Hipnosis, PNL y neurociencia para resultados en 1 a 3 sesiones.", og="/assets/img/p/rtt-hero.jpg",
+ body=hero(IMG + "p/rtt-hero.jpg", "Terapia de<br class=\"d\">Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Hipnoterapia RTT · Rapid Transformational Therapy", pos="center 30%", cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
 <section class="pad-s bg-blush"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">RTT (Rapid Transformational Therapy) es la hipnoterapia desarrollada por Marisa Peer que combina los principios más eficaces de la hipnosis clínica, la PNL y la neurociencia. Muchas personas logran sanar en 1 a 3 sesiones, según la complejidad del tema.</p></div></section>
 
 {feature("../video/rtt-poster-2.jpg", "Cómo funciona", "La hipnosis te da acceso a tu subconsciente.", [
@@ -352,10 +352,10 @@ pages["/rtt/"] = dict(title="¿Qué es RTT? Hipnoterapia de Transformación Ráp
 
 # ------------------------------------------------------------------ HEAL RISE SHINE
 pages["/heal-rise-shine/"] = dict(title="Hipnosis para ansiedad, miedos y fobias · Heal Rise Shine | Space to Rise",
- desc="Hipnoterapia RTT para sanar el cuerpo, liberar la mente (ansiedad, miedo a volar, fobias, insomnio, traumas) y alcanzar tus objetivos. Bogotá y online.", og="/assets/img/p/heal-card.jpg",
+ desc="Hipnoterapia RTT para sanar el cuerpo, liberar la mente (ansiedad, miedo a volar, fobias, insomnio, traumas) y alcanzar tus objetivos. Bogotá y online.", og="/assets/img/p/heal-card-2.jpg",
  body=f"""<section class="portal pad-s"><div class="wrap">
   <div class="narrow center" style="margin:0 auto clamp(36px,5vw,60px)"><span class="kicker fade">RTT para personas</span><h1 class="display-l lines" style="margin:14px 0 16px">Heal · Rise · Shine</h1><p class="lead fade d1">Tres caminos con hipnoterapia RTT para sanar tu cuerpo, liberar tu mente de la ansiedad, los miedos y las fobias, y alcanzar todo lo que quieres.</p></div>
-  <div class="icards stagger">{icard('p/heal-card.jpg', 'Heal', None, '#heal', 'Sana tu cuerpo')}{icard('p/rise-card.jpg', 'Rise', None, '#rise', 'Sana tu mente', i=1)}{icard('p/shine-card.jpg', 'Shine', None, '#shine', 'Alcanza tus objetivos', i=2)}</div>
+  <div class="icards stagger">{icard('p/heal-card-2.jpg', 'Heal', None, '#heal', 'Sana tu cuerpo')}{icard('p/rise-card-2.jpg', 'Rise', None, '#rise', 'Sana tu mente', i=1)}{icard('p/shine-card-2.jpg', 'Shine', None, '#shine', 'Alcanza tus objetivos', i=2)}</div>
 </div></section>
 
 <section id="heal" class="pad"><div class="wrap">
@@ -412,8 +412,8 @@ pages["/kids/"] = dict(title="Hipnoterapia para niños · RTT Kids | Space to Ri
 
 # ------------------------------------------------------------------ COACHING
 pages["/coaching/"] = dict(title="Coaching de vida en Bogotá y online | Space to Rise",
- desc="Coaching de vida individual con Andrea Zafra: integra los cambios de tu sesión de RTT y alcanza tus metas. Sesiones de 1 hora en Bogotá o por Zoom. $180.000.", og="/assets/img/p/coaching-hero-2.jpg",
- body=hero(IMG + "p/coaching-hero-2.jpg", "Combina lo mejor<br class=\"d\">de ambos mundos", "Con RTT sanas la raíz. Con el coaching integras el cambio en tu vida para no volver a los patrones del pasado.", kicker="Coaching de vida individual", pos="center 40%", btn="Agenda tu sesión") + f"""
+ desc="Coaching de vida individual con Andrea Zafra: integra los cambios de tu sesión de RTT y alcanza tus metas. Sesiones de 1 hora en Bogotá o por Zoom. $180.000.", og="/assets/img/p/kids-amigas.jpg",
+ body=hero(IMG + "p/kids-amigas.jpg", "Combina lo mejor<br class=\"d\">de ambos mundos", "Con RTT sanas la raíz. Con el coaching integras el cambio en tu vida para no volver a los patrones del pasado.", kicker="Coaching de vida individual", pos="center 30%", btn="Agenda tu sesión") + f"""
 <section class="pad-s bg-aqua"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">Con RTT trabajamos tu mente subconsciente, entendiendo el porqué de tus comportamientos y la raíz de tus problemas. Con el coaching individual te ayudo a implementar los cambios necesarios para que nunca más vuelvas a autosabotear tu transformación.</p></div></section>
 <section class="pad"><div class="wrap feature">
   <div><span class="kicker fade">Coaching individual</span>
@@ -449,11 +449,18 @@ pages["/gong/"] = dict(title="Baño de gong en Bogotá · Baño de sonido | Spac
 
 # ------------------------------------------------------------------ EMPRESAS
 pages["/empresas/"] = dict(title="Bienestar laboral para empresas · Talleres y retiros | Space to Rise",
- desc="Programa de bienestar laboral: talleres de manejo del estrés y burnout, retiros corporativos, coaching empresarial y el programa NCS del Dr. Joe Dispenza.", og="/assets/img/p/empresas-hero-2.jpg",
- body=hero(IMG + "p/empresas-hero-2.jpg", "Bienestar y<br class=\"d\">transformación<br class=\"d\">para tu equipo", "Las organizaciones crecen cuando crecen las personas que las forman.", kicker="Empresas · Bienestar laboral", pos="center 30%", btn="Solicita una propuesta", href="#contacto", cta2=("Ver programa NCS", "#ncs")) + f"""
+ desc="Programa de bienestar laboral: talleres de manejo del estrés y burnout, retiros corporativos, coaching empresarial y el programa NCS del Dr. Joe Dispenza.", og="/assets/img/p/empresas-2.jpg",
+ body=f"""<section class="hero light compact" style="min-height:0;padding-top:118px"><div class="wrap feature flip" style="align-items:center">
+  <div><span class="kicker fade" style="color:var(--taupe)">Empresas · Bienestar laboral</span>
+    <h1 class="display-l lines" style="margin:16px 0 18px;max-width:14ch">Bienestar y<br class="d">transformación<br class="d">para tu equipo</h1>
+    <p class="lead fade d2" style="max-width:44ch">Las organizaciones crecen cuando crecen las personas que las forman.</p>
+    <p class="fade d2" style="max-width:52ch">Llevo a las empresas el mismo trabajo que hago con cada persona: herramientas para manejar el estrés, cuidar la salud emocional y cambiar los patrones que frenan a líderes y equipos. Cada propuesta se diseña según lo que tu organización necesita.</p>
+    <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px"><a class="pill solid" href="#contacto"><span>Solicita una propuesta</span></a><a class="pill" href="#ncs"><span>Ver programa NCS</span></a></div>
+  </div>
+  <div class="feature__media"><div class="media"><img src="{IMG}p/empresas-2.jpg" alt="Bienestar y transformación para tu equipo" fetchpriority="high"></div></div>
+</div></section>
 <div class="creds stagger"><span>Consultora certificada de NeuroChangeSolutions</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div>
 <section class="pad"><div class="wrap">
-  <p class="lead fade narrow" style="margin:0 0 clamp(36px,5vw,64px)">Llevo a las empresas el mismo trabajo que hago con cada persona: herramientas para manejar el estrés, cuidar la salud emocional y cambiar los patrones que frenan a líderes y equipos. Cada propuesta se diseña según lo que tu organización necesita.</p>
   {sec_title("Programas para empresas")}
   <div class="tiles stagger">
     <div class="tile bg-blush"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar y manejo del estrés</h3><p>Sesiones para tu equipo sobre manejo del estrés laboral y prevención del burnout, salud emocional, autoestima y hábitos. Incluyen baños de gong grupales.</p><span class="tag">Presencial o virtual</span></div>
@@ -485,9 +492,11 @@ pages["/empresas/"] = dict(title="Bienestar laboral para empresas · Talleres y 
 pages["/shop/"] = dict(title="Audios de autohipnosis guiada · Tienda y cursos | Space to Rise",
  desc="Audios de autohipnosis guiada para bajar de peso, dormir bien, superar la ansiedad y el miedo a volar. Reprograma tu mente en 15–20 minutos al día.", og="/assets/img/p/shop-hero.jpg",
  body=hero(IMG + "p/shop-hero.jpg", "Reconfigura tu cerebro en menos de 20 minutos al día", "Audios de autohipnosis y cursos para crear cambios permanentes en tu vida, desde donde estés.", kicker="Shop · Audios de autohipnosis y cursos", pos="center 25%", btn="Ver audios", href="#audios", cta2=("Ver cursos", "#cursos")) + f"""
-<section class="pad-s"><div class="wrap grid g2" style="align-items:start">
-  <div><span class="kicker fade">Cómo funcionan los audios</span><h2 class="display-m lines" style="margin:14px 0 20px">Ponte tus audífonos, recuéstate<br>y nosotros nos encargamos del resto.</h2><p class="fade d1">Es como una meditación guiada, pero en los primeros 3 minutos te guío a un estado de hipnosis. Así el audio llega a tu subconsciente, donde se guardan tus creencias y emociones, y reemplaza patrones negativos por creencias positivas y empoderadoras.</p></div>
-  <div class="stats fade d1 stagger"><div class="stat bg-blush" style="border:0"><b>15–20</b><span>Minutos al día</span><p>Solo necesitas un espacio para relajarte.</p></div><div class="stat bg-sand" style="border:0"><b>21</b><span>Días mínimo</span><p>Lo que tarda tu mente en crear nuevos hábitos.</p></div><div class="stat bg-aqua" style="border:0"><b>100%</b><span>Seguro</span><p>Estás consciente y en control todo el tiempo.</p></div></div>
+<section class="pad-s"><div class="wrap feature" style="align-items:center">
+  <div><span class="kicker fade">Cómo funcionan los audios</span><h2 class="display-m lines" style="margin:14px 0 20px">Ponte tus audífonos, recuéstate<br>y nosotros nos encargamos del resto.</h2><p class="fade d1">Es como una meditación guiada, pero en los primeros 3 minutos te guío a un estado de hipnosis. Así el audio llega a tu subconsciente, donde se guardan tus creencias y emociones, y reemplaza patrones negativos por creencias positivas y empoderadoras.</p>
+    <div class="stats fade d1 stagger" style="margin-top:26px"><div class="stat bg-blush" style="border:0"><b>15–20</b><span>Minutos al día</span><p>Solo necesitas un espacio para relajarte.</p></div><div class="stat bg-sand" style="border:0"><b>21</b><span>Días mínimo</span><p>Lo que tarda tu mente en crear nuevos hábitos.</p></div><div class="stat bg-aqua" style="border:0"><b>100%</b><span>Seguro</span><p>Estás consciente y en control todo el tiempo.</p></div></div>
+  </div>
+  <div class="feature__media"><div class="media"><img src="{IMG}p/shop-audifonos-2.jpg" alt="Mujer escuchando un audio de autohipnosis con audífonos" loading="lazy"></div></div>
 </div></section>
 <section id="cursos" class="pad-s bg-stone"><div class="wrap">{sec_title("Cursos")}{courses_html()}</div></section>
 <section id="audios" class="pad-s"><div class="wrap">{sec_title("Audios de autohipnosis")}<div class="chips stagger" data-chips><button class="chip on" data-cat="all">Todos</button>{''.join(f'<button class="chip" data-cat="{c}">{n}</button>' for c, n, _ in AUDIO_CATS)}</div><div data-shop></div></div></section>

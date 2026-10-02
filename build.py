@@ -284,7 +284,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 <section class="pad bg-stone"><div class="wrap">
   <div class="feature">
     <div><span class="kicker fade">Empresas</span><h2 class="display-m lines" style="margin:14px 0 22px">Bienestar y transformación<br>para tu equipo.</h2><p class="lead fade d1">Las organizaciones crecen cuando crecen las personas que las forman.</p><p class="fade d2">Llevo a las empresas el mismo trabajo que hago con cada persona: herramientas para manejar el estrés, cuidar la salud emocional y cambiar los patrones que frenan a líderes y equipos.</p><div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px"><a class="pill solid" href="/empresas/#contacto"><span>Solicita una propuesta</span></a><a class="pill" href="/empresas/"><span>Ver programas</span></a></div></div>
-    <div class="feature__media"><div class="media"><img src="{IMG}p/empresas.jpg" alt="Bienestar corporativo con Space to Rise" loading="lazy"></div></div>
+    <div class="feature__media"><div class="media"><img src="{IMG}p/empresas-2.jpg" alt="Bienestar corporativo con Space to Rise" loading="lazy"></div></div>
   </div>
   <div class="tiles stagger" style="margin-top:clamp(36px,5vw,64px)">
     <a class="tile bg-blush" href="/empresas/"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar</h3><p>Manejo del estrés, salud emocional, autoestima y hábitos, con baños de gong grupales.</p></a>
@@ -316,8 +316,8 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 
 # ------------------------------------------------------------------ RTT
 pages["/rtt/"] = dict(title="¿Qué es RTT? Hipnoterapia de Transformación Rápida | Space to Rise",
- desc="Qué es la hipnoterapia RTT de Marisa Peer, cómo funciona, sus beneficios y qué puedes sanar. Hipnosis, PNL y neurociencia para resultados en 1 a 3 sesiones.", og="/assets/img/p/rtt-hero.jpg",
- body=hero(IMG + "p/rtt-hero.jpg", "Terapia de<br class=\"d\">Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Hipnoterapia RTT · Rapid Transformational Therapy", pos="center 30%", cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
+ desc="Qué es la hipnoterapia RTT de Marisa Peer, cómo funciona, sus beneficios y qué puedes sanar. Hipnosis, PNL y neurociencia para resultados en 1 a 3 sesiones.", og="/assets/img/p/rtt-hero-3.jpg",
+ body=hero(IMG + "p/rtt-hero-3.jpg", "Terapia de<br class=\"d\">Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Hipnoterapia RTT · Rapid Transformational Therapy", pos="center 30%", cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
 <section class="pad-s bg-blush"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">RTT (Rapid Transformational Therapy) es la hipnoterapia desarrollada por Marisa Peer que combina los principios más eficaces de la hipnosis clínica, la PNL y la neurociencia. Muchas personas logran sanar en 1 a 3 sesiones, según la complejidad del tema.</p></div></section>
 
 {feature("../video/rtt-poster-2.jpg", "Cómo funciona", "La hipnosis te da acceso a tu subconsciente.", [

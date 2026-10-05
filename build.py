@@ -448,7 +448,6 @@ pages["/heal-rise-shine/"] = dict(title="Hipnosis para ansiedad, miedos y fobias
 pages["/kids/"] = dict(title="Hipnoterapia para niños · RTT Kids | Space to Rise",
  desc="Hipnosis para niños con RTT Kids: autoestima inquebrantable, menos ansiedad y estrés, mejor sueño y rendimiento académico. Bogotá y online.", og="/assets/img/p/kids-hero.jpg",
  body=hero(IMG + "p/kids-hero.jpg", "“Lo más valioso que puedes enseñarles a tus hijos es que son suficientes”", "Marisa Peer", kicker="Kids · Niños", pos="center 35%", btn="Agenda una cita") + f"""
-{AVATAR}
 <section class="pad-s"><div class="wrap hrs" style="grid-template-columns:.75fr 1.25fr">
   <div class="hrs__media"><div class="media"><img src="{IMG}p/kids-familia.jpg" alt="Familia corriendo en un campo al atardecer" loading="lazy"></div></div>
   <div>
@@ -478,7 +477,6 @@ pages["/coaching/"] = dict(title="Coaching de vida en Bogotá y online | Space t
   </div>
   <div class="feature__media"><div class="media wide"><img src="{IMG}p/coaching-hero-4.jpg" alt="Sesión de coaching individual" fetchpriority="high"></div></div>
 </div></section>
-{AVATAR}
 <section class="pad-xs"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:78ch">Con RTT (Rapid Transformational Therapy) trabajamos tu mente subconsciente, entendiendo el porqué de tus comportamientos y la raíz de tus problemas. Con el coaching individual te ayudo a implementar los cambios necesarios para que nunca más vuelvas a autosabotear tu transformación.</p></div></section>
 <section class="pad-s"><div class="wrap feature">
   <div><div class="sec-title" style="margin-bottom:22px"><h2 class="display-s" style="margin:0;text-transform:uppercase;letter-spacing:.06em;font-size:1.3rem">Coaching individual</h2></div>
@@ -527,7 +525,7 @@ pages["/empresas/"] = dict(title="Bienestar laboral para empresas · Talleres y 
   </div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/empresas-3.jpg" alt="Equipo de trabajo conversando en una oficina" fetchpriority="high"></div></div>
 </div></section>
-<div class="band" style="margin-top:44px">{AVATAR}<div class="creds stagger"><span>Consultora certificada de NeuroChangeSolutions</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div></div>
+<div class="band" style="margin-top:44px"><div class="creds stagger" style="padding-top:30px"><span>Consultora certificada de NeuroChangeSolutions</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div></div>
 <section class="pad-s"><div class="wrap">
   {sec_title("Programas para empresas")}
   <div class="tiles stagger">
@@ -638,8 +636,7 @@ pages["/sobre-mi/"] = dict(title="Andrea Zafra · Hipnoterapeuta clínica RTT en
     <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="#historia"><span>Conoce mi historia</span></a></div></div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/andrea.jpg" alt="Andrea Zafra, hipnoterapeuta clínica RTT"></div></div>
 </div></section>
-{AVATAR.replace('class="avatar"', 'class="avatar on-aqua"')}
-<section class="pad-s bg-aqua" style="padding-top:34px"><div class="wrap">{sec_title("Formación y certificaciones")}<div class="tiles stagger" style="grid-template-columns:repeat(5,1fr);gap:0 28px">
+<section class="pad-s bg-aqua"><div class="wrap">{sec_title("Formación y certificaciones")}<div class="tiles stagger" style="grid-template-columns:repeat(5,1fr);gap:0 28px">
   <div class="fade"><b class="display-m" style="display:block">+10</b><span class="kicker" style="margin:6px 0 10px;display:block">Años de experiencia</span><p class="small" style="margin:0">Acompañando procesos de sanación y transformación personal.</p></div>
   <div class="fade d1"><b class="display-m" style="display:block">RTT</b><span class="kicker" style="margin:6px 0 10px;display:block">Hipnoterapeuta clínica</span><p class="small" style="margin:0">Especializada en Rapid Transformational Therapy, el método creado por Marisa Peer.</p></div>
   <div class="fade d2"><b class="display-m" style="display:block">NCS</b><span class="kicker" style="margin:6px 0 10px;display:block">Consultora certificada</span><p class="small" style="margin:0">NeuroChangeSolutions, formada por el Dr. Joe Dispenza en la neurociencia del cambio.</p></div>

@@ -7,6 +7,6 @@ export default function middleware(request) {
   if (!/^(www\.)?spacetorise\.com$/.test(host)) return;
   const url = new URL(request.url);
   if (url.pathname.startsWith('/_soon/')) return;
-  const target = new URL('/_soon/index.html', request.url);
+  const target = new URL('/_soon/', request.url);
   return new Response(null, { status: 200, headers: { 'x-middleware-rewrite': target.toString() } });
 }

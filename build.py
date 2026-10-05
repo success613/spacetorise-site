@@ -183,7 +183,7 @@ T_ALL = [
 ]
 
 
-AVATAR = '<div class="avatar"><img src="/assets/img/favicon-192.png" alt="" loading="lazy"></div>'
+AVATAR = '<div class="avatar"><img src="/assets/img/favicon-512.png" alt="" loading="lazy" width="64" height="64"></div>'
 TST = {
  'rtt': ("Fue un proceso totalmente transformador.", "Natalia Lozano", "RTT"),
  'peso': ("Por primera vez entendí por qué comía como comía. Dejé de pelear con la comida y empecé a cuidarme desde otro lugar.", "Sandra Londoño", "Peso"),
@@ -207,7 +207,7 @@ TST = {
 
 def tcards(keys, bg="bg-sand", title="Lo que dicen quienes lo han vivido", cols=3):
     cards = ''.join(f'<figure class="tcard" style="margin:0"><div><p class="cat">{TST[k][2]}</p><p>“{TST[k][0]}”</p></div><cite>{TST[k][1]}</cite></figure>' for k in keys)
-    return f'<section class="pad-s {bg}"><div class="wrap"><div class="sec-title"><span class="kicker">{title}</span></div><div class="tcards g3 stagger">{cards}</div></div></section>'
+    return f'<section class="pad-s {bg}"><div class="wrap"><div class="sec-title"><span class="kicker">{title}</span></div><div class="tcards g3{" flexc" if len(keys) % 3 else ""} stagger">{cards}</div></div></section>'
 
 
 def deck(items):
@@ -252,7 +252,7 @@ COURSE_PRICE = "$250.000"
 
 
 def courses_html():
-    return '<div class="tiles stagger">' + ''.join(f'<article class="course"><div class="media"><img src="{IMG}{img}" alt="{t}" loading="lazy"></div><div class="body"><span class="kicker" style="font-size:.62rem">Curso online</span><h3>{t}</h3><p class="small" style="margin:0;color:var(--charcoal)">{d}</p><div class="foot"><span class="price">{COURSE_PRICE}</span><a class="pill solid" style="padding:9px 18px" href="{WA}" target="_blank" rel="noopener"><span>Comprar</span></a></div></div></article>' for i, (t, img, d) in enumerate(COURSES)) + '</div>'
+    return '<div class="tiles stagger">' + ''.join(f'<article class="course"><div class="media"><img src="{IMG}{img}" alt="{t}" loading="lazy"></div><div class="body"><span class="kicker" style="font-size:.62rem">Curso online</span><h3>{t}</h3><p class="small" style="margin:0;color:var(--charcoal)">{d}</p><div class="foot"><span>Próximamente</span><a href="{WA}" target="_blank" rel="noopener">Quiero saber más →</a></div></div></article>' for i, (t, img, d) in enumerate(COURSES)) + '</div>'
 
 
 CAT_IMG = {"cuerpo-mente": "audios/consigue-tu-peso-ideal-y-mantenlo-para-siempre.jpg", "liberate": "audios/dile-adios-al-insomnio.jpg", "miedos": "audios/vence-el-miedo-de-hablar-en-publico.jpg", "profesional": "audios/deja-de-procrastinar-y-cumple-tus-objetivos.jpg", "proyectos": "audios/atrae-tu-pareja-ideal.jpg"}
@@ -527,7 +527,7 @@ pages["/empresas/"] = dict(title="Bienestar laboral para empresas · Talleres y 
   </div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/empresas-3.jpg" alt="Equipo de trabajo conversando en una oficina" fetchpriority="high"></div></div>
 </div></section>
-<div class="bg-aqua" style="height:1px;margin-top:34px"></div>{AVATAR.replace('class="avatar"', 'class="avatar on-aqua"')}<div class="creds bg-aqua stagger" style="padding-top:10px"><span>Consultora certificada de NeuroChangeSolutions</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div>
+<div class="band" style="margin-top:44px">{AVATAR}<div class="creds stagger"><span>Consultora certificada de NeuroChangeSolutions</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div></div>
 <section class="pad-s"><div class="wrap">
   {sec_title("Programas para empresas")}
   <div class="tiles stagger">

@@ -90,17 +90,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/((?!_soon/).*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "(www\\.)?spacetorise\\.com"
-        }
-      ],
-      "destination": "/_soon/index.html"
-    }
   ]
 }

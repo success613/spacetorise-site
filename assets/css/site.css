@@ -681,3 +681,5 @@ section.fit .media.video{max-height:78vh;width:auto;aspect-ratio:4/5;margin:0 au
 .tcards.flexc>.tcard{flex:0 1 calc(33.333% - 13px);min-width:0}
 @media(max-width:900px){.tcards.flexc>.tcard{flex-basis:calc(50% - 10px)}}
 @media(max-width:600px){.tcards.flexc>.tcard{flex-basis:100%}}
+.tiles.steps3{gap:34px 36px}
+@media(max-width:900px){.temas{margin-top:34px;padding-top:30px;border-top:1px solid rgba(58,58,57,.14)}.tiles.steps3{gap:30px 24px}}

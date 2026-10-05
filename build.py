@@ -216,7 +216,7 @@ def deck(items):
 
 
 def steps3(items, cls=""):
-    return f'<div class="tiles {cls} stagger" style="gap:0 36px">' + ''.join(f'<div style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">0{i+1}</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">{t}</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">{d}</p></div>' for i, (t, d) in enumerate(items)) + '</div>'
+    return f'<div class="tiles steps3 {cls} stagger">' + ''.join(f'<div style="border-top:1px solid rgba(58,58,57,.2);padding-top:22px"><span class="kicker" style="font-family:var(--display);font-size:1.3rem;letter-spacing:0;text-transform:none">0{i+1}</span><h3 class="display-s" style="margin:10px 0 8px;font-size:1.35rem">{t}</h3><p style="margin:0;font-size:.95rem;color:var(--charcoal)">{d}</p></div>' for i, (t, d) in enumerate(items)) + '</div>'
 
 
 TESTI = [("Fue un proceso totalmente transformador.", "Natalia Lozano"),
@@ -294,7 +294,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 <div class="creds stagger"><span>Hipnoterapeuta clínica · RTT (Rapid Transformational Therapy)</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
 <section class="pad"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px;font-size:clamp(1.8rem,3.4vw,2.9rem)">Sabes lo que quieres cambiar, pero algo más profundo te sigue frenando</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
-  <div><span class="kicker fade" style="display:block;margin-bottom:6px">Temas con los que he trabajado</span><ul class="plist c2 stagger" style="grid-template-columns:1fr"><li>Ansiedad, estrés o ataques de pánico</li><li>Miedos y fobias que te limitan</li><li>Baja autoestima o sensación de no ser suficiente</li><li>Insomnio, adicciones o hábitos que no logras dejar</li><li>Síntomas físicos que no mejoran</li><li>Metas que se te escapan una y otra vez</li></ul></div>
+  <div class="temas"><span class="kicker fade" style="display:block;margin-bottom:10px">Temas con los que he trabajado</span><ul class="plist c2 stagger" style="grid-template-columns:1fr"><li>Ansiedad, estrés o ataques de pánico</li><li>Miedos y fobias que te limitan</li><li>Baja autoestima o sensación de no ser suficiente</li><li>Insomnio, adicciones o hábitos que no logras dejar</li><li>Síntomas físicos que no mejoran</li><li>Metas que se te escapan una y otra vez</li></ul></div>
 </div></section>
 
 <section class="pad-s bg-stone"><div class="wrap">

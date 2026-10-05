@@ -8,7 +8,8 @@
   const cart = { items: JSON.parse(localStorage.getItem(KEY) || '[]') };
   const save = () => localStorage.setItem(KEY, JSON.stringify(cart.items));
   const CATS = { 'cuerpo-mente': 'Trabaja en ti: sana tu cuerpo y tu mente', 'liberate': 'Libérate de todo lo que no quieres', 'miedos': 'Supera tus miedos para que nada te detenga', 'profesional': 'Desarrollo profesional', 'proyectos': 'Proyectos de vida', 'kids': 'Kids · Para niños' };
-  const load = () => fetch('/assets/data/products.json').then(r => r.json()).then(l => (products = l));
+  const VQ = (() => { const s = document.querySelector('script[src*="shop.js"]'); const m = s && s.src.match(/v=([^&]+)/); return m ? '?v=' + m[1] : ''; })();
+  const load = () => fetch('/assets/data/products.json' + VQ, { cache: 'no-cache' }).then(r => r.json()).then(l => { products = l; let ch = false; cart.items.forEach(i => { const p = l.find(x => x.id === i.id); if (p && p.price !== i.price) { i.price = p.price; ch = true; } }); if (ch) save(); return l; });
 
   /* ---------- carrito ---------- */
   const drawer = $('.drawer'), scrim = $('.scrim'), count = $('.cart-btn .count');

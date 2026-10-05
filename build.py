@@ -6,7 +6,7 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 WA = "https://wa.me/573107503359?text=Hola!%20Quiero%20reservar%20mi%20cita%20%F0%9F%98%8A"
 IMG = "/assets/img/"
 import hashlib, time
-VER = hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/css/site.css'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/site.js'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/shop.js'),'rb').read()).hexdigest()[:8]
+VER = hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/css/site.css'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/site.js'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/data/products.json'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/shop.js'),'rb').read()).hexdigest()[:8]
 SPIRAL = open(os.path.join(OUT, 'assets/img/spiral-path.txt')).read().strip()
 OG_BASE = os.environ.get("SITE_BASE", "https://spacetorise-site.vercel.app")  # cambiar a https://spacetorise.com al conectar el dominio
 SUPA_URL = "https://epsokxvjqevmityasvrx.supabase.co"
@@ -291,7 +291,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
   </div></div>
 </section>
 
-<div class="creds bg-aqua stagger"><span>Hipnoterapeuta clínica · RTT (Rapid Transformational Therapy)</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
+<div class="creds stagger"><span>Hipnoterapeuta clínica · RTT (Rapid Transformational Therapy)</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
 <section class="pad"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px;font-size:clamp(1.8rem,3.4vw,2.9rem)">Sabes lo que quieres cambiar, pero algo más profundo te sigue frenando</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
   <div><span class="kicker fade" style="display:block;margin-bottom:6px">Temas con los que he trabajado</span><ul class="plist c2 stagger" style="grid-template-columns:1fr"><li>Ansiedad, estrés o ataques de pánico</li><li>Miedos y fobias que te limitan</li><li>Baja autoestima o sensación de no ser suficiente</li><li>Insomnio, adicciones o hábitos que no logras dejar</li><li>Síntomas físicos que no mejoran</li><li>Metas que se te escapan una y otra vez</li></ul></div>

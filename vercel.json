@@ -40,6 +40,15 @@
   ],
   "headers": [
     {
+      "source": "/_soon/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/assets/(img|fonts|video)/(.*)",
       "headers": [
         {
@@ -80,6 +89,18 @@
           "value": "noindex, nofollow"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!_soon/).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?spacetorise\\.com"
+        }
+      ],
+      "destination": "/_soon/index.html"
     }
   ]
 }

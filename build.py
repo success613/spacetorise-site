@@ -596,10 +596,16 @@ pages["/checkout/"] = dict(title="Finalizar compra | Space to Rise", desc="Final
  body=f"""<section class="portal pad-s"><div class="wrap grid g2" data-checkout style="align-items:start">
   <div><span class="kicker fade">Tu pedido</span><h1 class="display-m lines" style="margin:14px 0 24px">Casi listo.</h1><div data-co-items></div><div class="drawer__total" style="margin-top:20px"><span>Total</span><b data-co-total></b></div></div>
   <div>
-    <div data-co-form><p class="lead fade">Déjanos el correo donde quieres recibir tu acceso. Después de confirmar el pago, te llega un enlace mágico para entrar a tu espacio privado y escuchar tus audios.</p>
-    <form class="fade d1"><div class="field"><label for="email">Tu correo</label><input id="email" name="email" type="email" required placeholder="nombre@correo.com" autocomplete="email"></div><button class="pill solid" type="submit"><span>Crear pedido</span></button><p class="small muted" style="margin-top:14px">Pagos por Nequi, transferencia o tarjeta, confirmados por WhatsApp con Andrea. Muy pronto: pago en línea.</p></form></div>
+    <div data-co-form><p class="lead fade">Déjanos el correo donde quieres recibir tu acceso. Pagas de forma segura con Mercado Pago (tarjeta, PSE o saldo) y, apenas se apruebe, te llega un enlace mágico para entrar a tu espacio privado y escuchar tus audios.</p>
+    <form class="fade d1"><div class="field"><label for="email">Tu correo</label><input id="email" name="email" type="email" required placeholder="nombre@correo.com" autocomplete="email"></div><button class="pill solid" type="submit"><span>Pagar con Mercado Pago</span></button><p class="small muted" style="margin-top:14px">Pago procesado por Mercado Pago. No guardamos los datos de tu tarjeta.</p></form></div>
     <div data-co-result></div>
   </div>
+</div></section>""", cta=False)
+
+pages["/checkout/gracias/"] = dict(title="Gracias por tu compra | Space to Rise", desc="Confirmación de tu compra de audios de autohipnosis.", portal=True,
+ body=f"""<section class="portal pad-s"><div class="wrap" data-gracias style="max-width:720px">
+  <span class="kicker fade">Tu pedido</span><h1 class="display-m lines" style="margin:14px 0 10px">Gracias.</h1><p class="lead fade d1" data-g-status>Confirmando tu pago con Mercado Pago…</p>
+  <div data-g-box style="margin-top:22px"></div>
 </div></section>""", cta=False)
 
 pages["/mi-cuenta/"] = dict(title="Mi cuenta | Space to Rise", desc="Entra a tu espacio privado con un enlace mágico.", portal=True,
@@ -744,7 +750,7 @@ for path, p in pages.items():
     print('wrote', path)
 pub = [p for p, v in pages.items() if not v.get('portal')]
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>https://spacetorise.com{p}</loc></url>' for p in pub) + '</urlset>')
-open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /mis-audios/\nDisallow: /checkout/\n\nUser-agent: GPTBot\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://spacetorise.com/sitemap.xml\n')
+open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /mis-audios/\nDisallow: /checkout/\nDisallow: /checkout/gracias/\n\nUser-agent: GPTBot\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://spacetorise.com/sitemap.xml\n')
 open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(f"""# Space to Rise
 
 > {ENTITY}

@@ -3,6 +3,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /mis-audios/
 Disallow: /checkout/
+Disallow: /checkout/gracias/
 
 User-agent: GPTBot
 Allow: /

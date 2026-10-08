@@ -83,17 +83,38 @@
     const list = $('[data-co-items]'), total = $('[data-co-total]'), form = $('form', co), out = $('[data-co-result]');
     const paint = () => { list.innerHTML = cart.items.length ? cart.items.map(i => `<div class="citem"><img src="${i.cover}" alt=""><div><h5>${i.name}</h5><span class="small muted">${fmt(i.price)}</span></div><button class="rm" data-rm="${i.id}">Quitar</button></div>`).join('') : '<div class="drawer__empty">No hay audios en tu pedido. <a href="/shop/" style="text-decoration:underline">Volver a la tienda</a></div>'; total.textContent = fmt(cart.items.reduce((a, b) => a + b.price, 0)); $$('[data-rm]', list).forEach(b => b.addEventListener('click', () => { cart.items = cart.items.filter(i => i.id !== b.dataset.rm); save(); render(); paint(); })); };
     paint();
+    const fail = new URLSearchParams(location.search).get('status');
+    if (fail === 'failure') out.innerHTML = '<div class="notice err">El pago no se completó. Puedes intentarlo de nuevo cuando quieras; tu pedido sigue aquí.</div>';
     form.addEventListener('submit', async (e) => {
       e.preventDefault(); if (!cart.items.length) return;
-      const btn = $('button[type=submit]', form); btn.disabled = true; btn.querySelector('span').textContent = 'Creando tu pedido…';
+      const btn = $('button[type=submit]', form); btn.disabled = true; btn.querySelector('span').textContent = 'Preparando tu pago…';
       try {
         const r = await fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: form.email.value.trim(), items: cart.items.map(i => ({ id: i.id })) }) });
         const j = await r.json(); if (!r.ok) throw new Error(j.error || 'Error');
+        if (j.pay_url) { sessionStorage.setItem('str_pending', j.reference); btn.querySelector('span').textContent = 'Redirigiendo a Mercado Pago…'; location.href = j.pay_url; return; }
         cart.items = []; save(); render();
         co.querySelector('[data-co-form]').style.display = 'none';
-        out.innerHTML = `<div class="notice"><p style="margin:0 0 6px"><strong style="font-weight:500">Pedido ${j.reference} creado.</strong></p><p style="margin:0">Total: ${fmt(j.total)}. Confirma el pago por WhatsApp con Andrea (Nequi, transferencia o tarjeta). Apenas se confirme, recibirás en <b style="font-weight:500">${form.email.value.trim()}</b> tu enlace mágico para escuchar los audios en tu espacio privado.</p></div><div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="${j.whatsapp}" target="_blank" rel="noopener"><span>Confirmar pago por WhatsApp</span></a><a class="pill" href="/mi-cuenta/"><span>Ir a mi cuenta</span></a></div>`;
+        out.innerHTML = `<div class="notice"><p style="margin:0 0 6px"><strong style="font-weight:500">Pedido ${j.reference} creado.</strong></p><p style="margin:0">Total: ${fmt(j.total)}. Confirma el pago por WhatsApp con Andrea. Apenas se confirme, recibirás en <b style="font-weight:500">${form.email.value.trim()}</b> tu enlace mágico para escuchar los audios en tu espacio privado.</p></div><div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="${j.whatsapp}" target="_blank" rel="noopener"><span>Confirmar pago por WhatsApp</span></a><a class="pill" href="/mi-cuenta/"><span>Ir a mi cuenta</span></a></div>`;
         out.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } catch (err) { out.innerHTML = `<div class="notice err">${err.message}</div>`; btn.disabled = false; btn.querySelector('span').textContent = 'Crear pedido'; }
+      } catch (err) { out.innerHTML = `<div class="notice err">${err.message}</div>`; btn.disabled = false; btn.querySelector('span').textContent = 'Pagar con Mercado Pago'; }
     });
   });
+
+  /* ---------- gracias (vuelta de Mercado Pago) ---------- */
+  const g = $('[data-gracias]');
+  if (g) {
+    const ref = new URLSearchParams(location.search).get('ref') || sessionStorage.getItem('str_pending') || '';
+    const st = $('[data-g-status]', g), box = $('[data-g-box]', g);
+    cart.items = []; save(); render();
+    let tries = 0;
+    const check = async () => {
+      try {
+        const r = await fetch('/api/checkout-status?ref=' + encodeURIComponent(ref)); const j = await r.json();
+        if (j.status === 'paid') { st.textContent = 'Pago confirmado'; box.innerHTML = `<div class="notice"><p style="margin:0 0 6px"><strong style="font-weight:500">¡Gracias! Tu pago quedó confirmado.</strong></p><p style="margin:0">Te enviamos a <b style="font-weight:500">${j.email}</b> un enlace mágico para entrar a tu espacio privado y escuchar: ${j.items.join(', ')}. Si no lo ves en unos minutos, revisa la carpeta de spam o entra desde <a href="/mi-cuenta/" style="text-decoration:underline">Mi cuenta</a> con el mismo correo.</p></div><div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/mi-cuenta/"><span>Ir a mi cuenta</span></a><a class="pill" href="/shop/"><span>Seguir explorando</span></a></div>`; sessionStorage.removeItem('str_pending'); return; }
+        if (++tries < 20) { st.textContent = 'Confirmando tu pago con Mercado Pago…'; setTimeout(check, 3000); }
+        else { st.textContent = 'Pago en proceso'; box.innerHTML = `<div class="notice"><p style="margin:0">Mercado Pago aún no nos confirma el pago (referencia <b style="font-weight:500">${ref}</b>). En cuanto lo apruebe, recibirás tu enlace mágico por correo. Si pagaste por PSE o efectivo, puede tardar un poco más. ¿Dudas? Escríbenos por WhatsApp.</p></div><div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap"><a class="pill" href="/mi-cuenta/"><span>Mi cuenta</span></a></div>`; }
+      } catch (e) { st.textContent = 'No pudimos verificar el pago'; box.innerHTML = `<div class="notice err">${e.message}</div>`; }
+    };
+    if (ref) check(); else { st.textContent = 'Sin pedido'; box.innerHTML = '<div class="notice">No encontramos una referencia de pedido. <a href="/shop/" style="text-decoration:underline">Volver a la tienda</a></div>'; }
+  }
 })();

@@ -22,3 +22,21 @@ export async function getUser(req) {
   return data.user;
 }
 export const isAdmin = (user) => !!user?.email && ADMIN_EMAILS.includes(user.email.toLowerCase());
+
+/* ---------- Mercado Pago ---------- */
+export const MP_TOKEN = process.env.MP_ACCESS_TOKEN || '';
+export async function mp(path, opts = {}) {
+  const r = await fetch('https://api.mercadopago.com' + path, { ...opts, headers: { 'Authorization': 'Bearer ' + MP_TOKEN, 'Content-Type': 'application/json', ...(opts.headers || {}) } });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.message || ('Mercado Pago ' + r.status));
+  return j;
+}
+/** Marca un pedido como pagado, registra las compras y envía el enlace mágico. Idempotente. */
+export async function activateOrder(db, order, provider, paymentRef) {
+  if (order.status === 'paid') return { ok: true, already: true };
+  await db.from('orders').update({ status: 'paid', provider, payment_ref: paymentRef || null }).eq('id', order.id);
+  const rows = (order.items || []).map(p => ({ email: order.email, product_id: p.id, status: 'paid', source: provider, reference: order.reference, amount: p.price }));
+  if (rows.length) await db.from('purchases').upsert(rows, { onConflict: 'email,product_id' });
+  await anon().auth.signInWithOtp({ email: order.email, options: { emailRedirectTo: SITE_URL + '/mis-audios/', shouldCreateUser: true } });
+  return { ok: true };
+}

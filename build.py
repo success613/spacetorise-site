@@ -207,7 +207,8 @@ TST = {
 
 def tcards(keys, bg="bg-sand", title="Lo que dicen quienes lo han vivido", cols=3):
     cards = ''.join(f'<figure class="tcard" style="margin:0"><div><p class="cat">{TST[k][2]}</p><p>“{TST[k][0]}”</p></div><cite>{TST[k][1]}</cite></figure>' for k in keys)
-    return f'<section class="pad-s {bg}"><div class="wrap"><div class="sec-title"><span class="kicker">{title}</span></div><div class="tcards g3{" flexc" if len(keys) % 3 else ""} stagger">{cards}</div></div></section>'
+    dur = max(28, 11 * len(keys))
+    return f'<section class="pad-s {bg}"><div class="wrap"><div class="sec-title"><span class="kicker">{title}</span></div></div><div class="tcar" data-tcar><div class="tcar__track" style="animation-duration:{dur}s">{cards}{cards}</div></div></section>'
 
 
 def deck(items):
@@ -301,7 +302,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
   {sec_title("Dos caminos, una misma transformación")}
   <div class="tiles c2 stagger">
     <a class="tile bg-blush" href="/heal-rise-shine/"><span class="tag top">Para ti y tu familia</span><h3>Terapia individual</h3><p>Hipnoterapia RTT (Rapid Transformational Therapy) para adultos y niños: sana tu cuerpo, libera tu mente y alcanza tus objetivos. Complementa tu proceso con coaching personalizado, presencial o virtual, y sesiones de sound healing.</p><span class="tag">RTT (Rapid Transformational Therapy) · Kids · Coaching · Sound healing →</span></a>
-    <a class="tile bg-aqua" href="/empresas/"><span class="tag top">Para tu empresa</span><h3>Bienestar corporativo</h3><p>Programas a la medida para líderes y equipos: talleres de bienestar y manejo del estrés, retiros corporativos, sesiones grupales de sound healing y Change Your Mind… Create New Results, el programa de neurociencia del cambio del Dr. Joe Dispenza. Presencial o virtual.</p><span class="tag">Talleres · Retiros · Sound healing · NCS →</span></a>
+    <a class="tile bg-aqua" href="/empresas/"><span class="tag top">Para tu empresa</span><h3>Bienestar corporativo</h3><p>Programas a la medida para líderes y equipos. Como consultora certificada del Dr. Joe Dispenza, llevo a tu organización Change Your Mind… Create New Results, el programa de neurociencia del cambio de NeuroChangeSolutions (NCS). También diseño charlas y talleres corporativos, retiros para equipos y sesiones grupales de sound healing. Presencial o virtual.</p><span class="tag">Talleres · Retiros · Sound healing · NCS →</span></a>
   </div>
 </div></section>
 
@@ -319,7 +320,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
     <div class="feature__media"><div class="media"><img src="{IMG}p/empresas-3.jpg" alt="Equipo de trabajo conversando en una oficina" loading="lazy"></div></div>
   </div>
   <div class="tiles stagger" style="margin-top:clamp(28px,4vw,48px)">
-    <a class="tile bg-blush" href="/empresas/"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar</h3><p>Manejo del estrés, salud emocional, autoestima y hábitos, con baños de gong grupales.</p></a>
+    <a class="tile bg-blush" href="/empresas/"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar</h3><p>Manejo del estrés, salud emocional, autoestima y hábitos, y sound healing.</p></a>
     <a class="tile bg-sand" href="/empresas/"><span class="n">02</span><h3 style="margin-top:34px">Retiros corporativos</h3><p>Experiencias para que tu equipo desconecte, se reconecte y vuelva con más claridad.</p></a>
     <a class="tile bg-aqua" href="/empresas/#ncs"><span class="n">03</span><h3 style="margin-top:34px">Programa NCS del Dr. Joe Dispenza</h3><p>Change Your Mind… Create New Results: la neurociencia del cambio para líderes y equipos.</p></a>
   </div>
@@ -562,7 +563,7 @@ pages["/shop/"] = dict(title="Audios de autohipnosis guiada · Tienda y cursos |
   <div><span class="kicker fade">Cómo funcionan los audios</span><h2 class="display-m lines" style="margin:14px 0 20px">Ponte tus audífonos, recuéstate<br>y nosotros nos encargamos del resto.</h2><p class="fade d1">Es como una meditación guiada, pero en los primeros 3 minutos te guío a un estado de hipnosis. Así el audio llega a tu subconsciente, donde se guardan tus creencias y emociones, y reemplaza patrones negativos por creencias positivas y empoderadoras.</p>
     <div class="stats fade d1 stagger" style="margin-top:26px"><div class="stat bg-blush" style="border:0"><b>15–20</b><span>Minutos al día</span><p>Solo necesitas un espacio para relajarte.</p></div><div class="stat bg-sand" style="border:0"><b>21</b><span>Días mínimo</span><p>Lo que tarda tu mente en crear nuevos hábitos.</p></div><div class="stat bg-aqua" style="border:0"><b>100%</b><span>Seguro</span><p>Estás consciente y en control todo el tiempo.</p></div></div>
   </div>
-  <div class="feature__media"><div class="media video"><video src="/assets/video/rtt.mp4" poster="{IMG}../video/rtt-poster-2.jpg" muted loop playsinline preload="metadata" data-start="11.5"></video><button class="unmute" type="button" aria-label="Ver con sonido">Ver</button></div></div>
+  <div class="feature__media"><div class="media video wide"><video src="/assets/video/autohipnosis.mp4" poster="{IMG}../video/autohipnosis-poster.jpg" muted loop playsinline preload="metadata" data-start="6"></video><button class="unmute" type="button" aria-label="Ver con sonido">Ver</button></div></div>
 </div></section>
 <section id="cursos" class="pad-s bg-stone"><div class="wrap">{sec_title("Cursos")}{courses_html()}</div></section>
 <section id="audios" class="pad-s"><div class="wrap">{sec_title("Audios de autohipnosis")}<div class="chips stagger" data-chips><button class="chip on" data-cat="all">Todos</button>{''.join(f'<button class="chip" data-cat="{c}">{n}</button>' for c, n, _ in AUDIO_CATS)}</div><div data-shop></div></div></section>

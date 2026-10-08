@@ -252,3 +252,8 @@
     if (await sendLead(form, 'newsletter', null)) { form.innerHTML = '<p class="small" style="margin:0;color:var(--ivory)">¡Gracias! Revisa tu correo: pronto llega tu regalo de bienvenida.</p>'; } else window.strToast && strToast('No pudimos suscribirte. Inténtalo de nuevo.');
   }));
 })();
+/* ---------- Carrusel de testimonios: pausa al tocar ---------- */
+document.querySelectorAll('[data-tcar]').forEach(c => {
+  let t; c.addEventListener('touchstart', () => { c.classList.add('paused'); clearTimeout(t); }, { passive: true });
+  c.addEventListener('touchend', () => { t = setTimeout(() => c.classList.remove('paused'), 2500); }, { passive: true });
+});

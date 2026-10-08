@@ -683,3 +683,13 @@ section.fit .media.video{max-height:78vh;width:auto;aspect-ratio:4/5;margin:0 au
 @media(max-width:600px){.tcards.flexc>.tcard{flex-basis:100%}}
 .tiles.steps3{gap:34px 36px}
 @media(max-width:900px){.temas{margin-top:34px;padding-top:30px;border-top:1px solid rgba(58,58,57,.14)}.tiles.steps3{gap:30px 24px}}
+/* v2.4 */
+.tile:has(.n){justify-content:flex-start}
+.hero__body{padding-top:128px}
+.media.video.wide{aspect-ratio:16/9}
+.tcar{overflow:hidden;padding:4px 0 10px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.tcar__track{display:flex;gap:18px;width:max-content;animation:tdrift 60s linear infinite;will-change:transform}
+.tcar:hover .tcar__track,.tcar.paused .tcar__track{animation-play-state:paused}
+.tcar .tcard{flex:none;width:min(380px,78vw);min-height:0}
+@keyframes tdrift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.tcar__track{animation:none}}

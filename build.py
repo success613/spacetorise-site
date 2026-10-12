@@ -309,7 +309,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 {feature("../video/rtt-poster-2.jpg", "Hipnoterapia", "¿Qué es RTT (Rapid Transformational Therapy)?", [
  "Una terapia creada por Marisa Peer que combina hipnosis, PNL y neurociencia. Accede a tu subconsciente para encontrar la raíz de lo que te bloquea o te enferma, y reprogramarla. Muchas personas logran resultados en 1 a 3 sesiones."], link=("Conoce más", "/rtt/"), cta="Agenda tu cita", video="/assets/video/rtt.mp4")}
 <section class="pad-s" style="padding-top:0"><div class="wrap">
-  {steps3([("Conversación inicial", "Una llamada de 20 minutos para resolver tus dudas y entender lo que quieres sanar."), ("Tu sesión de RTT (Rapid Transformational Therapy)", "3 horas de hipnosis para encontrar la raíz, entenderla y liberarla."), ("Tu audio personal", "Un audio hecho solo para ti, que escuchas 21 días para que tu mente cree nuevos hábitos.")])}
+  {steps3([("Conversación inicial", "Una llamada de 20 minutos para resolver tus dudas y entender lo que quieres sanar."), ("Tu sesión de RTT (Rapid Transformational Therapy)", "3 horas de hipnosis para encontrar la raíz, entenderla y liberarla."), ("Tu audio personal", "Un audio hecho solo para ti, que escuchas cada día durante al menos 21 días para reprogramar tu mente y que el cambio sea permanente.")])}
   <div style="height:clamp(28px,4vw,48px)"></div>
   {HRS_CARDS}
 </div></section>
@@ -376,7 +376,7 @@ pages["/rtt/"] = dict(title="¿Qué es RTT? Hipnoterapia de Transformación Ráp
 
 <section class="pad-s"><div class="wrap">
   {sec_title("Tu proceso en 3 pasos")}
-  {steps3([("Conversación inicial", "Una llamada de 20 minutos para aclarar cualquier duda sobre la terapia."), ("Tu sesión de RTT (Rapid Transformational Therapy)", "Aproximadamente 3 horas. Con la hipnosis vamos a la raíz del problema para entender por qué y cuándo lo creaste, y liberarte de él."), ("Tu audio personal", "Un audio de 15 a 20 minutos hecho solo para ti, que escuchas cada día durante al menos 21 días para que el cambio sea permanente.")])}
+  {steps3([("Conversación inicial", "Una llamada de 20 minutos para aclarar cualquier duda sobre la terapia."), ("Tu sesión de RTT (Rapid Transformational Therapy)", "Aproximadamente 3 horas. Con la hipnosis vamos a la raíz del problema para entender por qué y cuándo lo creaste, y liberarte de él."), ("Tu audio personal", "Un audio de 15 a 20 minutos hecho solo para ti, que escuchas cada día durante al menos 21 días para reprogramar tu mente y que el cambio sea permanente.")])}
 </div></section>
 
 <section class="pad-s bg-sand"><div class="wrap">

@@ -3,7 +3,9 @@ import { createClient } from '@supabase/supabase-js';
 export const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://epsokxvjqevmityasvrx.supabase.co';
 export const ANON_KEY = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_m4rurqAuHs8cHJfBq3bshQ_-4decACD';
 export const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY || '';
-export const SITE_URL = process.env.SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL && ('https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL) || 'https://spacetorise.com';
+// Dominio oficial. Una SITE_URL de vercel.app (de la etapa de pruebas) se ignora.
+const _envUrl = (process.env.SITE_URL || '').replace(/\/$/, '');
+export const SITE_URL = _envUrl && !/vercel\.app/.test(_envUrl) ? _envUrl : 'https://spacetorise.com';
 export const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || 'success@thrust-x.com').toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
 
 export const admin = () => createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });

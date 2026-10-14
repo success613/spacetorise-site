@@ -17,7 +17,8 @@ export default async function handler(req, res) {
     if (SERVICE_KEY) await db.from('orders').insert({ email: mail, items: prods.map(({ id, name, price }) => ({ id, name, price })), total, status: 'pending', reference });
     const base = { ok: true, reference, total, items: prods, portal: SITE_URL + '/mi-cuenta/' };
     if (MP_TOKEN) try {
-      const pref = await mp('/checkout/preferences', { method: 'POST', body: JSON.stringify({
+      const minimal = !!b.debug_minimal;
+      const pref = await mp('/checkout/preferences', { method: 'POST', body: JSON.stringify(minimal ? { items: prods.map(p => ({ title: p.name, quantity: 1, currency_id: 'COP', unit_price: p.price })), external_reference: reference } : {
         items: prods.map(p => ({ id: p.id, title: p.name, description: 'Audio de autohipnosis · Space to Rise', picture_url: p.cover ? SITE_URL + p.cover : undefined, category_id: 'services', quantity: 1, currency_id: 'COP', unit_price: p.price })),
         payer: { email: mail },
         external_reference: reference,

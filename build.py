@@ -50,6 +50,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="PkhesD7hf0yb8C4nJwKvh07bg5BljAS6Gv5XDtTlcPA">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="https://spacetorise.com{path}">

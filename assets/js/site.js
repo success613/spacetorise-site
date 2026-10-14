@@ -236,6 +236,8 @@
   /* ---------- Formularios: agenda / empresas / newsletter → /api/lead ---------- */
   const sendLead = async (form, kind, out) => {
     const btn = form.querySelector('button[type=submit]'); const data = Object.fromEntries(new FormData(form).entries()); data.kind = kind;
+    const tel = form.querySelector('input[name=phone]');
+    if (tel) { tel.value = tel.value.trim(); data.phone = tel.value; if (tel.required && !/^\+[0-9]{1,3}[0-9 .-]{6,16}$/.test(tel.value)) { tel.setCustomValidity('Escribe tu número con el indicativo del país, por ejemplo +57 300 123 4567'); tel.reportValidity(); tel.addEventListener('input', () => tel.setCustomValidity(''), { once: true }); return false; } }
     btn.disabled = true;
     try {
       const r = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });

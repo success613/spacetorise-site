@@ -693,3 +693,8 @@ section.fit .media.video{max-height:78vh;width:auto;aspect-ratio:4/5;margin:0 au
 .tcar .tcard{flex:none;width:min(380px,78vw);min-height:0}
 @keyframes tdrift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.tcar__track{animation:none}}
+
+/* Formularios: campos obligatorios e indicativo */
+.field .req{color:var(--taupe);margin-left:2px}
+.field input::placeholder{color:rgba(58,58,57,.38)}
+.field input:user-invalid{border-color:#b4514c}

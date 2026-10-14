@@ -4,7 +4,7 @@ import { admin, anon, json, readBody, SITE_URL, SERVICE_KEY, MP_TOKEN, mp } from
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { error: 'Método no permitido' });
   try {
-    const { email, items } = readBody(req);
+    const b = readBody(req); const { email, items } = b;
     if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json(res, 400, { error: 'Correo inválido.' });
     if (!Array.isArray(items) || !items.length) return json(res, 400, { error: 'El carrito está vacío.' });
     const db = SERVICE_KEY ? admin() : anon();

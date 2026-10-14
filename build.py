@@ -244,7 +244,7 @@ def lead_form(kind, fields, btn, intro=None, extra=None):
             f += f'<div class="field" style="grid-column:1/-1"><label for="{kind}-{name}">{label}</label><textarea id="{kind}-{name}" name="{name}" rows="4"></textarea></div>'
         else:
             req = name in ("name", "email", "phone")
-            extra_attrs = ' placeholder="+57 300 123 4567" inputmode="tel" pattern="^\\+[0-9]{1,3}[0-9 .-]{6,16}$" title="Incluye el indicativo del país, por ejemplo +57 300 123 4567"' if name == "phone" else ''
+            extra_attrs = ' placeholder="+57 300 123 4567" inputmode="tel" pattern="^\\+[0-9]{1,3}[0-9 .\\-]{6,16}$" title="Incluye el indicativo del país, por ejemplo +57 300 123 4567"' if name == "phone" else ''
             f += f'<div class="field"><label for="{kind}-{name}">{label}{" <span class=req aria-hidden=true>*</span>" if req else ""}</label><input id="{kind}-{name}" name="{name}" type="{typ}" {"required" if req else ""}{extra_attrs} autocomplete="{ {"name":"name","email":"email","phone":"tel","company":"organization"}.get(name,"off") }"></div>'
     return f'''<div class="form-card fade d1"><form data-lead="{kind}">{f'<p class="small muted" style="margin:0 0 18px">{intro}</p>' if intro else ''}<div class="row">{f}</div><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none"><div class="form-actions"><button class="pill solid" type="submit"><span>{btn}</span></button>{extra or ''}</div><div data-lead-out style="margin-top:16px"></div></form></div>'''
 

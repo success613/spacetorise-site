@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     const mail = email.toLowerCase();
     if (SERVICE_KEY) await db.from('orders').insert({ email: mail, items: prods.map(({ id, name, price }) => ({ id, name, price })), total, status: 'pending', reference });
     const base = { ok: true, reference, total, items: prods, portal: SITE_URL + '/mi-cuenta/' };
-    if (MP_TOKEN) {
+    if (MP_TOKEN) try {
       const pref = await mp('/checkout/preferences', { method: 'POST', body: JSON.stringify({
         items: prods.map(p => ({ id: p.id, title: p.name, description: 'Audio de autohipnosis · Space to Rise', picture_url: p.cover ? SITE_URL + p.cover : undefined, category_id: 'services', quantity: 1, currency_id: 'COP', unit_price: p.price })),
         payer: { email: mail },
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         binary_mode: false,
       }) });
       return json(res, 200, { ...base, pay_url: pref.init_point, provider: 'mercadopago' });
-    }
+    } catch (e) { console.error('mercadopago', e.message); /* si la pasarela falla, seguimos con el flujo manual */ }
     const lines = prods.map(p => `• ${p.name} — $ ${p.price.toLocaleString('es-CO')}`).join('\n');
     const msg = `Hola Andrea 😊 Quiero comprar estos audios (pedido ${reference}):\n${lines}\n\nTotal: $ ${total.toLocaleString('es-CO')}\nMi correo para el acceso: ${email}\n\n¿Me indicas cómo realizar el pago?`;
     return json(res, 200, { ...base, whatsapp: 'https://wa.me/573107503359?text=' + encodeURIComponent(msg) });

@@ -242,6 +242,7 @@
     try {
       const r = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
       const jr = await r.json(); if (!r.ok) throw new Error(jr.error || 'Error');
+      try { gtag('event', kind === 'newsletter' ? 'sign_up' : 'generate_lead', { form: kind, service: data.service || '' }); } catch (e) {}
       return true;
     } catch (err) { if (out) out.innerHTML = `<div class="notice err">${err.message}</div>`; btn.disabled = false; return false; }
   };

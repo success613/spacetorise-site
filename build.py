@@ -51,6 +51,8 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="PkhesD7hf0yb8C4nJwKvh07bg5BljAS6Gv5XDtTlcPA">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VDNMH45LQR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-VDNMH45LQR',{{anonymize_ip:true}});</script>
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="https://spacetorise.com{path}">

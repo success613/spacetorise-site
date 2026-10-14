@@ -8,7 +8,7 @@ IMG = "/assets/img/"
 import hashlib, time
 VER = hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/css/site.css'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/site.js'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/data/products.json'),'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets/js/shop.js'),'rb').read()).hexdigest()[:8]
 SPIRAL = open(os.path.join(OUT, 'assets/img/spiral-path.txt')).read().strip()
-OG_BASE = os.environ.get("SITE_BASE", "https://spacetorise-site.vercel.app")  # cambiar a https://spacetorise.com al conectar el dominio
+OG_BASE = os.environ.get("SITE_BASE", "https://spacetorise.com")
 SUPA_URL = "https://epsokxvjqevmityasvrx.supabase.co"
 SUPA_KEY = "sb_publishable_m4rurqAuHs8cHJfBq3bshQ_-4decACD"
 

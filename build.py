@@ -15,7 +15,7 @@ SUPA_KEY = "sb_publishable_m4rurqAuHs8cHJfBq3bshQ_-4decACD"
 NAV = [("RTT", "/rtt/"), ("Heal · Rise · Shine", "/heal-rise-shine/"), ("Kids", "/kids/"), ("Coaching", "/coaching/"), ("Gong", "/gong/"), ("Empresas", "/empresas/"), ("Shop", "/shop/"), ("Sobre mí", "/sobre-mi/")]
 MENU = NAV + [("Preguntas frecuentes", "/preguntas-frecuentes/"), ("Agenda tu cita", "/agenda/"), ("Mi cuenta", "/mi-cuenta/")]
 AG = "/agenda/"
-ENTITY = "Space to Rise es un human evolution studio con sede en Bogotá, Colombia, fundado por la hipnoterapeuta clínica Andrea Zafra. Ofrece hipnoterapia RTT (Rapid Transformational Therapy, el método de Marisa Peer), coaching individual, baños de gong, audios de autohipnosis y programas de bienestar para empresas basados en la neurociencia del cambio del Dr. Joe Dispenza, de forma presencial en Bogotá y online."
+ENTITY = "Space to Rise es un human evolution studio con sede en Bogotá, Colombia, fundado por la hipnoterapeuta clínica Andrea Zafra. Ofrece hipnoterapia RTT (Rapid Transformational Therapy, el método de Marisa Peer), coaching individual, baños de gong, audios de autohipnosis y programas de bienestar para empresas, de forma presencial en Bogotá y online."
 
 SVG_WA = '<svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.1 6.9c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>'
 SVG_CART = '<svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20 8H6.5"/><circle cx="9.5" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>'
@@ -66,7 +66,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 {'<script src="/assets/js/vendor/supabase.js" defer></script>' if portal else ''}
 <script>window.STR_SUPABASE_URL="{SUPA_URL}";window.STR_SUPABASE_KEY="{SUPA_KEY}";</script>
-<script type="application/ld+json">{{"@context":"https://schema.org","@graph":[{{"@type":["Organization","HealthAndBeautyBusiness"],"@id":"https://spacetorise.com/#org","name":"Space to Rise","alternateName":["Space to Rise · Human Evolution Studio","Space to Rise Bogotá"],"url":"https://spacetorise.com","logo":"https://spacetorise.com/assets/img/Logo2x.png","image":"https://spacetorise.com/assets/img/p/home-hero-3.jpg","description":{json.dumps(ENTITY, ensure_ascii=False)},"slogan":"Journey inward & rise from your heart","telephone":"+57 310 750 3359","email":"info@spacetorise.com","address":{{"@type":"PostalAddress","addressLocality":"Bogotá","addressRegion":"Cundinamarca","addressCountry":"CO"}},"areaServed":[{{"@type":"City","name":"Bogotá"}},{{"@type":"Country","name":"Colombia"}},"Online"],"priceRange":"$$","founder":{{"@id":"https://spacetorise.com/#andrea"}},"knowsAbout":["Hipnoterapia","Rapid Transformational Therapy","Hipnosis clínica","Neurociencia del cambio","Coaching","Baño de gong","Bienestar laboral"],"sameAs":["https://www.instagram.com/spacetorise/","https://www.youtube.com/@spacetorise","https://www.facebook.com/profile.php?id=61574483459317","https://www.linkedin.com/in/andrea-zafra-5b5bb09"],"makesOffer":[{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Sesión de hipnoterapia RTT","url":"https://spacetorise.com/rtt/"}},"price":"480000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"RTT Kids · hipnoterapia para niños","url":"https://spacetorise.com/kids/"}},"price":"350000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Coaching individual","url":"https://spacetorise.com/coaching/"}},"price":"180000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Baño de gong individual","url":"https://spacetorise.com/gong/"}},"price":"180000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Programas de bienestar laboral para empresas","url":"https://spacetorise.com/empresas/"}}}}]}},{{"@type":"Person","@id":"https://spacetorise.com/#andrea","name":"Andrea Zafra","url":"https://spacetorise.com/sobre-mi/","image":"https://spacetorise.com/assets/img/p/andrea.jpg","jobTitle":"Hipnoterapeuta clínica RTT y consultora certificada Neuro Change Solutions","worksFor":{{"@id":"https://spacetorise.com/#org"}},"alumniOf":[{{"@type":"CollegeOrUniversity","name":"IE Business School"}},{{"@type":"CollegeOrUniversity","name":"Babson College"}}],"hasCredential":[{{"@type":"EducationalOccupationalCredential","name":"Rapid Transformational Therapy (RTT) · Marisa Peer"}},{{"@type":"EducationalOccupationalCredential","name":"Consultora certificada Neuro Change Solutions · Dr. Joe Dispenza"}}],"sameAs":["https://www.linkedin.com/in/andrea-zafra-5b5bb09","https://www.instagram.com/spacetorise/"]}},{{"@type":"WebSite","@id":"https://spacetorise.com/#web","url":"https://spacetorise.com","name":"Space to Rise","inLanguage":"es-CO","publisher":{{"@id":"https://spacetorise.com/#org"}}}},{{"@type":"WebPage","url":"https://spacetorise.com{path}","name":{json.dumps(title, ensure_ascii=False)},"description":{json.dumps(desc, ensure_ascii=False)},"inLanguage":"es-CO","isPartOf":{{"@id":"https://spacetorise.com/#web"}},"about":{{"@id":"https://spacetorise.com/#org"}}}}{crumbs}]}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@graph":[{{"@type":["Organization","HealthAndBeautyBusiness"],"@id":"https://spacetorise.com/#org","name":"Space to Rise","alternateName":["Space to Rise · Human Evolution Studio","Space to Rise Bogotá"],"url":"https://spacetorise.com","logo":"https://spacetorise.com/assets/img/Logo2x.png","image":"https://spacetorise.com/assets/img/p/home-hero-3.jpg","description":{json.dumps(ENTITY, ensure_ascii=False)},"slogan":"Journey inward & rise from your heart","telephone":"+57 310 750 3359","email":"info@spacetorise.com","address":{{"@type":"PostalAddress","addressLocality":"Bogotá","addressRegion":"Cundinamarca","addressCountry":"CO"}},"areaServed":[{{"@type":"City","name":"Bogotá"}},{{"@type":"Country","name":"Colombia"}},"Online"],"priceRange":"$$","founder":{{"@id":"https://spacetorise.com/#andrea"}},"knowsAbout":["Hipnoterapia","Rapid Transformational Therapy","Hipnosis clínica","Neurociencia del cambio","Coaching","Baño de gong","Bienestar laboral"],"sameAs":["https://www.instagram.com/spacetorise/","https://www.youtube.com/@spacetorise","https://www.facebook.com/profile.php?id=61574483459317","https://www.linkedin.com/in/andrea-zafra-5b5bb09"],"makesOffer":[{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Sesión de hipnoterapia RTT","url":"https://spacetorise.com/rtt/"}},"price":"480000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"RTT Kids · hipnoterapia para niños","url":"https://spacetorise.com/kids/"}},"price":"350000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Coaching individual","url":"https://spacetorise.com/coaching/"}},"price":"180000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Baño de gong individual","url":"https://spacetorise.com/gong/"}},"price":"180000","priceCurrency":"COP"}},{{"@type":"Offer","itemOffered":{{"@type":"Service","name":"Programas de bienestar laboral para empresas","url":"https://spacetorise.com/empresas/"}}}}]}},{{"@type":"Person","@id":"https://spacetorise.com/#andrea","name":"Andrea Zafra","url":"https://spacetorise.com/sobre-mi/","image":"https://spacetorise.com/assets/img/p/andrea.jpg","jobTitle":"Hipnoterapeuta clínica RTT","worksFor":{{"@id":"https://spacetorise.com/#org"}},"alumniOf":[{{"@type":"CollegeOrUniversity","name":"IE Business School"}},{{"@type":"CollegeOrUniversity","name":"Babson College"}}],"hasCredential":[{{"@type":"EducationalOccupationalCredential","name":"Rapid Transformational Therapy (RTT) · Marisa Peer"}}],"sameAs":["https://www.linkedin.com/in/andrea-zafra-5b5bb09","https://www.instagram.com/spacetorise/"]}},{{"@type":"WebSite","@id":"https://spacetorise.com/#web","url":"https://spacetorise.com","name":"Space to Rise","inLanguage":"es-CO","publisher":{{"@id":"https://spacetorise.com/#org"}}}},{{"@type":"WebPage","url":"https://spacetorise.com{path}","name":{json.dumps(title, ensure_ascii=False)},"description":{json.dumps(desc, ensure_ascii=False)},"inLanguage":"es-CO","isPartOf":{{"@id":"https://spacetorise.com/#web"}},"about":{{"@id":"https://spacetorise.com/#org"}}}}{crumbs}]}}</script>
 {ld or ""}
 </head>
 <body>
@@ -238,6 +238,21 @@ def sec_title(kicker, more=None):
     return f'<div class="sec-title"><span class="kicker">{kicker}</span>{m}</div>'
 
 
+SHOW_NCS = False  # Programa NCS (Neuro Change Solutions / Dr. Joe Dispenza): oculto hasta tener la aprobación de NCS.
+NCS_SECTION = """<section id="ncs" class="pad-s bg-sky"><div class="wrap">
+  <div class="grid g2" style="align-items:start">
+    <div><span class="kicker fade">Neuro Change Solutions</span><h2 class="display-m lines" style="margin:14px 0 22px">Change Your Mind…<br>Create New Results</h2><p class="fade d1">Como consultora certificada de Neuro Change Solutions, imparto el taller creado por el Dr. Joe Dispenza. Explica cómo funciona el cambio en el cerebro y en el cuerpo, y da a cada persona herramientas concretas para crearlo y sostenerlo en el tiempo.</p></div>
+    <div class="fade d1" style="padding:clamp(24px,3vw,40px);background:rgba(249,245,237,.55);border-radius:3px"><span class="kicker">La premisa del programa</span><p class="display-s" style="margin:12px 0 0;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.3">El cambio sí es posible: existe un proceso para crearlo y sostenerlo, y se puede aprender.</p></div>
+  </div>
+  <div class="stats stagger" style="margin-top:clamp(24px,3vw,40px)">
+    <div class="stat"><b>8+</b><span>Horas de taller</span><p>Un programa que se adapta a tu equipo y a tu organización.</p></div>
+    <div class="stat"><b>2</b><span>Modelos de cambio</span><p>Para entender las etapas que atraviesa cada persona para cambiar.</p></div>
+    <div class="stat"><b>4</b><span>Herramientas</span><p>Para crear y sostener el cambio, entre ellas el ensayo mental.</p></div>
+  </div>
+</div></section>
+"""
+
+
 def lead_form(kind, fields, btn, intro=None, extra=None):
     f = ''
     for name, label, typ, opts in fields:
@@ -297,7 +312,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
   </div></div>
 </section>
 
-<div class="creds stagger"><span>Hipnoterapeuta clínica · RTT (Rapid Transformational Therapy)</span><span>Consultora certificada de Joe Dispenza (NCS)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
+<div class="creds stagger"><span>Hipnoterapeuta clínica · RTT (Rapid Transformational Therapy)</span><span>MBA · IE Business School</span><span>Babson College</span><span>+10 años de experiencia</span></div>
 <section class="pad"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">¿Te identificas?</span><h2 class="display-m lines" style="margin:14px 0 22px;font-size:clamp(1.8rem,3.4vw,2.9rem)">Sabes lo que quieres cambiar, pero algo más profundo te sigue frenando</h2><p class="fade d1">La fuerza de voluntad no basta cuando el 95% de nuestras decisiones nacen del subconsciente. Ahí es donde trabajamos: en la raíz, no en los síntomas.</p><a class="pill fade d2" href="/rtt/"><span>Descubre cómo funciona</span></a></div>
   <div class="temas"><span class="kicker fade" style="display:block;margin-bottom:10px">Temas con los que he trabajado</span><ul class="plist c2 stagger" style="grid-template-columns:1fr"><li>Ansiedad, estrés o ataques de pánico</li><li>Miedos y fobias que te limitan</li><li>Baja autoestima o sensación de no ser suficiente</li><li>Insomnio, adicciones o hábitos que no logras dejar</li><li>Síntomas físicos que no mejoran</li><li>Metas que se te escapan una y otra vez</li></ul></div>
@@ -307,7 +322,7 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
   {sec_title("Dos caminos, una misma transformación")}
   <div class="tiles c2 stagger">
     <a class="tile bg-blush" href="/heal-rise-shine/"><span class="tag top">Para ti y tu familia</span><h3>Terapia individual</h3><p>Hipnoterapia RTT (Rapid Transformational Therapy) para adultos y niños: sana tu cuerpo, libera tu mente y alcanza tus objetivos. Complementa tu proceso con coaching personalizado, presencial o virtual, y sesiones de sound healing.</p><span class="tag">RTT (Rapid Transformational Therapy) · Kids · Coaching · Sound healing →</span></a>
-    <a class="tile bg-aqua" href="/empresas/"><span class="tag top">Para tu empresa</span><h3>Bienestar corporativo</h3><p>Programas a la medida para líderes y equipos. Como consultora certificada del Dr. Joe Dispenza, llevo a tu organización Change Your Mind… Create New Results, el programa de neurociencia del cambio de Neuro Change Solutions (NCS). También diseño charlas y talleres corporativos, retiros para equipos y sesiones grupales de sound healing. Presencial o virtual.</p><span class="tag">Talleres · Retiros · Sound healing · NCS →</span></a>
+    <a class="tile bg-aqua" href="/empresas/"><span class="tag top">Para tu empresa</span><h3>Bienestar corporativo</h3><p>Programas a la medida para líderes y equipos: diseño charlas y talleres corporativos, retiros para equipos y sesiones grupales de sound healing. Presencial o virtual.</p><span class="tag">Talleres · Retiros · Sound healing →</span></a>
   </div>
 </div></section>
 
@@ -327,20 +342,20 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
   <div class="tiles stagger" style="margin-top:clamp(28px,4vw,48px)">
     <a class="tile bg-blush" href="/empresas/"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar</h3><p>Manejo del estrés, salud emocional, autoestima y hábitos, y sound healing.</p></a>
     <a class="tile bg-sand" href="/empresas/"><span class="n">02</span><h3 style="margin-top:34px">Retiros corporativos</h3><p>Experiencias para que tu equipo desconecte, se reconecte y vuelva con más claridad.</p></a>
-    <a class="tile bg-aqua" href="/empresas/#ncs"><span class="n">03</span><h3 style="margin-top:34px">Programa NCS del Dr. Joe Dispenza</h3><p>Change Your Mind… Create New Results: la neurociencia del cambio para líderes y equipos.</p></a>
+    <a class="tile bg-aqua" href="/empresas/"><span class="n">03</span><h3 style="margin-top:34px">Sound healing para equipos</h3><p>Baños de gong y sesiones grupales de sonido para liberar el estrés y reconectar al equipo.</p></a>
   </div>
 </div></section>
 
 <section class="quote-band bg-taupe" data-dark><div class="wrap"><p class="fade">“No podemos ofrecer al mundo algo que no somos.”</p><cite class="fade d1">Andrea Zafra</cite></div></section>
 
-{feature("p/andrea.jpg", "Hola, soy Andrea Zafra", "Hipnoterapeuta clínica especializada en RTT (Rapid Transformational Therapy) y consultora certificada de Joe Dispenza", [
+{feature("p/andrea.jpg", "Hola, soy Andrea Zafra", "Hipnoterapeuta clínica especializada en RTT (Rapid Transformational Therapy)", [
  "Después de años en grandes multinacionales, un MBA en el IE y mis estudios en Babson College, mis hijos me llevaron a transformar mi propia vida. Hoy uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones."], link=("Conoce mi historia", "/sobre-mi/"), alt="Andrea Zafra, hipnoterapeuta RTT", h2="display-s")}
 
 <section class="entity bg-stone" id="que-es"><div class="wrap">
   <span class="kicker fade" style="display:block;margin-bottom:22px">Qué es Space to Rise</span>
   <img class="logo fade" src="{IMG}LOGO-Color_New.png" alt="Space to Rise" loading="lazy">
   <p class="sub fade d1">Human evolution <i>studio</i></p>
-  <h2 class="text fade d2">Un espacio para sanar, transformarte y elevarte a tu nuevo potencial. Fundado en Bogotá por <em>Andrea Zafra</em>, Space to Rise une la hipnoterapia RTT (Rapid Transformational Therapy) de Marisa Peer, la neurociencia del cambio del Dr. Joe Dispenza y el poder sanador del sonido.</h2>
+  <h2 class="text fade d2">Un espacio para sanar, transformarte y elevarte a tu nuevo potencial. Fundado en Bogotá por <em>Andrea Zafra</em>, Space to Rise une la hipnoterapia RTT (Rapid Transformational Therapy) de Marisa Peer, la neurociencia del cambio y el poder sanador del sonido.</h2>
   <div class="cols5 stagger">
     <div><h4>Hipnoterapia RTT<small>(Rapid Transformational Therapy)</small></h4><p>Para adultos y niños. Llega a la raíz de lo que te bloquea.</p></div>
     <div><h4>Empresas</h4><p>Bienestar y neurociencia del cambio para equipos.</p></div>
@@ -521,42 +536,33 @@ pages["/gong/"] = dict(title="Baño de gong en Bogotá · Baño de sonido | Spac
 
 # ------------------------------------------------------------------ EMPRESAS
 pages["/empresas/"] = dict(title="Bienestar laboral para empresas · Talleres y retiros | Space to Rise",
- desc="Programa de bienestar laboral: talleres de manejo del estrés y burnout, retiros corporativos, coaching empresarial y el programa NCS del Dr. Joe Dispenza.", og="/assets/img/p/empresas-3.jpg",
+ desc="Programa de bienestar laboral: talleres de manejo del estrés y burnout, retiros corporativos, coaching empresarial y sound healing para equipos.", og="/assets/img/p/empresas-3.jpg",
  body=f"""<section class="hero light compact" style="min-height:0;padding-top:118px"><div class="wrap feature flip" style="align-items:center">
   <div><span class="kicker fade" style="color:var(--taupe)">Empresas · Bienestar laboral</span>
     <h1 class="display-l lines" style="margin:16px 0 18px;max-width:14ch">Bienestar y<br class="d">transformación<br class="d">para tu equipo</h1>
     <p class="lead fade d2" style="max-width:44ch">Las organizaciones crecen cuando crecen las personas que las forman.</p>
     <p class="fade d2" style="max-width:52ch">Llevo a las empresas el mismo trabajo que hago con cada persona: herramientas para manejar el estrés, cuidar la salud emocional y cambiar los patrones que frenan a líderes y equipos. Cada propuesta se diseña según lo que tu organización necesita.</p>
-    <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px"><a class="pill solid" href="#contacto"><span>Solicita una propuesta</span></a><a class="pill" href="#ncs"><span>Ver programa NCS</span></a></div>
+    <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px"><a class="pill solid" href="#contacto"><span>Solicita una propuesta</span></a><a class="pill" href="#programas"><span>Ver programas</span></a></div>
   </div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/empresas-3.jpg" alt="Equipo de trabajo conversando en una oficina" fetchpriority="high"></div></div>
 </div></section>
-<div class="band" style="margin-top:44px"><div class="creds stagger" style="padding-top:30px"><span>Consultora certificada de Neuro Change Solutions</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div></div>
+<div class="band" style="margin-top:44px"><div class="creds stagger" style="padding-top:30px"><span>Hipnoterapeuta clínica · RTT</span><span>MBA · IE Business School</span><span>+10 años de experiencia</span></div></div>
 <section class="pad-s"><div class="wrap">
+  <div id="programas"></div>
   {sec_title("Programas para empresas")}
   <div class="tiles stagger">
     <div class="tile bg-blush"><span class="n">01</span><h3 style="margin-top:34px">Talleres de bienestar y manejo del estrés</h3><p>Sesiones para tu equipo sobre manejo del estrés laboral y prevención del burnout, salud emocional, autoestima y hábitos. Incluyen baños de gong grupales.</p><span class="tag">Presencial o virtual</span></div>
     <div class="tile bg-sand"><span class="n">02</span><h3 style="margin-top:34px">Retiros corporativos y coaching para equipos</h3><p>Experiencias de uno o varios días, charlas y coaching empresarial para que tu equipo desconecte, se reconecte y vuelva con más claridad y energía.</p><span class="tag">Diseñados a la medida</span></div>
-    <div class="tile bg-aqua"><span class="n">03</span><h3 style="margin-top:34px">Programa NCS del Dr. Joe Dispenza</h3><p>Change Your Mind… Create New Results: la neurociencia del cambio aplicada a líderes y equipos.</p><span class="tag">Consultora certificada</span></div>
+    <div class="tile bg-aqua"><span class="n">03</span><h3 style="margin-top:34px">Sound healing para equipos</h3><p>Baños de gong y sesiones grupales de sonido para liberar el estrés, mejorar el descanso y reconectar al equipo.</p><span class="tag">Presencial</span></div>
   </div>
 </div></section>
-<section id="ncs" class="pad-s bg-sky"><div class="wrap">
-  <div class="grid g2" style="align-items:start">
-    <div><span class="kicker fade">Neuro Change Solutions</span><h2 class="display-m lines" style="margin:14px 0 22px">Change Your Mind…<br>Create New Results</h2><p class="fade d1">Como consultora certificada de Neuro Change Solutions, imparto el taller creado por el Dr. Joe Dispenza. Explica cómo funciona el cambio en el cerebro y en el cuerpo, y da a cada persona herramientas concretas para crearlo y sostenerlo en el tiempo.</p></div>
-    <div class="fade d1" style="padding:clamp(24px,3vw,40px);background:rgba(249,245,237,.55);border-radius:3px"><span class="kicker">La premisa del programa</span><p class="display-s" style="margin:12px 0 0;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.3">El cambio sí es posible: existe un proceso para crearlo y sostenerlo, y se puede aprender.</p></div>
-  </div>
-  <div class="stats stagger" style="margin-top:clamp(24px,3vw,40px)">
-    <div class="stat"><b>8+</b><span>Horas de taller</span><p>Un programa que se adapta a tu equipo y a tu organización.</p></div>
-    <div class="stat"><b>2</b><span>Modelos de cambio</span><p>Para entender las etapas que atraviesa cada persona para cambiar.</p></div>
-    <div class="stat"><b>4</b><span>Herramientas</span><p>Para crear y sostener el cambio, entre ellas el ensayo mental.</p></div>
-  </div>
-</div></section>
+{NCS_SECTION if SHOW_NCS else ""}
 <section class="pad-s"><div class="wrap">{sec_title("Ideal para empresas que buscan")}<ul class="plist stagger"><li>Liderazgo consciente</li><li>Equipos preparados para el cambio</li><li>Menos estrés, más bienestar</li><li>Creatividad e innovación</li><li>Una cultura que retiene talento</li><li>Colaboración y productividad</li></ul></div></section>
 <section class="pad-s bg-stone"><div class="wrap">{sec_title("Cómo trabajamos")}{steps3([("Conversación", "Entendemos el momento de tu organización y lo que quieres lograr."), ("Propuesta", "Diseñamos el taller, retiro o programa adecuado para tu equipo."), ("Experiencia", "Llevamos la experiencia a tu equipo, presencial o virtual."), ("Seguimiento", "Acompañamos la integración del cambio en el día a día.")], cls="c4")}</div></section>
 {tcards(['patprimo', 'barcu', 'cyglo', 'malva', 'johanna'], bg="bg-sand", title="Lo que dicen las empresas", cols=3)}
 <section id="contacto" class="pad-s"><div class="wrap grid g2" style="align-items:start">
   <div><span class="kicker fade">Contacto</span><h2 class="display-m lines" style="margin:14px 0 18px">Diseñemos juntos la experiencia para tu equipo.</h2><p class="fade d1">Cuéntanos sobre tu organización y te enviaremos una propuesta a la medida.</p><p class="fade d2"><a href="mailto:info@spacetorise.com" style="text-decoration:underline">info@spacetorise.com</a></p></div>
-  {lead_form("empresa", [("name", "Nombre", "text", None), ("company", "Empresa", "text", None), ("email", "Correo", "email", None), ("phone", "Teléfono (con indicativo)", "tel", None), ("service", "Me interesa", "select", ["Talleres de bienestar", "Retiros corporativos", "Programa NCS del Dr. Joe Dispenza", "Baños de gong para equipos", "Aún no lo sé"]), ("message", "Cuéntanos sobre tu equipo", "textarea", None)], "Solicita una propuesta")}
+  {lead_form("empresa", [("name", "Nombre", "text", None), ("company", "Empresa", "text", None), ("email", "Correo", "email", None), ("phone", "Teléfono (con indicativo)", "tel", None), ("service", "Me interesa", "select", ["Talleres de bienestar", "Retiros corporativos", "Baños de gong para equipos", "Aún no lo sé"]), ("message", "Cuéntanos sobre tu equipo", "textarea", None)], "Solicita una propuesta")}
 </div></section>
 """, cta=False)
 
@@ -641,27 +647,26 @@ pages["/admin/"] = dict(title="Panel | Space to Rise", desc="Panel de administra
 
 # ------------------------------------------------------------------ SOBRE MÍ
 pages["/sobre-mi/"] = dict(title="Andrea Zafra · Hipnoterapeuta clínica RTT en Bogotá | Space to Rise", og="/assets/img/p/andrea.jpg",
- desc="Hipnoterapeuta clínica especializada en RTT y consultora certificada de Joe Dispenza (Neuro Change Solutions). Mi historia, mi formación y mi misión.",
+ desc="Hipnoterapeuta clínica especializada en RTT y MBA. Mi historia, mi formación y mi misión.",
  body=f"""<section class="portal pad-s"><div class="wrap feature">
-  <div><span class="kicker fade">Sobre mí</span><h1 class="display-xl lines" style="margin:14px 0 18px">Andrea<br>Zafra</h1><p class="kicker fade d1" style="display:block;margin-bottom:20px;line-height:2">Hipnoterapeuta clínica especializada en RTT (Rapid Transformational Therapy)<br>Consultora certificada de Joe Dispenza (Neuro Change Solutions)</p>
+  <div><span class="kicker fade">Sobre mí</span><h1 class="display-xl lines" style="margin:14px 0 18px">Andrea<br>Zafra</h1><p class="kicker fade d1" style="display:block;margin-bottom:20px;line-height:2">Hipnoterapeuta clínica especializada en RTT (Rapid Transformational Therapy)<br>MBA · IE Business School</p>
     <p class="fade d2" style="color:var(--charcoal)">Te ayudo a encontrar la raíz de lo que te bloquea y a reprogramar tu mente para que tu cambio sea real y permanente. Uno la hipnoterapia, la neurociencia del cambio y más de 10 años de experiencia para acompañar a personas, familias y organizaciones.</p>
     <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/agenda/"><span>Agenda tu cita</span></a><a class="pill" href="#historia"><span>Conoce mi historia</span></a></div></div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/andrea.jpg" alt="Andrea Zafra, hipnoterapeuta clínica RTT"></div></div>
 </div></section>
-<section class="pad-s bg-aqua"><div class="wrap">{sec_title("Formación y certificaciones")}<div class="tiles stagger" style="grid-template-columns:repeat(5,1fr);gap:0 28px">
+<section class="pad-s bg-aqua"><div class="wrap">{sec_title("Formación y certificaciones")}<div class="tiles stagger" style="grid-template-columns:repeat(4,1fr);gap:0 28px">
   <div class="fade"><b class="display-m" style="display:block">+10</b><span class="kicker" style="margin:6px 0 10px;display:block">Años de experiencia</span><p class="small" style="margin:0">Acompañando procesos de sanación y transformación personal.</p></div>
   <div class="fade d1"><b class="display-m" style="display:block">RTT</b><span class="kicker" style="margin:6px 0 10px;display:block">Hipnoterapeuta clínica</span><p class="small" style="margin:0">Especializada en Rapid Transformational Therapy, el método creado por Marisa Peer.</p></div>
-  <div class="fade d2"><b class="display-m" style="display:block">NCS</b><span class="kicker" style="margin:6px 0 10px;display:block">Consultora certificada</span><p class="small" style="margin:0">Neuro Change Solutions, formada por el Dr. Joe Dispenza en la neurociencia del cambio.</p></div>
   <div class="fade d3"><b class="display-m" style="display:block">MBA</b><span class="kicker" style="margin:6px 0 10px;display:block">IE Business School</span><p class="small" style="margin:0">Instituto de Empresa, Madrid.</p></div>
   <div class="fade d4"><b class="display-m" style="display:block">BSBA</b><span class="kicker" style="margin:6px 0 10px;display:block">Babson College</span><p class="small" style="margin:0">Licenciada en Administración de Empresas, Estados Unidos.</p></div>
 </div><p class="kicker fade" style="margin-top:36px;display:block;text-align:center">Estudios complementarios · Crianza consciente · Nutrición · Energía · Mindfulness · Yoga</p></div></section>
 <section id="historia" class="pad-s"><div class="wrap">{sec_title("Mi historia")}<div class="grid g2" style="align-items:start">
   <div><h2 class="display-m lines" style="margin:0 0 22px">Dicen que los hijos son nuestros grandes maestros, y en mi caso es así.</h2><p class="fade">Jerónimo, Olivia y Alexa despertaron en mí una pregunta que cambió mi vida: ¿cómo me convierto en la mejor versión de mí misma para ser su ejemplo?</p><p class="fade d1">Durante años construí una carrera exitosa. Estudié Administración de Empresas en Babson College, hice mi MBA en el IE, trabajé en grandes multinacionales y fundé varios negocios. Pero con la llegada de Alexa mi mundo dio un giro que me reconectó con mi verdadera esencia.</p></div>
-  <div><p class="fade">Dejé el mundo corporativo para aprender todo lo que pudiera sobre crianza consciente, nutrición, energía, mindfulness y yoga. En el camino entendí algo que lo cambió todo: para darles a mis hijos lo que quería para ellos, primero tenía que transformarme yo. Superar mis miedos, cuestionar mis creencias y sanar mi cuerpo.</p><p class="fade d1">Esa búsqueda me llevó a la Terapia de Transformación Rápida (RTT, Rapid Transformational Therapy) de Marisa Peer y a la neurociencia del cambio del Dr. Joe Dispenza. Hoy uso estas herramientas para acompañar a otros en su propio camino de sanación.</p><div class="media wide fade d2" style="margin-top:22px"><img src="{IMG}p/sobre-mi-hijas.jpg" alt="Andrea con sus hijas" loading="lazy"></div></div>
+  <div><p class="fade">Dejé el mundo corporativo para aprender todo lo que pudiera sobre crianza consciente, nutrición, energía, mindfulness y yoga. En el camino entendí algo que lo cambió todo: para darles a mis hijos lo que quería para ellos, primero tenía que transformarme yo. Superar mis miedos, cuestionar mis creencias y sanar mi cuerpo.</p><p class="fade d1">Esa búsqueda me llevó a la Terapia de Transformación Rápida (RTT, Rapid Transformational Therapy) de Marisa Peer y a la neurociencia del cambio. Hoy uso estas herramientas para acompañar a otros en su propio camino de sanación.</p><div class="media wide fade d2" style="margin-top:22px"><img src="{IMG}p/sobre-mi-hijas.jpg" alt="Andrea con sus hijas" loading="lazy"></div></div>
 </div></div></section>
 <section class="quote-band bg-taupe" data-dark><div class="wrap"><p class="fade">“No podemos ofrecer al mundo algo que no somos.”</p><cite class="fade d1">Andrea Zafra</cite></div></section>
 <section id="mision" class="pad-s"><div class="wrap">
-  <div class="grid g2" style="align-items:start"><div><span class="kicker fade">Mi misión</span><h2 class="display-m lines" style="margin:14px 0 0">Despertar el potencial humano de millones de personas, de adentro hacia afuera.</h2></div><div><p class="lead fade">Acompaño a personas, familias y organizaciones a liberarse de las creencias limitantes y los programas desactualizados que las enferman, las bloquean y les impiden ser su mejor versión.</p><p class="fade d1">Para lograrlo uno dos caminos que se potencian: la hipnoterapia RTT (Rapid Transformational Therapy), que llega a la raíz en el subconsciente, y la neurociencia del cambio del Dr. Joe Dispenza, que enseña cómo el cerebro y el cuerpo crean nuevos hábitos y los sostienen en el tiempo.</p></div></div>
+  <div class="grid g2" style="align-items:start"><div><span class="kicker fade">Mi misión</span><h2 class="display-m lines" style="margin:14px 0 0">Despertar el potencial humano de millones de personas, de adentro hacia afuera.</h2></div><div><p class="lead fade">Acompaño a personas, familias y organizaciones a liberarse de las creencias limitantes y los programas desactualizados que las enferman, las bloquean y les impiden ser su mejor versión.</p><p class="fade d1">Para lograrlo uno dos caminos que se potencian: la hipnoterapia RTT (Rapid Transformational Therapy), que llega a la raíz en el subconsciente, y la neurociencia del cambio, que enseña cómo el cerebro y el cuerpo crean nuevos hábitos y los sostienen en el tiempo.</p></div></div>
   <div class="tiles stagger" style="margin-top:clamp(36px,5vw,64px)">
     <div class="tile bg-blush" style="min-height:0"><span class="tag" style="margin:0 0 10px">Personas</span><p>Que cada persona sane su cuerpo y su mente, recupere su poder interior y alcance lo que sueña.</p></div>
     <div class="tile bg-sand" style="min-height:0"><span class="tag" style="margin:0 0 10px">Familias</span><p>Que los padres críen nuevas generaciones libres de miedos, con autoestima alta y alas fuertes para volar alto.</p></div>
@@ -673,7 +678,7 @@ pages["/sobre-mi/"] = dict(title="Andrea Zafra · Hipnoterapeuta clínica RTT en
 <section class="pad-s bg-stone"><div class="wrap">{sec_title("Cómo puedo acompañarte")}<div class="tiles stagger">
   <a class="tile" href="/heal-rise-shine/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Personas</span><h3>Heal · Rise · Shine</h3><p>Sesiones de RTT (Rapid Transformational Therapy) para sanar tu cuerpo, liberar tu mente y alcanzar tus objetivos.</p><span class="tag">Conoce más →</span></a>
   <a class="tile" href="/kids/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Familias</span><h3>Kids</h3><p>Herramientas para que tus hijos crezcan con una autoestima alta, libres de miedos y creencias limitantes.</p><span class="tag">Conoce más →</span></a>
-  <a class="tile" href="/empresas/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Empresas</span><h3>Bienestar corporativo</h3><p>Talleres, retiros y el programa NCS del Dr. Joe Dispenza para equipos y líderes.</p><span class="tag">Conoce más →</span></a>
+  <a class="tile" href="/empresas/" style="background:var(--white);min-height:0"><span class="tag" style="margin:0 0 10px">Empresas</span><h3>Bienestar corporativo</h3><p>Talleres, retiros y sound healing para equipos y líderes.</p><span class="tag">Conoce más →</span></a>
 </div></div></section>
 """, cta_title="Me encantaría acompañarte", cta_sub="Agenda una llamada inicial y conversemos sobre lo que quieres transformar.")
 
@@ -690,7 +695,7 @@ pages["/gif-for-you/"] = dict(title="Gift for you — Recursos gratuitos | Space
 FAQ = [
  ("Sobre Space to Rise", [
   ("¿Qué es Space to Rise?", ENTITY),
-  ("¿Quién es Andrea Zafra?", "Andrea Zafra es hipnoterapeuta clínica especializada en Rapid Transformational Therapy (RTT), consultora certificada de Neuro Change Solutions (el programa del Dr. Joe Dispenza), MBA del IE Business School y administradora de empresas de Babson College. Fundó Space to Rise en Bogotá y acompaña a personas, familias y organizaciones de forma presencial y online."),
+  ("¿Quién es Andrea Zafra?", "Andrea Zafra es hipnoterapeuta clínica especializada en Rapid Transformational Therapy (RTT), MBA del IE Business School y administradora de empresas de Babson College. Fundó Space to Rise en Bogotá y acompaña a personas, familias y organizaciones de forma presencial y online."),
   ("¿Dónde atiende Space to Rise?", "En Bogotá, Colombia, de forma presencial, y online por Zoom para cualquier ciudad o país. Los audios de autohipnosis se compran en la tienda y se escuchan desde un espacio privado en cualquier dispositivo.")]),
  ("Sobre RTT", [
   ("¿Qué es RTT (Rapid Transformational Therapy)?", "Rapid Transformational Therapy es una terapia desarrollada por Marisa Peer que combina lo más eficaz de la hipnosis, la PNL y la neurociencia para lograr resultados rápidos, permanentes y transformadores. Generalmente se logra sanar en 1 o máximo 3 sesiones, según la complejidad del tema."),
@@ -739,7 +744,7 @@ pages["/agenda/"] = dict(title="Agenda tu cita de hipnoterapia RTT en Bogotá u 
 {tcards(['rtt', 'dormir', 'confianza'], bg="")}
 """, cta=False)
 
-SVC = {'/rtt/': ('Sesión de hipnoterapia RTT', '480000', 'Hipnoterapia RTT (Rapid Transformational Therapy): hipnosis clínica, PNL y neurociencia para encontrar la raíz de lo que te bloquea y reprogramarla. Sesión de aproximadamente 3 horas más audio personal de 21 días.'), '/kids/': ('RTT Kids · hipnoterapia para niños', '380000', 'Hipnoterapia para niños adaptada a su edad, con audio personal para reforzar el cambio en casa.'), '/coaching/': ('Coaching individual', '180000', 'Sesiones de coaching de vida de 1 hora, presenciales en Bogotá o por Zoom.'), '/gong/': ('Baño de gong', '180000', 'Baño de sonido con gong para relajación profunda, liberación emocional y equilibrio energético. Individual $180.000, grupal $120.000 por persona.'), '/empresas/': ('Programas de bienestar laboral para empresas', None, 'Talleres de manejo del estrés y burnout, retiros corporativos, coaching para equipos y el programa NCS del Dr. Joe Dispenza. Presencial en Bogotá o virtual.'), '/heal-rise-shine/': ('Hipnoterapia RTT · Heal, Rise, Shine', '480000', 'RTT para sanar el cuerpo (Heal), liberar la mente de ansiedad, miedos y fobias (Rise) y alcanzar objetivos (Shine).')}
+SVC = {'/rtt/': ('Sesión de hipnoterapia RTT', '480000', 'Hipnoterapia RTT (Rapid Transformational Therapy): hipnosis clínica, PNL y neurociencia para encontrar la raíz de lo que te bloquea y reprogramarla. Sesión de aproximadamente 3 horas más audio personal de 21 días.'), '/kids/': ('RTT Kids · hipnoterapia para niños', '380000', 'Hipnoterapia para niños adaptada a su edad, con audio personal para reforzar el cambio en casa.'), '/coaching/': ('Coaching individual', '180000', 'Sesiones de coaching de vida de 1 hora, presenciales en Bogotá o por Zoom.'), '/gong/': ('Baño de gong', '180000', 'Baño de sonido con gong para relajación profunda, liberación emocional y equilibrio energético. Individual $180.000, grupal $120.000 por persona.'), '/empresas/': ('Programas de bienestar laboral para empresas', None, 'Talleres de manejo del estrés y burnout, retiros corporativos, coaching para equipos y sound healing. Presencial en Bogotá o virtual.'), '/heal-rise-shine/': ('Hipnoterapia RTT · Heal, Rise, Shine', '480000', 'RTT para sanar el cuerpo (Heal), liberar la mente de ansiedad, miedos y fobias (Rise) y alcanzar objetivos (Shine).')}
 for _p, (_n, _price, _d) in SVC.items():
     if _p in pages:
         _o = {"@context": "https://schema.org", "@type": "Service", "name": _n, "serviceType": _n, "description": _d, "url": "https://spacetorise.com" + _p, "provider": {"@id": "https://spacetorise.com/#org"}, "areaServed": ["Bogotá", "Colombia", "Online"], "availableChannel": [{"@type": "ServiceChannel", "name": "Presencial en Bogotá"}, {"@type": "ServiceChannel", "name": "Online por Zoom"}]}
@@ -760,7 +765,7 @@ open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(f"""# Space to 
 
 > {ENTITY}
 
-Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer), consultora certificada Neuro Change Solutions (Dr. Joe Dispenza), MBA IE Business School, BSBA Babson College. Sede: Bogotá, Colombia. Atención presencial y online (Zoom). Contacto: info@spacetorise.com · WhatsApp +57 310 750 3359.
+Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer), MBA IE Business School, BSBA Babson College. Sede: Bogotá, Colombia. Atención presencial y online (Zoom). Contacto: info@spacetorise.com · WhatsApp +57 310 750 3359.
 
 ## Servicios y precios (COP)
 - Sesión de hipnoterapia RTT (aprox. 3 h + audio personal de 21 días): $480.000 — https://spacetorise.com/rtt/
@@ -768,7 +773,7 @@ Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer)
 - RTT Kids (hipnoterapia para niños): $380.000 — https://spacetorise.com/kids/
 - Coaching individual (1 h, presencial o Zoom): $180.000 — https://spacetorise.com/coaching/
 - Baño de gong: individual $180.000 · grupal $120.000 por persona — https://spacetorise.com/gong/
-- Empresas: talleres de bienestar y manejo del estrés, retiros corporativos, programa NCS de Joe Dispenza — https://spacetorise.com/empresas/
+- Empresas: talleres de bienestar y manejo del estrés, retiros corporativos, sound healing para equipos — https://spacetorise.com/empresas/
 - Audios de autohipnosis ($55.500 c/u): https://spacetorise.com/shop/
 
 ## Páginas

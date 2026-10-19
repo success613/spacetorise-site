@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const email = String(b.email || '').trim().toLowerCase();
   if (!kind || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json(res, 400, { error: 'Revisa el correo.' });
   if (b.website) return json(res, 200, { ok: true }); // honeypot
-  if (kind !== 'newsletter' && !/^\+\d{1,3}[\d .-]{6,16}$/.test(String(b.phone || '').trim())) return json(res, 400, { error: 'Escribe tu número con el indicativo del país (ej. +57 300 123 4567).' });
+  if (b.phone && !/^\+\d{1,4}[\d .-]{6,16}$/.test(String(b.phone).trim())) return json(res, 400, { error: 'Elige el indicativo del país y revisa el número de teléfono.' });
   const row = {
     kind, email,
     name: String(b.name || '').slice(0, 120) || null,

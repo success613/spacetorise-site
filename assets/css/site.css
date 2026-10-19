@@ -698,3 +698,9 @@ section.fit .media.video{max-height:78vh;width:auto;aspect-ratio:4/5;margin:0 au
 .field .req{color:var(--taupe);margin-left:2px}
 .field input::placeholder{color:rgba(58,58,57,.38)}
 .field input:user-invalid{border-color:#b4514c}
+
+/* Teléfono: indicativo + número */
+.phone-row{display:grid;grid-template-columns:minmax(118px,36%) 1fr;gap:12px}
+.phone-row select{background:transparent;border:0;border-bottom:1px solid rgba(58,58,57,.35);padding:12px 0;font-size:1rem;color:var(--ink);border-radius:0;outline:0;font-family:inherit}
+.phone-row select:focus{border-color:var(--ink)}
+.phone-row select:invalid{color:var(--taupe)}

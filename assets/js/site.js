@@ -236,8 +236,16 @@
   /* ---------- Formularios: agenda / empresas / newsletter → /api/lead ---------- */
   const sendLead = async (form, kind, out) => {
     const btn = form.querySelector('button[type=submit]'); const data = Object.fromEntries(new FormData(form).entries()); data.kind = kind;
-    const tel = form.querySelector('input[name=phone]');
-    if (tel) { tel.value = tel.value.trim(); data.phone = tel.value; if (tel.required && !/^\+[0-9]{1,3}[0-9 .-]{6,16}$/.test(tel.value)) { tel.setCustomValidity('Escribe tu número con el indicativo del país, por ejemplo +57 300 123 4567'); tel.reportValidity(); tel.addEventListener('input', () => tel.setCustomValidity(''), { once: true }); return false; } }
+    const cc = form.querySelector('select[name=phone_cc]'), num = form.querySelector('input[name=phone_num]');
+    if (num) {
+      const n = (num.value || '').trim().replace(/[^0-9 .-]/g, ''); num.value = n;
+      delete data.phone_cc; delete data.phone_num; data.phone = '';
+      if (n) {
+        if (!cc.value) { cc.setCustomValidity('Elige el indicativo del país'); cc.reportValidity(); cc.addEventListener('change', () => cc.setCustomValidity(''), { once: true }); return false; }
+        if (n.replace(/\D/g, '').length < 6) { num.setCustomValidity('Revisa el número de teléfono'); num.reportValidity(); num.addEventListener('input', () => num.setCustomValidity(''), { once: true }); return false; }
+        data.phone = cc.value + ' ' + n;
+      }
+    }
     btn.disabled = true;
     try {
       const r = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });

@@ -385,8 +385,8 @@ pages["/"] = dict(title="Hipnoterapia en Bogotá · Hipnosis clínica RTT | Spac
 """)
 
 # ------------------------------------------------------------------ RTT
-pages["/rtt/"] = dict(title="¿Qué es RTT? Hipnoterapia de Transformación Rápida | Space to Rise",
- desc="Qué es la hipnoterapia RTT de Marisa Peer, cómo funciona, sus beneficios y qué puedes sanar. Hipnosis, PNL y neurociencia para resultados en 1 a 3 sesiones.", og="/assets/img/p/rtt-hero-3.jpg",
+pages["/rtt/"] = dict(title="Terapia de Transformación Rápida (RTT): sesión, proceso y precio | Space to Rise",
+ desc="Así es una sesión de Terapia de Transformación Rápida (Rapid Transformational Therapy) con Andrea Zafra: llamada inicial, sesión de unas 3 horas y audio de 21 días. Precio y agenda.", og="/assets/img/p/rtt-hero-3.jpg",
  body=hero(IMG + "p/rtt-hero-3.jpg", "Terapia de<br class=\"d\">Transformación Rápida", "Hipnosis, PNL y neurociencia para llegar a la raíz de lo que te bloquea y lograr resultados rápidos, permanentes y transformadores.", kicker="Hipnoterapia RTT · Rapid Transformational Therapy", pos="center 30%", compact=True, cta2=("Preguntas frecuentes", "/preguntas-frecuentes/")) + f"""
 <section class="pad-s bg-blush"><div class="wrap"><p class="caps fade" style="margin:0 auto;text-align:center;max-width:80ch">RTT (Rapid Transformational Therapy) es una terapia desarrollada por Marisa Peer que combina los principios más eficaces de la hipnosis, la PNL y la neurociencia. Muchas personas logran sanar en 1 a 3 sesiones, según la complejidad del tema.</p></div></section>
 

@@ -13,7 +13,7 @@ SUPA_URL = "https://epsokxvjqevmityasvrx.supabase.co"
 SUPA_KEY = "sb_publishable_m4rurqAuHs8cHJfBq3bshQ_-4decACD"
 
 NAV = [("RTT", "/rtt/"), ("Heal · Rise · Shine", "/heal-rise-shine/"), ("Kids", "/kids/"), ("Coaching", "/coaching/"), ("Gong", "/gong/"), ("Empresas", "/empresas/"), ("Shop", "/shop/"), ("Sobre mí", "/sobre-mi/")]
-MENU = NAV + [("Preguntas frecuentes", "/preguntas-frecuentes/"), ("Agenda tu cita", "/agenda/"), ("Mi cuenta", "/mi-cuenta/")]
+MENU = NAV + [("Guías", "/guias/"), ("Preguntas frecuentes", "/preguntas-frecuentes/"), ("Agenda tu cita", "/agenda/"), ("Mi cuenta", "/mi-cuenta/")]
 AG = "/agenda/"
 ENTITY = "Space to Rise es un human evolution studio con sede en Bogotá, Colombia, fundado por la hipnoterapeuta clínica Andrea Zafra. Ofrece hipnoterapia RTT (Rapid Transformational Therapy, el método de Marisa Peer), coaching individual, baños de gong, audios de autohipnosis y programas de bienestar para empresas, de forma presencial en Bogotá y online."
 
@@ -38,7 +38,7 @@ def spiral_svg(cls="", style=""):
 
 def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
     parts = [p for p in path.strip('/').split('/') if p]
-    names = {"rtt": "RTT", "heal-rise-shine": "Heal · Rise · Shine", "kids": "Kids", "coaching": "Coaching", "gong": "Gong", "empresas": "Empresas", "shop": "Shop", "sobre-mi": "Sobre mí", "preguntas-frecuentes": "Preguntas frecuentes", "agenda": "Agenda tu cita", "gif-for-you": "Gift for you"}
+    names = {"rtt": "RTT", "heal-rise-shine": "Heal · Rise · Shine", "kids": "Kids", "coaching": "Coaching", "gong": "Gong", "empresas": "Empresas", "shop": "Shop", "sobre-mi": "Sobre mí", "preguntas-frecuentes": "Preguntas frecuentes", "agenda": "Agenda tu cita", "gif-for-you": "Gift for you", "guias": "Guías"}
     items = [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://spacetorise.com/"}]
     acc = ''
     for i, p in enumerate(parts):
@@ -122,7 +122,7 @@ def foot(cta=True, cta_title="Tu transformación empieza con una conversación",
         <div class="social"><a href="https://www.instagram.com/spacetorise/" target="_blank" rel="noopener" aria-label="Instagram">{SVG_IG}</a><a href="https://www.youtube.com/@spacetorise" target="_blank" rel="noopener" aria-label="YouTube">{SVG_YT}</a><a href="https://www.facebook.com/profile.php?id=61574483459317" target="_blank" rel="noopener" aria-label="Facebook">{SVG_FB}</a><a href="https://www.linkedin.com/in/andrea-zafra-5b5bb09" target="_blank" rel="noopener" aria-label="LinkedIn">{SVG_IN}</a></div>
       </div>
       <div><h5>Explora</h5><ul><li><a href="/rtt/">RTT</a></li><li><a href="/heal-rise-shine/">Heal · Rise · Shine</a></li><li><a href="/kids/">Kids</a></li><li><a href="/coaching/">Coaching</a></li><li><a href="/gong/">Gong</a></li><li><a href="/empresas/">Empresas</a></li><li><a href="/shop/">Shop</a></li></ul></div>
-      <div><h5>Space to Rise</h5><ul><li><a href="/sobre-mi/">Sobre mí</a></li><li><a href="/sobre-mi/#mision">Misión</a></li><li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li><li><a href="/gif-for-you/">Gift for you</a></li><li><a href="/agenda/">Agenda tu cita</a></li><li><a href="/mi-cuenta/">Mi cuenta</a></li></ul></div>
+      <div><h5>Space to Rise</h5><ul><li><a href="/sobre-mi/">Sobre mí</a></li><li><a href="/sobre-mi/#mision">Misión</a></li><li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li><li><a href="/guias/">Guías</a></li><li><a href="/gif-for-you/">Gift for you</a></li><li><a href="/agenda/">Agenda tu cita</a></li><li><a href="/mi-cuenta/">Mi cuenta</a></li></ul></div>
       <div><h5>Contacto</h5><ul><li><a href="mailto:info@spacetorise.com">info@spacetorise.com</a></li><li><a href="https://www.instagram.com/spacetorise/" target="_blank" rel="noopener">@spacetorise</a></li><li><a href="{WA}" target="_blank" rel="noopener">WhatsApp +57 310 750 3359</a></li><li>Bogotá · Colombia · Online</li></ul></div>
     </div>
     <div class="bottom"><span>© 2026 Space to Rise · Andrea Zafra</span><span>Al despertar tu mundo, iluminas el mundo.</span><span><a class="credit" href="https://clicalto.com" target="_blank" rel="noopener">Site by Clicalto</a></span></div>
@@ -727,7 +727,7 @@ faq_ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "main
 pages["/preguntas-frecuentes/"] = dict(title="¿La hipnosis es real? Preguntas frecuentes sobre RTT | Space to Rise",
  desc="¿La hipnosis es real? ¿Tiene peligros? ¿Para qué sirve la hipnoterapia y funciona? ¿Cómo se siente? Respuestas claras de una hipnoterapeuta clínica RTT.",
  body=f"""<section class="portal pad-s"><div class="wrap">
-  <div class="narrow center" style="margin:0 auto clamp(28px,4vw,48px)"><span class="kicker fade">Preguntas frecuentes</span><h1 class="display-l lines" style="margin:14px 0 18px">Todo lo que quieres saber sobre la hipnosis y RTT (Rapid Transformational Therapy)</h1><p class="muted fade d1">Si no encuentras tu respuesta aquí, escríbeme a <a href="mailto:info@spacetorise.com" style="text-decoration:underline">info@spacetorise.com</a> o agenda tu llamada inicial.</p></div>
+  <div class="narrow center" style="margin:0 auto clamp(28px,4vw,48px)"><span class="kicker fade">Preguntas frecuentes</span><h1 class="display-l lines" style="margin:14px 0 18px">Todo lo que quieres saber sobre la hipnosis y RTT (Rapid Transformational Therapy)</h1><p class="muted fade d1">¿Quieres el panorama completo? Lee la <a href="/guias/hipnosis-clinica-bogota/" style="text-decoration:underline">guía de hipnosis clínica en Bogotá</a>: qué es, riesgos y precios. Si no encuentras tu respuesta aquí, escríbeme a <a href="mailto:info@spacetorise.com" style="text-decoration:underline">info@spacetorise.com</a> o agenda tu llamada inicial.</p></div>
   {faq_html}
 </div></section><script type="application/ld+json">{faq_ld}</script>""", cta_title="¿Te quedó alguna duda?", cta_sub="En la llamada inicial de 20 minutos resolvemos todas tus preguntas.")
 
@@ -754,6 +754,12 @@ for _p, (_n, _price, _d) in SVC.items():
         _o = {"@context": "https://schema.org", "@type": "Service", "name": _n, "serviceType": _n, "description": _d, "url": "https://spacetorise.com" + _p, "provider": {"@id": "https://spacetorise.com/#org"}, "areaServed": ["Bogotá", "Colombia", "Online"], "availableChannel": [{"@type": "ServiceChannel", "name": "Presencial en Bogotá"}, {"@type": "ServiceChannel", "name": "Online por Zoom"}]}
         if _price: _o["offers"] = {"@type": "Offer", "price": _price, "priceCurrency": "COP", "availability": "https://schema.org/InStock", "url": "https://spacetorise.com/agenda/"}
         pages[_p]['ld'] = (pages[_p].get('ld') or '') + '<script type="application/ld+json">' + json.dumps(_o, ensure_ascii=False) + '</script>'
+
+# ------------------------------------------------------------------ GUÍAS (blog)
+import guias as _guias
+pages["/guias/"] = _guias.guias_index(IMG)
+for _g in _guias.GUIAS:
+    pages[f"/guias/{_g['slug']}/"] = _guias.guia_page(_g, IMG)
 
 # ------------------------------------------------------------------ BUILD
 for path, p in pages.items():
@@ -783,5 +789,6 @@ Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer)
 ## Páginas
 - Sobre Andrea Zafra: https://spacetorise.com/sobre-mi/
 - Preguntas frecuentes sobre hipnosis y RTT: https://spacetorise.com/preguntas-frecuentes/
+- Guía de hipnosis clínica en Bogotá (qué es, para qué sirve, riesgos y precios): https://spacetorise.com/guias/hipnosis-clinica-bogota/
 - Agenda una llamada inicial de 20 minutos: https://spacetorise.com/agenda/
 """)

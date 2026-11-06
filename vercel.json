@@ -3,6 +3,16 @@
  "trailingSlash": true,
  "redirects": [
   {
+   "source": "/guias/hipnosis-clinica-bogota/",
+   "destination": "/guias/que-es-la-hipnoterapia-rtt/",
+   "permanent": true
+  },
+  {
+   "source": "/guias/hipnosis-clinica-bogota",
+   "destination": "/guias/que-es-la-hipnoterapia-rtt/",
+   "permanent": true
+  },
+  {
    "source": "/gift-for-you",
    "destination": "/gif-for-you/",
    "permanent": true

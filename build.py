@@ -727,7 +727,7 @@ faq_ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "main
 pages["/preguntas-frecuentes/"] = dict(title="¿La hipnosis es real? Preguntas frecuentes sobre RTT | Space to Rise",
  desc="¿La hipnosis es real? ¿Tiene peligros? ¿Para qué sirve la hipnoterapia y funciona? ¿Cómo se siente? Respuestas claras de una hipnoterapeuta clínica RTT.",
  body=f"""<section class="portal pad-s"><div class="wrap">
-  <div class="narrow center" style="margin:0 auto clamp(28px,4vw,48px)"><span class="kicker fade">Preguntas frecuentes</span><h1 class="display-l lines" style="margin:14px 0 18px">Todo lo que quieres saber sobre la hipnosis y RTT (Rapid Transformational Therapy)</h1><p class="muted fade d1">¿Quieres el panorama completo? Lee la <a href="/guias/hipnosis-clinica-bogota/" style="text-decoration:underline">guía de hipnosis clínica en Bogotá</a>: qué es, riesgos y precios. Si no encuentras tu respuesta aquí, escríbeme a <a href="mailto:info@spacetorise.com" style="text-decoration:underline">info@spacetorise.com</a> o agenda tu llamada inicial.</p></div>
+  <div class="narrow center" style="margin:0 auto clamp(28px,4vw,48px)"><span class="kicker fade">Preguntas frecuentes</span><h1 class="display-l lines" style="margin:14px 0 18px">Todo lo que quieres saber sobre la hipnosis y RTT (Rapid Transformational Therapy)</h1><p class="muted fade d1">¿Quieres el panorama completo? Lee la guía <a href="/guias/que-es-la-hipnoterapia-rtt/" style="text-decoration:underline">¿Qué es la hipnoterapia RTT?</a> Si no encuentras tu respuesta aquí, escríbeme a <a href="mailto:info@spacetorise.com" style="text-decoration:underline">info@spacetorise.com</a> o agenda tu llamada inicial.</p></div>
   {faq_html}
 </div></section><script type="application/ld+json">{faq_ld}</script>""", cta_title="¿Te quedó alguna duda?", cta_sub="En la llamada inicial de 20 minutos resolvemos todas tus preguntas.")
 
@@ -789,6 +789,6 @@ Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer)
 ## Páginas
 - Sobre Andrea Zafra: https://spacetorise.com/sobre-mi/
 - Preguntas frecuentes sobre hipnosis y RTT: https://spacetorise.com/preguntas-frecuentes/
-- Guía de hipnosis clínica en Bogotá (qué es, para qué sirve, riesgos y precios): https://spacetorise.com/guias/hipnosis-clinica-bogota/
+- Guía: ¿Qué es la hipnoterapia RTT? Cómo funciona, para qué sirve y qué esperar: https://spacetorise.com/guias/que-es-la-hipnoterapia-rtt/
 - Agenda una llamada inicial de 20 minutos: https://spacetorise.com/agenda/
 """)

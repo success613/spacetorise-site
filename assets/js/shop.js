@@ -3,6 +3,11 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const fmt = (n) => n === 0 ? 'Gratis' : '$ ' + n.toLocaleString('es-CO');
+  // Dólares de referencia (TRM definida en build.py, redondeo hacia arriba). El cobro siempre es en COP.
+  const RATE = parseFloat(document.documentElement.dataset.usdRate) || 0;
+  const usd = (n) => RATE ? Math.ceil(n / RATE) : 0;
+  const fmtU = (n) => n === 0 || !RATE ? fmt(n) : fmt(n) + ' · US$' + usd(n);
+  const totalTxt = () => { const c = cart.items.reduce((a, b) => a + b.price, 0), u = cart.items.reduce((a, b) => a + usd(b.price), 0); return fmt(c) + (RATE && c ? ' COP · ≈ US$' + u : ''); };
   const KEY = 'str-cart-v2';
   let products = [];
   const cart = { items: JSON.parse(localStorage.getItem(KEY) || '[]') };
@@ -19,8 +24,8 @@
     const box = $('.drawer__items', drawer), tot = $('.drawer__total b', drawer), foot = $('.drawer__foot', drawer);
     if (!cart.items.length) { box.innerHTML = '<div class="drawer__empty">Tu carrito está vacío.<br>Elige un audio y empieza hoy.</div>'; foot.style.display = 'none'; return; }
     foot.style.display = '';
-    box.innerHTML = cart.items.map(i => `<div class="citem"><img src="${i.cover}" alt=""><div><h5>${i.name}</h5><span class="small muted">${fmt(i.price)}</span></div><button class="rm" data-rm="${i.id}">Quitar</button></div>`).join('');
-    tot.textContent = fmt(cart.items.reduce((a, b) => a + b.price, 0));
+    box.innerHTML = cart.items.map(i => `<div class="citem"><img src="${i.cover}" alt=""><div><h5>${i.name}</h5><span class="small muted">${fmtU(i.price)}</span></div><button class="rm" data-rm="${i.id}">Quitar</button></div>`).join('');
+    tot.textContent = totalTxt();
     $$('[data-rm]', box).forEach(b => b.addEventListener('click', () => { cart.items = cart.items.filter(i => i.id !== b.dataset.rm); save(); render(); }));
   }
   function openCart(o) { drawer && drawer.classList.toggle('open', o); scrim && scrim.classList.toggle('open', o); document.body.classList.toggle('no-scroll', o); }
@@ -54,7 +59,7 @@
   const card = (p) => `<article class="disc">
     <a class="disc__art" href="/shop/${p.slug}/"><img src="${p.cover}" alt="${p.name}" loading="lazy"><span class="disc__hole"></span></a>
     <h4><a href="/shop/${p.slug}/">${p.name}</a></h4>
-    <div class="price">${fmt(p.price)}</div>
+    <div class="price">${fmt(p.price)}${RATE ? ` <span class="usd">· US$${usd(p.price)}</span>` : ''}</div>
     <button class="add" data-add="${p.id}">Añadir</button>
   </article>`;
 
@@ -66,7 +71,7 @@
   function openModal(id) {
     const p = products.find(x => x.id === id); if (!p || !modal) return;
     $('.modal__img', modal).innerHTML = `<img src="${p.cover}" alt="">`;
-    $('.modal__body', modal).innerHTML = `<span class="kicker">Audio de autohipnosis · 15–20 min</span><h3>${p.name}</h3><div class="desc"><p>${p.description}</p><p class="small muted">Escúchalo 21 días seguidos: es lo que tarda la mente en crear nuevos hábitos. Después del pago recibes un enlace mágico a tu correo para entrar a tu espacio privado y escucharlo desde cualquier dispositivo.</p></div><div class="price-tag">${fmt(p.price)}<small>COP</small></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="pill solid" data-madd="${p.id}"><span>Añadir al carrito</span></button><a class="pill" href="/checkout/?p=${p.id}"><span>Comprar ahora</span></a></div>`;
+    $('.modal__body', modal).innerHTML = `<span class="kicker">Audio de autohipnosis · 15–20 min</span><h3>${p.name}</h3><div class="desc"><p>${p.description}</p><p class="small muted">Escúchalo 21 días seguidos: es lo que tarda la mente en crear nuevos hábitos. Después del pago recibes un enlace mágico a tu correo para entrar a tu espacio privado y escucharlo desde cualquier dispositivo.</p></div><div class="price-tag">${fmt(p.price)}<small>COP</small>${RATE ? `<span class="usd usd--line">≈ US$${usd(p.price)} · se paga en pesos colombianos</span>` : ''}</div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="pill solid" data-madd="${p.id}"><span>Añadir al carrito</span></button><a class="pill" href="/checkout/?p=${p.id}"><span>Comprar ahora</span></a></div>`;
     $('[data-madd]', modal).addEventListener('click', () => { add(p); closeModal(); openCart(true); });
     modal.classList.add('open'); scrim && scrim.classList.add('open'); document.body.classList.add('no-scroll');
     history.replaceState(null, '', '#p=' + p.id);
@@ -81,7 +86,7 @@
     const q = new URLSearchParams(location.search).get('p');
     if (q && !cart.items.find(i => i.id === q)) { const p = products.find(x => x.id === q); if (p) { cart.items.push({ id: p.id, name: p.name, price: p.price, cover: p.cover }); save(); render(); } }
     const list = $('[data-co-items]'), total = $('[data-co-total]'), form = $('form', co), out = $('[data-co-result]');
-    const paint = () => { list.innerHTML = cart.items.length ? cart.items.map(i => `<div class="citem"><img src="${i.cover}" alt=""><div><h5>${i.name}</h5><span class="small muted">${fmt(i.price)}</span></div><button class="rm" data-rm="${i.id}">Quitar</button></div>`).join('') : '<div class="drawer__empty">No hay audios en tu pedido. <a href="/shop/" style="text-decoration:underline">Volver a la tienda</a></div>'; total.textContent = fmt(cart.items.reduce((a, b) => a + b.price, 0)); $$('[data-rm]', list).forEach(b => b.addEventListener('click', () => { cart.items = cart.items.filter(i => i.id !== b.dataset.rm); save(); render(); paint(); })); };
+    const paint = () => { list.innerHTML = cart.items.length ? cart.items.map(i => `<div class="citem"><img src="${i.cover}" alt=""><div><h5>${i.name}</h5><span class="small muted">${fmtU(i.price)}</span></div><button class="rm" data-rm="${i.id}">Quitar</button></div>`).join('') : '<div class="drawer__empty">No hay audios en tu pedido. <a href="/shop/" style="text-decoration:underline">Volver a la tienda</a></div>'; total.textContent = totalTxt(); $$('[data-rm]', list).forEach(b => b.addEventListener('click', () => { cart.items = cart.items.filter(i => i.id !== b.dataset.rm); save(); render(); paint(); })); };
     paint();
     const fail = new URLSearchParams(location.search).get('status');
     if (fail === 'failure') out.innerHTML = '<div class="notice err">El pago no se completó. Puedes intentarlo de nuevo cuando quieras; tu pedido sigue aquí.</div>';

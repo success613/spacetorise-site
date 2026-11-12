@@ -743,3 +743,7 @@ section.fit .media.video{max-height:78vh;width:auto;aspect-ratio:4/5;margin:0 au
 .gcard__body p{margin:0 0 14px;color:var(--charcoal);font-size:.95rem}
 .gcard__more{font-size:.85rem;color:var(--taupe)}
 @media (max-width:640px){.toc ol{columns:1}.inline-cta{flex-direction:column;align-items:flex-start}}
+/* Precios de referencia en dólares (clientes en el exterior) */
+.usd{font-family:var(--text);font-size:.72rem;letter-spacing:.08em;color:var(--taupe);font-weight:300;white-space:nowrap}
+.pricecard .usd{display:block;margin:-2px 0 8px}
+.usd--line{display:block;margin:10px 0 0;letter-spacing:.06em;text-transform:none}

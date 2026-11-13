@@ -9,7 +9,7 @@ G1_FAQ = [
     ("¿Qué significa RTT?",
      "RTT son las siglas de Rapid Transformational Therapy, que en español se conoce como Terapia de Transformación Rápida. Es un método de hipnoterapia creado por la terapeuta británica Marisa Peer."),
     ("¿En qué se diferencia RTT de la hipnosis tradicional?",
-     "La hipnosis tradicional suele trabajar con sugerencias para cambiar un síntoma o un hábito. RTT usa la hipnosis para ir a la raíz: busca las experiencias y creencias que originaron el problema, ayuda a entenderlas desde la perspectiva adulta y las reemplaza por creencias nuevas. Además combina técnicas de PNL, psicoterapia y terapia cognitivo-conductual, y se refuerza con un audio personalizado."),
+     "La hipnosis tradicional suele trabajar con sugerencias para cambiar un síntoma o un hábito. RTT usa la hipnosis para ir a la raíz: busca las experiencias y creencias que originaron el problema, ayuda a entenderlas desde la perspectiva adulta y las reemplaza por creencias nuevas. Además combina técnicas de PNL y psicoterapia, y se refuerza con un audio personalizado."),
     ("¿Cuántas sesiones de RTT se necesitan?",
      "Depende de la persona y del tema. Muchos terapeutas certificados trabajan con una sesión principal y, si hace falta, hasta tres. Cada sesión va acompañada de un audio para escuchar durante al menos 21 días."),
     ("¿Por qué hay que escuchar el audio durante 21 días?",
@@ -37,7 +37,7 @@ G1_BODY = f"""
 </ol></nav>
 
 <h2 id="que-es">¿Qué es la hipnoterapia RTT?</h2>
-<p><strong>RTT</strong> son las siglas de <em>Rapid Transformational Therapy</em>, o <strong>Terapia de Transformación Rápida</strong>. Es un método de hipnoterapia que combina la hipnosis con elementos de <strong>programación neurolingüística (PNL), psicoterapia, terapia cognitivo-conductual (TCC) y neurociencia</strong>.</p>
+<p><strong>RTT</strong> son las siglas de <em>Rapid Transformational Therapy</em>, o <strong>Terapia de Transformación Rápida</strong>. Es un método de hipnoterapia que combina la hipnosis con elementos de <strong>programación neurolingüística (PNL), psicoterapia y neurociencia</strong>.</p>
 <p>Su idea central es sencilla: muchos bloqueos actuales, como la ansiedad, un miedo o un hábito que no logras dejar, tienen su origen en experiencias y creencias que se formaron hace tiempo y que siguen operando sin que te des cuenta. RTT usa la hipnosis para <strong>encontrar esa raíz</strong>, entenderla y reemplazar la creencia que ya no te sirve por una nueva.</p>
 
 <h2 id="origen">¿Quién creó RTT?</h2>
@@ -110,7 +110,7 @@ GUIAS.append(dict(
     desc="Guía de la hipnoterapia RTT (Rapid Transformational Therapy): qué es, quién la creó, cómo es una sesión, para qué se usa, qué dice la evidencia, riesgos y mitos frecuentes.",
     card="Qué es la Terapia de Transformación Rápida, cómo es una sesión, para qué se usa, qué dice la evidencia y qué esperar.",
     img="p/rtt-costa.jpg",
-    date="2026-11-05", date_h="5 de noviembre de 2026", read="7 min de lectura",
+    date="2026-11-05", updated="2026-11-13", date_h="5 de noviembre de 2026", read="7 min de lectura",
     body=G1_BODY, faq=G1_FAQ,
 ))
 
@@ -118,7 +118,7 @@ GUIAS.append(dict(
 def guia_page(g, IMG):
     url = f"https://spacetorise.com/guias/{g['slug']}/"
     art = {"@context": "https://schema.org", "@type": "Article", "headline": g['h1'], "description": g['desc'],
-           "image": f"https://spacetorise.com{IMG}{g['img']}", "datePublished": g['date'], "dateModified": g['date'],
+           "image": f"https://spacetorise.com{IMG}{g['img']}", "datePublished": g['date'], "dateModified": g.get('updated', g['date']),
            "inLanguage": "es-CO", "mainEntityOfPage": url,
            "author": {"@id": "https://spacetorise.com/#org"}, "publisher": {"@id": "https://spacetorise.com/#org"},
            "about": [{"@type": "Thing", "name": "Hipnosis clínica"}, {"@type": "Thing", "name": "Hipnoterapia RTT"}]}

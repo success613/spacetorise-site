@@ -406,6 +406,8 @@ pages["/rtt/"] = dict(title="Terapia de Transformación Rápida (RTT): sesión, 
 <section class="pad-s"><div class="wrap">
   {sec_title("Tu proceso en 3 pasos")}
   {steps3([("Conversación inicial", "Una llamada de 20 minutos para aclarar cualquier duda sobre la terapia."), ("Tu sesión de RTT (Rapid Transformational Therapy)", "Aproximadamente 3 horas. Con la hipnosis vamos a la raíz del problema para entender por qué y cuándo lo creaste, y liberarte de él."), ("Tu audio personal", "Un audio de 15 a 20 minutos hecho solo para ti, que escuchas cada día durante al menos 21 días para reprogramar tu mente y que el cambio sea permanente.")])}
+  <p class="lead fade" style="margin:clamp(28px,4vw,44px) 0 0;text-align:center">Valor de la sesión de RTT, con tu audio de 21 días incluido: <b style="font-weight:500">$480.000</b> <span class="usd">≈ US${usd(480000)}</span></p>
+  <p class="small muted fade" style="margin:8px 0 0;text-align:center">Presencial en Bogotá u online. <a href="/agenda/" style="text-decoration:underline">Agenda tu llamada inicial</a></p>
 </div></section>
 
 <section class="pad-s bg-sand"><div class="wrap">

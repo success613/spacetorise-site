@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """Space to Rise v2 — generador de páginas."""
 import os, json, html, re, math
-# Precios en dólares para clientes del exterior: TRM oficial (Superfinanciera) del día indicado, redondeo hacia arriba.
+# Precios en dólares para clientes del exterior. Valores redondos fijados por Andrea (14 nov 2026).
+# Si aparece un precio en COP sin valor fijo, se calcula con la TRM y se redondea hacia arriba.
+USD_PRICES = {480000: 150, 380000: 120, 180000: 55, 120000: 40, 55500: 17}
 TRM = 3297.07
-TRM_DATE = "12 nov 2026"
-def usd(cop): return math.ceil(cop / TRM)
-def usd_tag(cop, pre='≈ '): return f'<span class="usd">{pre}US${usd(cop)}</span>'
+def usd(cop): return USD_PRICES.get(cop) or math.ceil(cop / TRM)
+def usd_tag(cop, pre=''): return f'<span class="usd">{pre}US${usd(cop)}</span>'
 
 OUT = os.path.dirname(os.path.abspath(__file__))
 WA = "https://wa.me/573107503359?text=Hola!%20Quiero%20reservar%20mi%20cita%20%F0%9F%98%8A"
@@ -51,7 +52,7 @@ def head(title, desc, path, dark=False, portal=False, og=None, ld=None):
         items.append({"@type": "ListItem", "position": i + 2, "name": names.get(p, title.split(' | ')[0].split(' · ')[0]), "item": f"https://spacetorise.com{acc}/"})
     crumbs = (',' + json.dumps({"@type": "BreadcrumbList", "itemListElement": items}, ensure_ascii=False)) if parts and not portal else ''
     return f"""<!doctype html>
-<html lang="es-CO" data-usd-rate="{TRM}">
+<html lang="es-CO" data-usd-rate="{TRM}" data-usd-prices='{json.dumps(USD_PRICES)}'>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -406,7 +407,7 @@ pages["/rtt/"] = dict(title="Terapia de Transformación Rápida (RTT): sesión, 
 <section class="pad-s"><div class="wrap">
   {sec_title("Tu proceso en 3 pasos")}
   {steps3([("Conversación inicial", "Una llamada de 20 minutos para aclarar cualquier duda sobre la terapia."), ("Tu sesión de RTT (Rapid Transformational Therapy)", "Aproximadamente 3 horas. Con la hipnosis vamos a la raíz del problema para entender por qué y cuándo lo creaste, y liberarte de él."), ("Tu audio personal", "Un audio de 15 a 20 minutos hecho solo para ti, que escuchas cada día durante al menos 21 días para reprogramar tu mente y que el cambio sea permanente.")])}
-  <p class="lead fade" style="margin:clamp(28px,4vw,44px) 0 0;text-align:center">Valor de la sesión de RTT, con tu audio de 21 días incluido: <b style="font-weight:500">$480.000</b> <span class="usd">≈ US${usd(480000)}</span></p>
+  <p class="lead fade" style="margin:clamp(28px,4vw,44px) 0 0;text-align:center">Valor de la sesión de RTT, con tu audio de 21 días incluido: <b style="font-weight:500">$480.000</b> <span class="usd">US${usd(480000)}</span></p>
   <p class="small muted fade" style="margin:8px 0 0;text-align:center">Presencial en Bogotá u online. <a href="/agenda/" style="text-decoration:underline">Agenda tu llamada inicial</a></p>
 </div></section>
 
@@ -490,7 +491,7 @@ pages["/kids/"] = dict(title="Hipnoterapia para niños · RTT Kids | Space to Ri
     <span class="k">Temas en los que podemos ayudar</span>
     <ul class="tags stagger"><li>Autoestima alta y bullying</li><li>Ansiedad y estrés</li><li>Rendimiento académico</li><li>Pasar exámenes</li><li>Pesadillas y sueño</li><li>TDAH</li><li>Dislexia</li></ul>
     <div class="tiles c2 stagger" style="margin-top:22px">
-      <div class="tile bg-blush" style="min-height:0;padding:22px"><span class="tag" style="margin:0 0 8px">Sesiones Kids</span><h3 style="font-size:1.25rem">Una experiencia pensada para ellos</h3><p style="font-size:.88rem">Sesiones adaptadas a la edad de cada niño, con un audio personal para reforzar el cambio en casa.</p><p style="margin-top:10px;font-size:.88rem">Valor: <b style="font-family:var(--display);font-weight:300;font-size:1.4rem">$380.000</b> <span class="usd">≈ US${usd(380000)}</span></p><a class="pill solid" href="/agenda/" style="margin-top:12px;align-self:flex-start;padding:9px 18px"><span>Agenda</span></a></div>
+      <div class="tile bg-blush" style="min-height:0;padding:22px"><span class="tag" style="margin:0 0 8px">Sesiones Kids</span><h3 style="font-size:1.25rem">Una experiencia pensada para ellos</h3><p style="font-size:.88rem">Sesiones adaptadas a la edad de cada niño, con un audio personal para reforzar el cambio en casa.</p><p style="margin-top:10px;font-size:.88rem">Valor: <b style="font-family:var(--display);font-weight:300;font-size:1.4rem">$380.000</b> <span class="usd">US${usd(380000)}</span></p><a class="pill solid" href="/agenda/" style="margin-top:12px;align-self:flex-start;padding:9px 18px"><span>Agenda</span></a></div>
       <div class="tile bg-sand" style="min-height:0;padding:22px"><span class="tag" style="margin:0 0 8px">Para papás y mamás</span><h3 style="font-size:1.25rem">Criar sin miedos empieza por ti</h3><p style="font-size:.88rem">Acompaño a padres para criar nuevas generaciones libres de miedos, con amor propio y alas fuertes para volar alto.</p><a class="tag" href="/heal-rise-shine/" style="margin-top:12px">Conoce RTT (Rapid Transformational Therapy) para adultos →</a></div>
     </div>
   </div>
@@ -513,7 +514,7 @@ pages["/coaching/"] = dict(title="Coaching de vida en Bogotá y online | Space t
 <section class="pad-s"><div class="wrap feature">
   <div><div class="sec-title" style="margin-bottom:22px"><h2 class="display-s" style="margin:0;text-transform:uppercase;letter-spacing:.06em;font-size:1.3rem">Coaching individual</h2></div>
     <div class="tiles c2 fade d1 stagger" style="margin:0 0 18px"><div class="pricecard bg-blush"><b>1 h</b><span class="k">Por sesión</span><p>Un espacio enfocado solo en ti.</p></div><div class="pricecard bg-sand"><b>2</b><span class="k">Modalidades</span><p>Presencial o por Zoom.</p></div></div>
-    <p class="lead fade d2" style="margin:0 0 8px">Valor por sesión: <b style="font-weight:500">$180.000</b> <span class="usd">≈ US${usd(180000)}</span></p>
+    <p class="lead fade d2" style="margin:0 0 8px">Valor por sesión: <b style="font-weight:500">$180.000</b> <span class="usd">US${usd(180000)}</span></p>
     <p class="fade d2">Ideal después de tu sesión de RTT (Rapid Transformational Therapy), o para acompañar cualquier proceso de cambio: nuevos hábitos, decisiones importantes, metas personales o profesionales.</p>
     <a class="pill solid fade d3" href="/agenda/"><span>Agenda tu sesión</span></a></div>
   <div class="feature__media"><div class="media"><img src="{IMG}p/coaching-taza.jpg" alt="Coaching individual" loading="lazy"></div></div>
@@ -604,7 +605,7 @@ for p in PRODUCTS:
      body=f"""<section class="portal pad-s"><div class="wrap feature">
   <div class="feature__media"><div class="media square"><img src="{p['cover']}" alt="{p['name']}"></div></div>
   <div><span class="kicker fade">Shop / {CATN.get(p['category'], '')}</span><h1 class="display-m lines" style="margin:14px 0 18px">{p['name']}</h1><p class="lead fade d1">{p['description']}</p>
-    <div class="price-tag fade d2">{fmt(p['price'])}<small>COP</small><span class="usd usd--line">≈ US${usd(p['price'])} · se paga en pesos colombianos</span></div>
+    <div class="price-tag fade d2">{fmt(p['price'])}<small>COP</small><span class="usd usd--line">US${usd(p['price'])} · se paga en pesos colombianos</span></div>
     <ul class="list fade d2" style="margin:0 0 26px"><li>Audio de autohipnosis de 15 a 20 minutos</li><li>Acceso inmediato en tu espacio privado, para escuchar donde quieras</li><li>Pensado para escucharlo cada día durante 21 días</li></ul>
     <div class="fade d3" style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill solid" href="/checkout/?p={p['id']}"><span>Compra aquí</span></a><button class="pill" data-add="{p['id']}"><span>Añadir al carrito</span></button><a class="pill" href="/preguntas-frecuentes/" style="opacity:.8"><span>¿Tienes dudas?</span></a></div></div>
 </div></section>
@@ -750,8 +751,8 @@ pages["/agenda/"] = dict(title="Agenda tu cita de hipnoterapia RTT en Bogotá u 
   <div class="pricecard bg-blush"><span class="k">Personas</span><h4>Sesión de RTT (Rapid Transformational Therapy)</h4><p>Sesión de 3 horas con tu audio personal de 21 días.</p><b>$480.000</b>{usd_tag(480000)}</div>
   <div class="pricecard bg-rose"><span class="k">Niños</span><h4>RTT (Rapid Transformational Therapy) Kids</h4><p>Sesión adaptada a la edad de tu hijo, con su audio personal.</p><b>$380.000</b>{usd_tag(380000)}</div>
   <div class="pricecard bg-aqua"><span class="k">Integración</span><h4>Coaching individual</h4><p>Sesión de 1 hora, presencial o por Zoom.</p><b>$180.000</b>{usd_tag(180000)}</div>
-  <div class="pricecard bg-sky"><span class="k">Sonido</span><h4>Baño de gong</h4><p>Individual o grupal, para ti, tu familia o tu equipo.</p><b>$180.000 <small style="font-size:.5em">· $120.000 p/p grupal</small></b><span class="usd">≈ US${usd(180000)} · US${usd(120000)} p/p grupal</span></div>
-</div><p class="fade" style="margin:28px 0 0">¿Buscas algo para tu empresa? <a href="/empresas/" style="text-decoration:underline">Conoce los programas para empresas →</a></p><p class="small muted fade" style="margin:10px 0 0">Valores en pesos colombianos (COP). Los valores en dólares son de referencia para clientes en el exterior, calculados con la TRM del {TRM_DATE} (${f'{TRM:,.2f}'.replace(',','X').replace('.',',').replace('X','.')}) y redondeados hacia arriba.</p></div></section>
+  <div class="pricecard bg-sky"><span class="k">Sonido</span><h4>Baño de gong</h4><p>Individual o grupal, para ti, tu familia o tu equipo.</p><b>$180.000 <small style="font-size:.5em">· $120.000 p/p grupal</small></b><span class="usd">US${usd(180000)} · US${usd(120000)} p/p grupal</span></div>
+</div><p class="fade" style="margin:28px 0 0">¿Buscas algo para tu empresa? <a href="/empresas/" style="text-decoration:underline">Conoce los programas para empresas →</a></p><p class="small muted fade" style="margin:10px 0 0">Valores en pesos colombianos (COP). Los valores en dólares son para clientes en el exterior; el cobro se hace en pesos colombianos.</p></div></section>
 {tcards(['rtt', 'dormir', 'confianza'], bg="")}
 """, cta=False)
 
@@ -784,14 +785,14 @@ open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(f"""# Space to 
 
 Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer), MBA IE Business School, BSBA Babson College. Sede: Bogotá, Colombia. Atención presencial y online (Zoom). Contacto: info@spacetorise.com · WhatsApp +57 310 750 3359.
 
-## Servicios y precios (COP; dólares de referencia con la TRM del {TRM_DATE}, redondeados hacia arriba)
-- Sesión de hipnoterapia RTT (aprox. 3 h + audio personal de 21 días): $480.000 (≈ US${usd(480000)}) — https://spacetorise.com/rtt/
+## Servicios y precios (COP; valor en dólares para clientes en el exterior)
+- Sesión de hipnoterapia RTT (aprox. 3 h + audio personal de 21 días): $480.000 (US${usd(480000)}) — https://spacetorise.com/rtt/
 - Heal · Rise · Shine (RTT para sanar el cuerpo, la mente y alcanzar objetivos): https://spacetorise.com/heal-rise-shine/
-- RTT Kids (hipnoterapia para niños): $380.000 (≈ US${usd(380000)}) — https://spacetorise.com/kids/
-- Coaching individual (1 h, presencial o Zoom): $180.000 (≈ US${usd(180000)}) — https://spacetorise.com/coaching/
-- Baño de gong: individual $180.000 (≈ US${usd(180000)}) · grupal $120.000 por persona (≈ US${usd(120000)}) — https://spacetorise.com/gong/
+- RTT Kids (hipnoterapia para niños): $380.000 (US${usd(380000)}) — https://spacetorise.com/kids/
+- Coaching individual (1 h, presencial o Zoom): $180.000 (US${usd(180000)}) — https://spacetorise.com/coaching/
+- Baño de gong: individual $180.000 (US${usd(180000)}) · grupal $120.000 por persona (US${usd(120000)}) — https://spacetorise.com/gong/
 - Empresas: talleres de bienestar y manejo del estrés, retiros corporativos, sound healing para equipos — https://spacetorise.com/empresas/
-- Audios de autohipnosis ($55.500 c/u, ≈ US${usd(55500)}): https://spacetorise.com/shop/
+- Audios de autohipnosis ($55.500 c/u, US${usd(55500)}): https://spacetorise.com/shop/
 
 ## Páginas
 - Sobre Andrea Zafra: https://spacetorise.com/sobre-mi/

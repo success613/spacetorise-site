@@ -5,9 +5,10 @@
   const fmt = (n) => n === 0 ? 'Gratis' : '$ ' + n.toLocaleString('es-CO');
   // Dólares de referencia (TRM definida en build.py, redondeo hacia arriba). El cobro siempre es en COP.
   const RATE = parseFloat(document.documentElement.dataset.usdRate) || 0;
-  const usd = (n) => RATE ? Math.ceil(n / RATE) : 0;
+  const USDP = (() => { try { return JSON.parse(document.documentElement.dataset.usdPrices || '{}'); } catch (e) { return {}; } })();
+  const usd = (n) => USDP[n] || (RATE ? Math.ceil(n / RATE) : 0);
   const fmtU = (n) => n === 0 || !RATE ? fmt(n) : fmt(n) + ' · US$' + usd(n);
-  const totalTxt = () => { const c = cart.items.reduce((a, b) => a + b.price, 0), u = cart.items.reduce((a, b) => a + usd(b.price), 0); return fmt(c) + (RATE && c ? ' COP · ≈ US$' + u : ''); };
+  const totalTxt = () => { const c = cart.items.reduce((a, b) => a + b.price, 0), u = cart.items.reduce((a, b) => a + usd(b.price), 0); return fmt(c) + (RATE && c ? ' COP · US$' + u : ''); };
   const KEY = 'str-cart-v2';
   let products = [];
   const cart = { items: JSON.parse(localStorage.getItem(KEY) || '[]') };
@@ -71,7 +72,7 @@
   function openModal(id) {
     const p = products.find(x => x.id === id); if (!p || !modal) return;
     $('.modal__img', modal).innerHTML = `<img src="${p.cover}" alt="">`;
-    $('.modal__body', modal).innerHTML = `<span class="kicker">Audio de autohipnosis · 15–20 min</span><h3>${p.name}</h3><div class="desc"><p>${p.description}</p><p class="small muted">Escúchalo 21 días seguidos: es lo que tarda la mente en crear nuevos hábitos. Después del pago recibes un enlace mágico a tu correo para entrar a tu espacio privado y escucharlo desde cualquier dispositivo.</p></div><div class="price-tag">${fmt(p.price)}<small>COP</small>${RATE ? `<span class="usd usd--line">≈ US$${usd(p.price)} · se paga en pesos colombianos</span>` : ''}</div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="pill solid" data-madd="${p.id}"><span>Añadir al carrito</span></button><a class="pill" href="/checkout/?p=${p.id}"><span>Comprar ahora</span></a></div>`;
+    $('.modal__body', modal).innerHTML = `<span class="kicker">Audio de autohipnosis · 15–20 min</span><h3>${p.name}</h3><div class="desc"><p>${p.description}</p><p class="small muted">Escúchalo 21 días seguidos: es lo que tarda la mente en crear nuevos hábitos. Después del pago recibes un enlace mágico a tu correo para entrar a tu espacio privado y escucharlo desde cualquier dispositivo.</p></div><div class="price-tag">${fmt(p.price)}<small>COP</small>${RATE ? `<span class="usd usd--line">US$${usd(p.price)} · se paga en pesos colombianos</span>` : ''}</div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="pill solid" data-madd="${p.id}"><span>Añadir al carrito</span></button><a class="pill" href="/checkout/?p=${p.id}"><span>Comprar ahora</span></a></div>`;
     $('[data-madd]', modal).addEventListener('click', () => { add(p); closeModal(); openCart(true); });
     modal.classList.add('open'); scrim && scrim.classList.add('open'); document.body.classList.add('no-scroll');
     history.replaceState(null, '', '#p=' + p.id);

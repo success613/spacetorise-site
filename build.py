@@ -798,5 +798,6 @@ Fundadora: Andrea Zafra — hipnoterapeuta clínica RTT (método de Marisa Peer)
 - Sobre Andrea Zafra: https://spacetorise.com/sobre-mi/
 - Preguntas frecuentes sobre hipnosis y RTT: https://spacetorise.com/preguntas-frecuentes/
 - Guía: ¿Qué es la hipnoterapia RTT? Cómo funciona, para qué sirve y qué esperar: https://spacetorise.com/guias/que-es-la-hipnoterapia-rtt/
+- Guía: Hipnoterapia online: cómo funciona una sesión por videollamada y si es para ti: https://spacetorise.com/guias/hipnoterapia-online/
 - Agenda una llamada inicial de 20 minutos: https://spacetorise.com/agenda/
 """)
